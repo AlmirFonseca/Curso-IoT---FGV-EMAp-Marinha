@@ -92,7 +92,10 @@ Seu funcionamento é baseado em um motor DC com uma caixa de redução e um pote
 
 #### Passo 2: Programação
 
-1. Instale a biblioteca "Servo" no Arduino IDE.
+1. Instale a biblioteca "Servo" no Arduino IDE. Para isso, abra o Library Manager e busque por "servo".
+
+TODO: Add image
+
 2. Abra o Arduino IDE e escreva o seguinte código:
 
 ```cpp
@@ -317,9 +320,9 @@ float linearizePotentiometer(int potValue) {
   float c = 0.1;
   
   // Calcula o valor esperado do erro
-  float expectedErrorValue = a * pow(potValue, 2) 
-                      + b * potValue 
-                      + c;
+  float expectedErrorValue = a * pow(potValue, 2)
+                           + b * potValue 
+                           + c;
 
   // Calcula o valor linearizado do potenciômetro
   float linearValue = potValue + expectedErrorValue;
