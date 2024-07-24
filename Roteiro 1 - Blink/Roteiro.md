@@ -25,9 +25,6 @@ Este roteiro de experimento é projetado para os primeiros passos uma turma de i
 - 1x Copo plástico ou similar (para cobrir o LDR durante a coleta de dados)
 - Breadboard e jumpers
 
-### Tempo Estimado
-4 horas (1 hora para cada bloco de atividades)
-
 ### Palavras-chave
 Arduino, Arduino IDE, LED, Light Emitting Diode, Resistor, digitalWrite, analogWrite, LDR, Light Dependent Resistor, Serial Monitor, Serial Begin, Serial Print, Serial Plotter.
 
