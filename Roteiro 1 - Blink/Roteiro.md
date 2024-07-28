@@ -34,7 +34,7 @@ Arduino, Arduino IDE, LED, Light Emitting Diode, Resistor, digitalWrite, analogW
 
 ### Bloco 1: Blink, o "Hello World" do Arduino
 
-Assim como outras linguagens, existe um "ritual de iniciação" para quem está começando a programar com Arduino: o Blink. Neste experimento, o objetivo é acender e apagar um LED a cada segundo, utilizando o LED embutido na placa Arduino Uno.
+Assim como outras linguagens, existe um "ritual de iniciação" para quem está começando a programar com Arduino: o "Blink". Neste experimento, o objetivo é acender e apagar um LED a cada segundo, utilizando o LED embutido na placa Arduino Uno.
 
 #### Passo 1: Introdução ao Circuito
 
@@ -65,7 +65,15 @@ Assim como outras linguagens, existe um "ritual de iniciação" para quem está 
 
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
 
+<p align="center">
+  <img src="..\src\images\SelectBoardAndPort.png" height="300px" />
+</p>
+
 3. Faça o upload do código para a placa Arduino.
+
+<p align="center">
+  <img src="..\src\images\UploadCode.png" height="50px" />
+</p>
 
 #### Passo 3: Observação
 
@@ -74,6 +82,8 @@ Assim como outras linguagens, existe um "ritual de iniciação" para quem está 
 #### Passo 4: Exploração
 
 1. O que acontece se alterarmos o tempo de espera de cada comando ```delay()```? Altere seus valores, faça o upload do código novamente e observe o comportamento do LED.
+
+> ⚠: Após ser carregado para a placa, o código (chamado de *"sketch"*) é executado indefinidamente. Caso a placa seja desligada, o código não é perdido, bastando religá-la para que todo o código seja executado novamente a partir do início. Caso deseje atualizar o código, é necessário fazer o upload de um novo código para a placa.
 
 
 ### Bloco 2: Controle de LED com digitalWrite
@@ -86,12 +96,16 @@ Agora que já passaram pelo "ritual de iniciação", é hora de controlar LEDs e
 
 #### Passo 1: Introdução ao Circuito
 
-1. Conecte o LED verde ao pino 8 do Arduino através de um resistor de 300 ohms. Para mais orientações, use o exemplo [Blink | Arduino Documentation](https://docs.arduino.cc/built-in-examples/basics/Blink/) como referência para a construção do circuito
+1. Conecte o pino positivo LED verde ao pino 8 do Arduino através de um resistor de 300 ohms. O pino negativo do LED deve ser conectado ao GND do Arduino.
 
 > ⚠: Preste atenção à polaridade do LED. Ela pode ser observada segundo o comprimento das "pernas" do LED.
 
 <p align="center">
   <img src="https://ledlightinginfo.com/wp-content/uploads/2020/11/led-polarity.jpg" height="200px" />
+</p>
+
+<p align="center">
+  <img src="..\src\images\Roteiro 1\blink_circuit_green.png" height="300px" />
 </p>
 
 #### Passo 2: Programação
@@ -112,6 +126,7 @@ Agora que já passaram pelo "ritual de iniciação", é hora de controlar LEDs e
     }
     ```
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+
 3. Faça o upload do código para a placa Arduino.
 
 #### Passo 3: Observação
@@ -119,7 +134,8 @@ Agora que já passaram pelo "ritual de iniciação", é hora de controlar LEDs e
 
 ### Passo 4: Exploração
 
-1. O que acontece se o LED for conectado em outro pino? Qualquer pino pode ser utilizado para controlar o LED com ```digitalWrite()```?
+1. O que acontece se o LED for conectado em outro pino? Qualquer pino pode ser utilizado para controlar o LED com ```digitalWrite()```? Experimente conectar o LED em outros pinos e alterar o código para refletir essa mudança.
+
 2. A fim de visualizar o estado do LED na tela do computador, experimente imprimir mensagens de texto usando ```Serial.println()``` toda vez que o LED tiver o estado alterado.
 
 > ⚠: Lembre-se sempre de inicializar a comunicação serial utilizando ```Serial.begin()```
@@ -147,8 +163,16 @@ Agora que já sabemos como ligar e desligar LEDs, é hora de aprender a controla
 
 Por padrão, o controlador do Arduino Uno permite o ajuste em 256 níveis de intensidade, variando de 0 (0 volts) a 255 (5 volts). Nesse experimento, utilizaremos o LED vermelho para demonstrar o controle de intensidade através da variação do seu brilho.
 
+<p align="center">
+  <img src="https://www.circuitgeeks.com/wp-content/uploads/2021/03/Arduino-PWM.jpg" height="400px" />
+</p>
+
 #### Passo 1: Introdução ao Circuito
 1. Monte o circuito similar ao anterior, mas conectando o LED vermelho ao pino 9.
+
+<p align="center">
+  <img src="..\src\images\Roteiro 1\blink_circuit_red.png" height="300px" />
+</p>
 
 #### Passo 2: Programação
 1. Abra a Arduino IDE e escreva o seguinte código:
@@ -168,18 +192,26 @@ Por padrão, o controlador do Arduino Uno permite o ajuste em 256 níveis de int
       delay(1000);
     }
     ```
+
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+
 3. Faça o upload do código para a placa Arduino.
 
 #### Passo 3: Observação
+
 1. Observe a mudança de brilho do LED vermelho a cada segundo.
+
 2. A fim de visualizar o estado do LED na tela do computador, experimente imprimir mensagens de texto usando ```Serial.println()``` toda vez que o LED tiver o estado alterado. Use o Serial Plotter para visualizar os dados.
+
+> ⚠: O Serial Plotter é uma ferramenta eficiente para visualizar dados de sensores e variáveis que mudam com o tempo. Para utilizá-lo, basta imprimir mensagens simples como números separados por vírgula. Para acessá-lo, basta clicar em ```Ferramentas -> Serial Plotter``` na Arduino IDE.
 
 ### Passo 4: Exploração
 
 1. O que acontece se o LED for conectado em outro pino? Qualquer pino pode ser utilizado para controlar o LED com ```analogWrite()```?
-2. O que acontece se tentarmos controlar a intensidade dessa forma com ```digitalWrite()```? Por que isso ocorre? O Arduino é atualizado com o código novo?
-3. Como podemos controlar a intensidade do LED de forma mais suave? Experimente alterar o tempo de espera entre as mudanças de brilho, criar mais níveis de intensidade ou utilizar loops para controlar a intensidade do LED. (Dica: utilize a função ```for```)
+
+2. O que acontece se tentarmos controlar a intensidade dessa forma com ```digitalWrite()```? Experimente substituir o comando ```analogWrite()``` por ```digitalWrite()``` e observe o comportamento do LED.
+
+3. Como podemos controlar a intensidade do LED de forma mais suave? Experimente alterar o tempo de espera entre as mudanças de brilho, criar mais níveis de intensidade ou utilizar loops para controlar a intensidade do LED. (Dica: utilize a função ```for``` para criar loops, como mostrado abaixo)
 
 ```cpp
 for (int i = 0; i <= 255; i++) { // Seleciona um valor para "i" de 0 a 255
@@ -187,6 +219,7 @@ for (int i = 0; i <= 255; i++) { // Seleciona um valor para "i" de 0 a 255
   delay(10); // Aguarda 10 ms antes da próxima iteração ("repetição")
 }
 ```
+
 4. Como visualizar os valores de intensidade do LED na porta serial de forma mais intuitiva? Experimente imprimir mensagens com o valor da intensidade do LED e utilize o Serial Plotter para visualizar os dados.
 
 ---
@@ -198,6 +231,10 @@ Agora que já sabemos controlar LEDs e a intensidade deles, é hora de aplicar e
 #### Passo 1: Introdução ao Circuito
 
 1. Monte o circuito com os LEDs vermelho, amarelo e verde, conectando-os aos pinos 9, 10 e 11, respectivamente. Utilize 1 resistor de 300 ohms para cada LED.
+
+<p align="center">
+  <img src="..\src\images\Roteiro 1\traffic_light.png" height="300px" />
+</p>
 
 #### Passo 2: Programação
 
@@ -235,6 +272,7 @@ Agora que já sabemos controlar LEDs e a intensidade deles, é hora de aplicar e
     ```
 
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+
 3. Faça o upload do código para a placa Arduino.
 
 #### Passo 3: Observação
@@ -259,7 +297,11 @@ A fim de continuar os nossos experimentos, vamos substituir os 3 LEDs individuai
 
 #### Passo 1: Introdução ao Circuito
 
-1. Monte o circuito com o LED RGB, conectando cada pino a um pino digital do Arduino (9, 10 e 11). Utilize 1 resistor de 300 ohms para cada pino. Você pode manter os resistores usados no circuito anterior, basta conectar cada pino do LED RGB a um resistor, e o seu pino comum ("GROUND") ao GND do Arduino.
+1. Monte o circuito com o LED RGB, conectando cada pino a um pino digital do Arduino (9, 10 e 11). Utilize 1 resistor de 300 ohms para cada pino de controle de cor, e o seu pino comum ("GROUND") ao GND do Arduino.
+
+<p align="center">
+  <img src="..\src\images\Roteiro 1\traffic_light_rgb.png" height="300px" />
+</p>
 
 #### Passo 2: Programação
 
@@ -267,9 +309,9 @@ Esse bloco é similar ao anterior, sendo a única diferença a troca dos LEDs in
 
 1. Abra a Arduino IDE e escreva o seguinte código:
     ```cpp
-    int redPin = 9;
+    int redPin = 11;
     int greenPin = 10;
-    int bluePin = 11;
+    int bluePin = 9;
 
     void setup() {
       pinMode(redPin, OUTPUT);
@@ -285,8 +327,8 @@ Esse bloco é similar ao anterior, sendo a única diferença a troca dos LEDs in
       delay(5000); // Aguarda 5 segundos
 
       // Amarelo
-      analogWrite(redPin, 128);
-      analogWrite(greenPin, 128);
+      analogWrite(redPin, 255);
+      analogWrite(greenPin, 255);
       analogWrite(bluePin, 0);
       delay(2000); // Aguarda 2 segundos
 
@@ -299,6 +341,7 @@ Esse bloco é similar ao anterior, sendo a única diferença a troca dos LEDs in
     ```
 
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+
 3. Faça o upload do código para a placa Arduino.
 
 #### Passo 3: Observação
@@ -307,7 +350,9 @@ Esse bloco é similar ao anterior, sendo a única diferença a troca dos LEDs in
 
 ### Passo 4: Exploração
 
-1. O que acontece se alterarmos a composição de vermelho e verde para gerar o amarelo? Experimente alterar os valores de ```analogWrite()``` e observe o comportamento do semáforo.
+1. Como funciona a composição de cores que compõem o amarelo? Experimente colocar a mão ou outro objeto na frente do LED RGB para observar a mistura de cores.
+
+2. O que acontece se alterarmos a composição de vermelho e verde para gerar um amarelo "mais realista"? Experimente compor outros tons de amarelo a partir de diferentes combinacões de intensidade de vermelho e verde. Busque por um amarelo mais parecido com o semáforo tradicional.
 
 > Você sabia? Existem alguns motivos que dificultam o uso de LEDs RGB em semáforos ao redor do mundo como, por exemplo, o fato de que pessoas com daltonismo podem ter dificuldades para distinguir as cores, o que não acontece com os semáforos tradicionais que utilizam luzes individuais. Além disso, estudos mostram que a alteração da posição da fonte de luz quando o semáfoto muda de estado chama a atenção dos motoristas. Por fim, o alto custo de manutenção também impacta na escolha pelos semáforos tradicionais.
 
@@ -325,7 +370,12 @@ Neste bloco, os alunos aprenderão a utilizar um sensor de luminosidade (LDR) pa
 #### Passo 1: Introdução ao Circuito
 
 1. Conecte o LDR (*Light Dependent Resistor*) entre o pino A0 e o terminal GND.
-2. Conecte um resistor de 10k ohms entre o pino A0 e o terminal VCC (5V). Esse resistor é chamado de "resistor de pull-up" e é utilizado para garantir que o pino A0 não fique flutuando caso o LDR não esteja recebendo luz.
+
+2. Conecte um resistor de 10k ohms entre o pino A0 e o terminal VCC (5V). 
+
+<p align="center">
+  <img src="..\src\images\Roteiro 1\ldr_circuit.png" height="300px" />
+</p>
 
 #### Passo 2: Programação
 
@@ -342,29 +392,37 @@ Neste bloco, os alunos aprenderão a utilizar um sensor de luminosidade (LDR) pa
     void loop() {
       int ldrValue = analogRead(ldrPin); // Lê o valor do LDR
       Serial.println(ldrValue);
-      delay(1000);
+      delay(500);
     }
     ```
 
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+
 3. Faça o upload do código para a placa Arduino.
 
 #### Passo 3: Observação
 
 1. Abra o Serial Monitor na Arduino IDE.
+
 2. Observe os valores de luminosidade capturados pelo LDR. Experimente abrir o Serial Plotter para visualizar os dados de forma gráfica.
 
 ### Passo 4: Exploração
 
 1. O que acontece se apontar o LDR para as lâmpadas no teto ou para a lanterna do celular? E se tampar ele com a mão?
-2. Qual o valor mínimo e máximo que é possível obter? O que esses valores representam?
-3. Como podemos utilizar esses valores para controlar a intensidade de um LED? Experimente substituir o ```analogWrite()``` do LED RGB por um valor lido do LDR. Assim, o LED mudará de intensidade de acordo com a luminosidade capturada pelo sensor.
+
+2. Como funciona o LDR? Qual o valor mínimo e máximo que é possível obter? O que esses valores representam?
+
+3. Como podemos utilizar esses valores para controlar a intensidade de um LED? Experimente substituir o ```analogWrite()``` do LED RGB por um valor lido do LDR. Assim, o LED mudará de intensidade de acordo com a luminosidade capturada pelo sensor. Para isso, você deve mapear o valor lido do LDR (0 a 1023) para o intervalo de intensidade do LED (0 a 255) usando a função ```map()```.
 
 ```cpp
 ...
 int ldrValue = analogRead(ldrPin); // Lê o valor do LDR
-ldrValue = map(ldrValue, 0, 1023, 0, 255); // Mapeia o valor do LDR para o intervalo de 0 a 255
-analogWrite(redPin, ldrValue); // Controla a intensidade do LED vermelho de acordo com o valor do LDR
+
+// Mapeia o valor do LDR para o intervalo de 0 a 255
+ldrValue = map(ldrValue, 0, 1023, 0, 255); 
+
+// Controla a intensidade do LED vermelho de acordo com o valor do LDR
+analogWrite(redPin, ldrValue); 
 ...
 ```
 
@@ -378,9 +436,16 @@ Neste bloco, os alunos aprenderão a coletar dados de luminosidade com o LDR e a
 
 O LDR é um resistor cuja resistência varia de acordo com a intensidade da luz que incide sobre ele. Quanto mais luz, menor a resistência.
 
-Mantenha o circuito do bloco anterior. Usaremos o LED RGB como fonte de luz para o LDR. Portanto, basta seguir os passos dos blocos 5 e 6 para montar o circuito. Depois disso:
+Mantenha o circuito do bloco anterior. Usaremos o LED RGB como fonte de luz para o LDR. Portanto, basta seguir os passos dos blocos 5 e 6 para montar o circuito. 
+
+<p align="center">
+  <img src="..\src\images\Roteiro 1\ldr_with_rgb_led_circuit.png" height="300px" />
+</p>
+
+Depois disso:
 
 1. Garanta que o LDR esteja exposto à luz emitida pelo LED RGB. Entorte o LDR para que ele aponte para o LED RGB.
+
 2. Cubra o conjunto LDR e LED RGB com um copo plástico ou similar para bloquear a luz do ambiente. Isso reduzirá a interferência dela no experimento, permitindo uma coleta de dados mais precisa.
 
 #### Passo 2: Programação
@@ -389,9 +454,9 @@ Mantenha o circuito do bloco anterior. Usaremos o LED RGB como fonte de luz para
     ```cpp
     int ldrPin = A0;
 
-    int ledRedPin = 9;
+    int ledRedPin = 11;
     int ledGreenPin = 10;
-    int ledBluePin = 11;
+    int ledBluePin = 9;
 
     void setup() {
       Serial.begin(9600);
@@ -409,82 +474,128 @@ Mantenha o circuito do bloco anterior. Usaremos o LED RGB como fonte de luz para
 
       // Acende e controla a intensidade do LED vermelho
       Serial.println("Red LED");
-      for (int i = 0; i <= 255; i++) {
+      for (int i = 0; i <= 255; i = i+10) {
         analogWrite(ledRedPin, i);
+        delay(500);
+
         int ldrValue = analogRead(ldrPin);
-        Serial.println(i + "," + ldrValue);
-        delay(100);
+
+        Serial.print(i);
+        Serial.print(",");
+        Serial.println(ldrValue);
       }
       // Apaga o LED vermelho
       digitalWrite(ledRedPin, LOW);
 
       // Acende e controla a intensidade do LED verde
       Serial.println("Green LED");
-      for (int i = 0; i <= 255; i++) {
+      for (int i = 0; i <= 255; i = i+10) {
         analogWrite(ledGreenPin, i);
+        delay(500);
+
         int ldrValue = analogRead(ldrPin);
-        Serial.println(i + "," + ldrValue);
-        delay(100);
+        
+        Serial.print(i);
+        Serial.print(",");
+        Serial.println(ldrValue);
       }
       // Apaga o LED verde
       digitalWrite(ledGreenPin, LOW);
 
       // Acende e controla a intensidade do LED azul
       Serial.println("Blue LED");
-      for (int i = 0; i <= 255; i++) {
+      for (int i = 0; i <= 255; i = i+10) {
         analogWrite(ledBluePin, i);
+        delay(500);
+
         int ldrValue = analogRead(ldrPin);
-        Serial.println(i + "," + ldrValue);
-        delay(100);
+        
+        Serial.print(i);
+        Serial.print(",");
+        Serial.println(ldrValue);
       }
       // Apaga o LED azul
       digitalWrite(ledBluePin, LOW);
     }
+
+    void loop() {
+      // Nada a ser feito no loop
+    }
     ```
 
-> ⚠: Nem sempre é necessário manter ambos os blocos ```void setup()``` e ```void loop()``` separados. Nesse exemplo, como queremos que o Arduino execute a rotina de coleta de dados apenas uma vez após a inicialização, optamos por manter a coleta no ```void setup()```. Assim, ele não será executado repetidamente como no ```void loop()```, onde o código é repetido indefinidamente.
+> ⚠: É necessário manter ambos os blocos ```void setup()``` e ```void loop()``` separados, mesmo que um deles fique vazio. Nesse exemplo, como queremos que o Arduino execute a rotina de coleta de dados apenas uma vez após a inicialização, optamos por manter a coleta no ```void setup()```. Assim, ele não será executado no ```void loop()```, onde o código é repetido indefinidamente.
 
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+
 3. Faça o upload do código para a placa Arduino.
 
 #### Passo 3: Observação
 
 1. Abra o Serial Monitor na Arduino IDE.
+
 2. Observe os valores de luminosidade capturados pelo LDR.
+
 3. Copie os valores impressos para uma planilha do Excel e anote a cor do LED que gerou esses valores. No final, é desejado que seja construída uma tabela nesse formato:
 
 | Intensidade do LED | LED Vermelho | LED Verde | LED Azul |
 |---------------------|--------------|-----------|----------|
-| 0                   | 0            | 0         | 0        |
-| 1                   | 1            | 3         | 2        |
-| 2                  | 2            | 5         | 4        |
+| 0                   | 298            | 1023         | 512        |
+| 10                   | 250            | 976         | 508        |
+| 20                  | 231            | 347         | 407        |
 | ...                 | ...          | ...       | ...      |
-| 255                 | 298         | 1023      | 512      |
+| 250                 | 0         | 1      | 0      |
 
 4. Construa gráficos de linhas para cada cor de LED, exibindo a curva de sensibilidade do LDR para cada cor.
 
 ### Passo 4: Exploração
 
-1. As curvas são lineares? 
-2. As curvas são similares? 
-3. Existe alguma cor que o LDR é mais sensível? Busque um embasamento teórico pra sua resposta na [datasheet do sensor LDR](https://www.robocore.net/upload/attachments/sensor_ldr_gl5528_145.pdf).
+1. O que as curvas representam?
+
+2. As curvas são lineares? 
+
+3. As curvas são similares? 
+
+4. Existe alguma cor que o LDR é mais sensível? Busque um embasamento teórico pra sua resposta na [datasheet do sensor LDR](https://www.robocore.net/upload/attachments/sensor_ldr_gl5528_145.pdf). Considere que estamos utilizando um LDR de Sulfero de Cádmio (CdS).
 
 ---
 
 ### Conclusão
 Este experimento introduziu conceitos básicos de controle de LEDs já embutidos na placa Arduino, externos e até mesmo RGB, além de coleta de dados com Arduino, proporcionando uma base sólida para futuros projetos em eletrônica e IoT. A comparação das respostas do LDR às diferentes cores de LEDs permite uma compreensão mais profunda da sensibilidade do sensor à luz e como essa informação pode ser utilizada em projetos futuros.
 
+> ⚠: Lembre-se sempre de, quando possível, consultar a ficha técnica (datasheet) dos componentes utilizados para entender melhor o seu funcionamento e características. Essas informações são essenciais para a solução de problemas que possam surgir durante o desenvolvimento de projetos mais complexos.
+
 ---
 
 ### Referências para Consulta
+
 - [Arduino Official Documentation](https://www.arduino.cc/en/Guide/HomePage)
+
 - [Arduino Reference](https://www.arduino.cc/reference/en/)
 
+- [Getting Started with Arduino IDE 2](https://docs.arduino.cc/software/ide-v2/tutorials/getting-started-ide-v2/)
+
+- [Blink | Arduino Documentation](https://docs.arduino.cc/built-in-examples/basics/Blink/)
+
+- [Introduction | Breadboards for Beginners](https://learn.adafruit.com/breadboards-for-beginners/introduction)
+
+- [Pulse Width Modulation - SparkFun Learn](https://learn.sparkfun.com/tutorials/pulse-width-modulation/all)
+
+- [LDR – Wikipédia](https://pt.wikipedia.org/wiki/LDR)
+
 ### Sugestões de Leitura
-- "Arduino Cookbook" de Michael Margolis
-- "Programming Arduino: Getting Started with Sketches" de Simon Monk
-- "How to Read a Datasheet" de Phil's Lab ([link](https://youtu.be/1EXXqWweTkI?si=hngcrZDaMttrbT5z))
-- "How to Read a Datasheet" de SparkFun Electronics ([link](https://www.sparkfun.com/tutorials/223))
+- [Arduino Cookbook: Recipes to Begin, Expand, and Enhance Your Projects](https://www.amazon.com/Arduino-Cookbook-Michael-Margolis/dp/1449313876)
+
+- [Programming Arduino: Getting Started with Sketches](https://www.amazon.com/Programming-Arduino-Getting-Started-Sketches/dp/0071784225)
+
+- [How to Read a Datasheet (Phil's Lab)](https://youtu.be/1EXXqWweTkI?si=hngcrZDaMttrbT5z)
+
+- [How to Read a Datasheet (SparkFun Electronics)](https://www.sparkfun.com/tutorials/223)
+
+- [Encyclopedia of Electronic Components Volume 1: Resistors, Capacitors, Inductors, Switches, Encoders, Relays, Transistors](https://www.amazon.com/Encyclopedia-Electronic-Components-Resistors-Transistors/dp/1449333893)
+
+- [Encyclopedia of Electronic Components Volume 2: LEDs, LCDs, Audio, Thyristors, Digital Logic, and Amplification](https://www.amazon.com/Encyclopedia-Electronic-Components-Thyristors-Amplification/dp/1449334180)
+
+- [Encyclopedia of Electronic Components Volume 3: Sensors, LEDs, Audio, Thyristors, Digital Logic, and Amplification](https://www.amazon.com/Encyclopedia-Electronic-Components-Sensors-Amplification/dp/1449334318)
 
 ---
 

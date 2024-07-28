@@ -9,7 +9,7 @@ Buscamos introduzir os conceitos básicos de eletrônica e IoT com Arduino, com 
 
 | Título da Aula | Descrição | Roteirização? | Códigos Testados? | Apresentação de apoio? | Impressão 3D? |
 |-----------------|-----------|---------------|-------------------|------------------------| --------------|
-| Aula 1: Blink | Introdução ao Arduino e controle de LEDs | X | | |
+| Aula 1: Blink | Introdução ao Arduino e controle de LEDs | X | X | |
 | Aula 2: Servo Motores | Controle de Servo Motores | X | | | |
 | Aula 3: Sonar | Construção de um Sonar com sensores de distância ultrassônicos | X | | | |
 | Aula 4: Weather Station | Construção de uma estação meteorológica com sensores de temperatura, umidade e qualidade do Ar | X | | | |
