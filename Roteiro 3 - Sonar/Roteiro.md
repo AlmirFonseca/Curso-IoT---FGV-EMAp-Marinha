@@ -50,6 +50,10 @@ Sensores de distância ultrassônicos, como o HC-SR04, utilizam ondas sonoras pa
    - Pino Trig do sensor ao pino digital 2 do Arduino
    - Pino Echo do sensor ao pino digital 3 do Arduino
 
+<p align="center">
+  <img src="..\src\images\Roteiro 3\sonar_circuit.png" alt="Circuito do Potenciômetro" height="300">
+</p>
+
 #### Passo 2: Programação
 
 1. Instale a biblioteca ```HCSR04 ultrasonic sensor``` na Arduino IDE. Para isso, abra o Library Manager e busque por ```HCSR04 ultrasonic sensor```, de ```gamegine```.
@@ -131,35 +135,67 @@ Motores de Passo são dispositivos utilizados para converter pulsos elétricos e
     - Pino GND do driver ao GND do Arduino
     - Pino VCC do driver ao 5V do Arduino
 
+<p align="center">
+  <img src="..\src\images\Roteiro 3\stepper_motor_circuit.png" alt="Circuito do Potenciômetro" height="300">
+</p>
+
 2. Conecte o motor de passo ao driver usando o conector de 5 pinos.
 
 #### Passo 2: Programação
 
-1. Instale a biblioteca ```Stepper``` na Arduino IDE. Para isso, abra o Library Manager e busque por ```Stepper```.
+1. Instale a biblioteca ```Bonezegei_ULN2003_Stepper``` na Arduino IDE. Para isso, abra o Library Manager e busque por ```ULN2003```.
 
-2. Abra o Arduino IDE e abra o exemplo "Stepper" em ```File > Examples > Stepper > stepper_oneStepAtATime```
+2. Abra o Arduino IDE e escreva o seguinte código para exibir os valores de distância no Serial Monitor:
 
-3. Confira os pinos descritos na inicialização do motor de passo e faça as alterações necessárias no código, se necessário. Nesse caso, é necessário atualizar o ```stepsPerRevolution``` para 64.
+```cpp
+#include "Bonezegei_ULN2003_Stepper.h"
 
-4. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+Bonezegei_ULN2003_Stepper Stepper(8, 9, 10, 11);
 
-5. Faça o upload do código para a placa Arduino.
+#define STEPS_PER_REVOLUTION 2038
+
+// Set This According to your Preference
+#define FORWARD 1
+#define REVERSE 0
+
+void setup() {
+  //Inititalize Pins
+  Stepper.begin();
+
+  Stepper.setSpeed(5); // Set 
+}
+
+void loop() {
+
+  Stepper.step(FORWARD, STEPS_PER_REVOLUTION);
+  delay(2000);
+
+  Stepper.step(REVERSE, STEPS_PER_REVOLUTION);
+  delay(2000);
+}
+```
+
+3. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+
+4. Faça o upload do código para a placa Arduino.
 
 #### Passo 3: Observação
 
-1. Observe o movimento do motor de passo conforme o código é executado. O motor deve girar lentamente, 1 "passo" a cada iteração do ```void loop()```.
+1. Observe o movimento do motor de passo conforme o código é executado. O motor deve girar lentamente, 1 volta para cada lado, a cada iteração do ```void loop()```.
 
 2. Se necessário, cole uma fita adesiva ao eixo do motor para facilitar a visualização do movimento.
 
 #### Passo 4: Exploração
 
-1. O motor de passo gira de forma precisa? Ele consegue girar exatamente 1 passo a cada iteração do loop?
+1. O motor de passo gira de forma precisa? Ele consegue girar de forma precisa mesmo depois de múltiplas iterações do loop?
 
-2. O que acontece se alterar o valor de ```stepsPerRevolution``` no código? Experimente aumentar ou diminuir esse valor e observe o comportamento do motor.
+2. O que acontece se alterar o valor de ```STEPS_PER_REVOLUTION``` no código? Experimente aumentar ou diminuir esse valor e observe o comportamento do motor.
 
-3. Como podemos controlar a velocidade dessa rotação? E a direção? Podemos pedir para ele girar mais de um passo por iteração?
+3. Como podemos controlar a velocidade dessa rotação? E a direção? Podemos pedir para ele girar mais voltas numa iteração?
 
 4. O que esse motor difere do servo motor utilizado anteriormente? Em que cenários cada um é mais adequado?
+
+5. O que acontece se você mover o eixo durante a rotação? O motor consegue compensar esse movimento? Ele continua preciso mesmo com interferências externas?
 
 ---
 
@@ -180,56 +216,39 @@ Neste bloco, vamos construir um "sonar" com Arduino, juntando as peças já impr
 1. Abra o Arduino IDE e escreva o seguinte código:
 
 ```cpp
-#include <Stepper.h>
+#include "Bonezegei_ULN2003_Stepper.h"
 #include <HCSR04.h>
 
-// Definições de pinos
-#define STEPPER_PIN_1 8
-#define STEPPER_PIN_2 9
-#define STEPPER_PIN_3 10
-#define STEPPER_PIN_4 11
-#define TRIG_PIN 2
-#define ECHO_PIN 3
+// Stepper motor initialization
+Bonezegei_ULN2003_Stepper Stepper(8, 9, 10, 11);
+#define STEPS_PER_REVOLUTION 2038
 
-// Parâmetros do motor de passo
-#define STEPS_PER_REV 64 // Número de passos por revolução
-#define DEGREES_PER_STEP (360.0 / STEPS_PER_REV)
+// Set direction constants according to your preference
+#define FORWARD 1
+#define REVERSE 0
 
-// Define o objeto do motor de passo
-Stepper stepper(STEPS_PER_REV, STEPPER_PIN_1, STEPPER_PIN_3, STEPPER_PIN_2, STEPPER_PIN_4);
-
-// Define o objeto do sensor de distância HC-SR04
-HCSR04 hcsr04(TRIG_PIN, ECHO_PIN);
+// Ultrasonic sensor initialization
+HCSR04 hc(2, 3); // Initialisation class HCSR04 (trig pin, echo pin)
 
 void setup() {
-    Serial.begin(9600);
-    stepper.setSpeed(10); // Define a velocidade do motor de passo
+  // Initialize stepper motor
+  Stepper.begin();
+  Stepper.setSpeed(5); // Set speed
 
-    // Inicializa o sensor HC-SR04
-    hcsr04.begin();
+  // Initialize serial communication for ultrasonic sensor
+  Serial.begin(9600);
 }
 
 void loop() {
+  // Stepper motor operations
+  Stepper.step(FORWARD, STEPS_PER_REVOLUTION);
+  delay(2000);
+  Stepper.step(REVERSE, STEPS_PER_REVOLUTION);
+  delay(2000);
 
-    // Faz a varredura do sensor de 0 a 180 graus
-    for (int angle = 0; angle <= 180; angle++) {
-        stepper.step(DEGREES_PER_STEP);
-        float distance = hcsr04.dist();
-        Serial.print(angle);
-        Serial.print(",");
-        Serial.println(distance);
-        delay(100);
-    }
-
-    // Faz a varredura do sensor de 180 a 0 graus
-    for (int angle = 180; angle >= 0; angle--) {
-        stepper.step(-DEGREES_PER_STEP);
-        float distance = hcsr04.dist();
-        Serial.print(angle);
-        Serial.print(",");
-        Serial.println(distance);
-        delay(100);
-    }
+  // Ultrasonic sensor distance measurement
+  Serial.println(hc.dist()); // Return current distance in serial
+  delay(60);                 // We suggest to use over 60ms measurement cycle, to prevent trigger signal to the echo signal.
 }
 ```
 
@@ -247,7 +266,7 @@ void loop() {
 
 1. O que acontece se alterar a velocidade do motor de passo? Experimente aumentar ou diminuir a velocidade e observe o comportamento.
 
-2. Como podemos controlar o ângulo mínimo e máximo dos movimentos do motor? Experimente alterar os valores de 0 e 180 no código.
+2. Como podemos controlar o ângulo mínimo e máximo dos movimentos do motor? 
 
 3. O que você pode concluir sobre a visualização dos dados de distância no monitor serial? É uma forma eficaz de analisar esses dados espaciais? O que poderia ser feito para melhorar essa visualização?
 
@@ -255,7 +274,7 @@ void loop() {
 
 ---
 
-### Bloco 5: Dashboard de Sonar com Processing
+<!-- ### Bloco 5: Dashboard de Sonar com Processing
 
 Neste bloco, vamos utilizar o Processing para criar um dashboard gráfico para exibir os dados do "sonar" de forma mais visual e interativa. O Processing é uma linguagem de programação e ambiente de desenvolvimento integrado (IDE) de código aberto baseado em Java, amplamente utilizado para criar visualizações interativas, arte generativa e aplicações multimídia.
 
@@ -346,7 +365,7 @@ void serialEvent(Serial myPort) {
 
 2. Como essa visualização poderia ser útil em aplicações reais na marinha, como sistemas de navegação, mapeamento de ambientes ou detecção de obstáculos?
 
----
+--- -->
 
 ### Conclusão
 
@@ -356,7 +375,7 @@ Este roteiro apresentou o uso de sensores de distância ultrassônicos, como o H
 
 - [Documentação Oficial do Arduino](https://www.arduino.cc/en/Guide/HomePage)
 - [Biblioteca HCSR04 Ultrasonic Sensor](https://www.arduino.cc/reference/en/libraries/hcsr04-ultrasonic-sensor/)
-- [Biblioteca Stepper](https://www.arduino.cc/en/Reference/Stepper)
+<!-- - [Biblioteca Stepper](https://www.arduino.cc/en/Reference/Stepper) -->
 - [Processing](https://processing.org/)
 - [Tutorial de Introdução ao Processing](https://processing.org/tutorials/gettingstarted/)
 - [Processing Serial Library](https://processing.org/reference/libraries/serial/index.html)
