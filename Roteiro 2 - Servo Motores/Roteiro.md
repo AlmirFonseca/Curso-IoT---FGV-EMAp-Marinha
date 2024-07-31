@@ -13,7 +13,7 @@ Esse roteiro de atividades tem como objetivo introduzir o uso de potenciômetros
 - Apresentar o controle de um servo motor com uma rotina de movimento pré-programada.
 - Controlar o servo motor a partir de um potenciômetro, ajustando a amplitude dos valores usando a função map().
 - Comparar o comportamento de um potenciômetro do tipo A com um do tipo B e discutir as diferenças na resposta do sistema.
-- Coletar dados de um transferidor graduado fixo ao servo a fim de linearizar o potenciômetro logarítmico.
+- Coletar dados de um transferidor graduado fixo ao servo a fim de observar a linearidade do potenciômetro do tipo A.
 
 ### Materiais Necessários
 
@@ -55,7 +55,7 @@ Potenciômetros são componentes eletrônicos presentes em diversos dispositivos
 
 4. Insira o tranferidor impresso em 3D no eixo do potenciômetro para facilitar a leitura da posição.
 
-5. Rotacione o eixo do potenciômetro até a metade e insira o knob apontando para cima.
+5. Rotacione o eixo do potenciômetro até o início da escala (0 graus) e insira o knob no eixo do potenciômetro.
 
 #### Passo 2: Programação
 
@@ -64,6 +64,8 @@ Potenciômetros são componentes eletrônicos presentes em diversos dispositivos
 ```cpp
 void setup() {
   Serial.begin(9600); // Inicializa a comunicação serial a 9600 bps
+
+  pinMode(A0, INPUT); // Define o pino A0 como entrada
 }
 
 void loop() {
@@ -117,9 +119,9 @@ Seu funcionamento é baseado em um motor DC com uma caixa de redução e um pote
   <img src="..\src\images\Roteiro 2\servo_circuit.png" alt="Circuito do Potenciômetro" height="300">
 </p>
 
-4. Insira o transferidor impresso em 3D no eixo do servo motor para facilitar a leitura da posição.
+4. Insira o transferidor impresso em 3D no eixo do servo motor para facilitar a leitura da posição
 
-5. Insira o ponteiro no eixo do servo motor. Rotacione o eixo do servo motor até o seu limite no sentido anti-horário e insira o ponteiro apontando para a esquerda.
+5. Insira o ponteiro no eixo do eixo do servo motor e aperte o parafuso usando a chave philips.
 
 > ⚠: O servo motor pode consumir uma corrente maior que a fornecida pelo Arduino. Se o servo motor não estiver se movendo corretamente, considere alimentá-lo com uma fonte externa.
 
@@ -160,16 +162,15 @@ void loop() {
 
 1. Observe o movimento do servo motor entre as posições mínima (0°), média (90°) e máxima (180°).
 
+2. O ponteiro aponta para a posição correta no transferidor? Se necessário, desligue o Arduino para que o servo motor não se mova e ajuste a posição do ponteiro para a posição correta.
 
 #### Passo 4: Exploração
 
 1. Ele é capaz de repetir os movimentos com precisão?
 
-2. O que acontece se alterar os valores de 0, 90 e 180 graus no código? Experimente alterar esses valores e observe o comportamento do servo.
+2. O que acontece se alterar os valores de 0, 90 e 180 graus no código? É possível inverter a direção do servo? Experimente alterar esses valores e observe o comportamento do servo.
 
 3. Como você poderia controlar o servo motor de forma mais sauve, com ângulos intermediários? Experimente adicionar mais posições intermediárias no código.
-
-4. Qual a amplitude, em graus, do servo motor? Experimente rotacionar o servo usando a mão e observe a amplitude do movimento.
 
 5. O que acontece se inserir um valor maior que 180 ou menor que 0? Experimente e observe o comportamento.
 
@@ -202,6 +203,8 @@ Servo myServo;
 void setup() {
   myServo.attach(9);
   Serial.begin(9600);
+
+  pinMode(A0, INPUT);
 }
 
 void loop() {
@@ -209,7 +212,7 @@ void loop() {
 
   int angle = map(potValue, 0, 1023, 0, 180); // Mapeia o valor do potenciômetro (0 a 1023) para a amplitude do servo (0 a 180 graus)
 
-  myServo.write(angle); // Define a posição do servo motor
+  myServo.write(180 - angle); // Define a posição do servo motor
 
   Serial.print("Potentiometer Value: ");
   Serial.print(potValue);
@@ -269,9 +272,9 @@ Antes de começar as análises, confira se o código referente ao bloco anterior
 
 --- 
 
-### Bloco 5: Linearização do Potenciômetro Logarítmico
+### Bloco 5: Linearidade do Potenciômetro Logarítmico
 
-Neste bloco, vamos coletar dados de um transferidor graduado fixo ao servo motor para gerar uma função inversa no Excel e linearizar o potenciômetro logarítmico (Tipo A). A linearização do potenciômetro logarítmico é importante para garantir um controle preciso do servo motor, ajustando a resposta do potenciômetro para uma relação linear com o ângulo do servo. Embora estejamos realizando esse procedimento manualmente, em sistemas mais complexos, essa linearização pode ser feita por meio de algoritmos de controle, sendo úteis para calibrar até mesmo sensores lineares que possuem algum desvio ou não-linearidade.
+Neste bloco, vamos coletar dados de um transferidor graduado fixo ao servo motor para gerar observar o comportamento do potenciômetro logarítmico (Tipo A). A Embora estejamos realizando esse procedimento manualmente, em sistemas mais complexos, essa coleta pode ser feita por meio de algoritmos de controle, sendo úteis para calibrar até mesmo sensores lineares que possuem algum desvio ou não-linearidade.
 
 ### Passo 1: Introdução ao Circuito
 
@@ -311,7 +314,7 @@ void loop() {
 
     int potValue = analogRead(A0);
     int angle = map(potValue, 0, 1023, 0, 180);
-    myServo.write(angle);
+    myServo.write(180 - angle);
 
     if (digitalRead(buttonPin) == LOW) { // Verifica se o botão foi pressionado
     
@@ -339,100 +342,32 @@ void loop() {
 
 4. Abra uma planilha do Excel e transfira os dados coletados, construindo uma tabela no formato mostrado abaixo. Ela será a nossa base para a linearização do potenciômetro logarítmico.
 
-| Potentiometer Angle | Servo Angle |
-|---------------------|-------------|
-| 0                   | 0           |
-| 10                  | 40          |
-| 20                  | 60          |
-| ...                 | ...         |
-| 300                 | 180         |
+
+| Ângulo do Potenciômetro | Valor do Potenciômetro | Ângulo do Servo |
+|------------------------|-------------------------|-----------------|
+| 0                      | 0                       | 0               |
+| 30                    | 27                      | 4              |
+| 60                    | 63                      | 1              |
+| ...                    | ...                     | ...            |
+| 300                    | 1023                    | 180            |
 
 ### Passo 4: Análise dos Dados no Excel
 
 1. Gere um gráfico de dispersão com os dados coletados, conectando os pontos com linhas retas ou suaves. O eixo x será o ângulo do potenciômetro e o eixo y será o ângulo do servo motor. Como é o formato da curva gerada? Isso condiz com o comportamento logarítimico do potenciômetro?
-2. Crie uma coluna ```Target```, apontando o comportamento "ideal" caso o potenciômetro fosse linear. Para isso, calcule a seguinte razão:
 
-$$ = (Potentiometer Angle / Potentiometer Maximum Angle) * Servo Maximum Angle $$
+2.  A curva é realmente logarítmica? Ou é uma composição de funções? Porque você acha que isso acontece?
 
-3. Crie uma coluna ```Error```, calculando a diferença entre o valor do servo e o valor "ideal" para cada ponto.
+3. Crie uma coluna ```Valor Linear do Potenciômetro```, apontando o comportamento "ideal" caso o potenciômetro fosse linear. Para isso, simularemos a função ```map```, mapeando o intervalo de 0 a 1023 para o intervalo de 0 a 300 graus, de maneira linear. Calcule a seguinte razão:
 
-$$ = Servo Angle - Target $$
+$$ = (\text{Ângulo do Pot.} / \text{Ângulo Máximo do Pot.}) * \text{Valor Máximo do Pot.} $$
 
-4. Gere um gráfico de dispersão entre ```Potentiometer Angle``` e ```Error```. O que você pode concluir sobre a linearidade do potenciômetro logarítmico? O erro é constante ou varia com o ângulo do potenciômetro?
+onde o Ângulo Máximo do Potenciômetro é 300 graus, e o Valor Máximo do Potenciômetro é 1023.
 
-5. Crie uma linha de tendência polinomial sobre os dados. Qual o grau do polinômio que melhor se ajusta aos dados? O que isso indica sobre a relação entre o potenciômetro e o servo motor?
-
-6. Selecione a opção de exibir a equação da linha de tendência no gráfico. Ela deverá ser do tipo:
-
-$$ y = a * x^n + b * x^{n-1} + ... + c $$
-
-7. Crie uma nova coluna ```Expected Potentiometer Error```, calculando o valor da equação para cada medida, sendo $x$ o valor do potenciômetro e $y$ o valor do erro esperado.
-
-8. Por fim, crie uma nova coluna ```Linearized Potentiometer Angle```, calculando o valor do potenciômetro linearizado para cada medida, somando o valor do potenciômetro com o valor do erro esperado.
-
-### Passo 5: Programação para Linearização
-
-Agora que já definimos um erro esperado para cada posição do potenciômetro, podemos ajustar o código do Arduino para calcular esse erro e ajustar os dados, de modo a obter um comportamento linear do servo motor. 
-
-1. Preencha a função abaixo com os coeficientes obtidos no excel. Ajuste o número de coeficientes conforme o grau da equação obtida.
-
-```cpp
-float linearizePotentiometer(int potValue) {
-  // Substitua os valores de a, b, c, ... pelos coeficientes obtidos no Excel
-  float a = 0.0001;
-  float b = 0.001;
-  float c = 0.1;
-  
-  // Calcula o valor esperado do erro
-  float expectedErrorValue = a * pow(potValue, 2)
-                           + b * potValue 
-                           + c;
-
-  // Calcula o valor linearizado do potenciômetro
-  float linearValue = potValue + expectedErrorValue;
-
-  // Trunca os valor obtido entre 0 e 180
-  if (linearValue < 0) linearValue = 0;
-  if (linearValue > 180) linearValue = 180;
-  
-  // Retorna o valor linearizado
-  return linearValue;
-}
-```
-
-2. Cole a função acima no topo do código do Arduino, antes da função ```void setup()```.
-
-3. Substitua o ```void loop()``` por:
-
-```cpp
-void loop() {
-
-    int potValue = analogRead(A0);
-    int angle = map(linearizePotentiometer(potValue), 0, 1023, 0, 180); // Usa o valor linearizado do potenciômetro ao invés do valor original
-    myServo.write(angle);
-
-    if (digitalRead(buttonPin) == LOW) {
-        Serial.print("Potentiometer Value: ");
-        Serial.print(potValue);
-        Serial.print(" - Linearized Value: ");
-        Serial.print(linearizePotentiometer(potValue));
-        Serial.print(" - Servo Angle: ");
-        Serial.println(angle);
-
-        delay(15);
-    }
-}
-```
-
-4. Selecione a placa e a porta de conexão onde o Arduino está conectado.
-
-5. Faça o upload do código para a placa Arduino.
-
-6. Observe se o servo motor responde de forma mais linear ao movimento do potenciômetro.
+4. Crie uma coluna ```Erro```, calculando a diferença entre o valor linear e o valor real do potenciômetro para cada ponto. Exiba os resultados num gráfico similar aos anteriores. O que você pode concluir sobre o comportamento do potenciômetro logarítmico em relação ao linear?
 
 ### Conclusão
 
-Este experimento apresentou os potenciômetros e servo motores, começando com o uso de um potenciômetro linear, seguido pela substituição por um potenciômetro logarítmico. A coleta de dados e a linearização da resposta do potenciômetro logarítmico proporcionaram uma compreensão prática de como ajustar o controle de dispositivos eletrônicos para obter um comportamento desejado.
+Este experimento apresentou os potenciômetros e servo motores, começando com o uso de um potenciômetro linear, seguido pela substituição por um potenciômetro logarítmico. A coleta de dados e a visualização da linearidade da resposta do potenciômetro logarítmico proporcionaram uma compreensão prática de como um mesmo componente eletrônico, mas com especificações diferentes, podem interferir no controle de dispositivos eletrônicos.
 
 ### Referências para Consulta
 
