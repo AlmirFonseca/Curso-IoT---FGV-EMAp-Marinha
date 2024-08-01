@@ -148,29 +148,36 @@ Motores de Passo são dispositivos utilizados para converter pulsos elétricos e
 2. Abra o Arduino IDE e escreva o seguinte código para exibir os valores de distância no Serial Monitor:
 
 ```cpp
+// Inclui a biblioteca do motor de passo Bonezegei ULN2003.
 #include "Bonezegei_ULN2003_Stepper.h"
 
+// Cria um objeto Stepper para controlar o motor de passo nos pinos 8, 9, 10 e 11.
 Bonezegei_ULN2003_Stepper Stepper(8, 9, 10, 11);
 
+// Define o número de passos por revolução do motor.
 #define STEPS_PER_REVOLUTION 2038
 
-// Set This According to your Preference
+// Define a direção do motor como constante: 1 para frente e 0 para reverso.
 #define FORWARD 1
 #define REVERSE 0
 
 void setup() {
-  //Inititalize Pins
+  // Inicializa os pinos conectados ao motor.
   Stepper.begin();
 
-  Stepper.setSpeed(5); // Set 
+  // Define a velocidade do motor para 3 RPM.
+  Stepper.setSpeed(3);
 }
 
 void loop() {
-
+  // Move o motor para a frente por uma revolução.
   Stepper.step(FORWARD, STEPS_PER_REVOLUTION);
+  // Aguarda 2 segundos antes de mudar de direção.
   delay(2000);
 
+  // Move o motor para trás por uma revolução.
   Stepper.step(REVERSE, STEPS_PER_REVOLUTION);
+  // Aguarda 2 segundos antes de repetir o ciclo.
   delay(2000);
 }
 ```
@@ -216,39 +223,62 @@ Neste bloco, vamos construir um "sonar" com Arduino, juntando as peças já impr
 1. Abra o Arduino IDE e escreva o seguinte código:
 
 ```cpp
+// Inclui a biblioteca para o motor de passo ULN2003 e a biblioteca do sensor ultrassônico HCSR04.
 #include "Bonezegei_ULN2003_Stepper.h"
 #include <HCSR04.h>
 
-// Stepper motor initialization
+// Inicializa o motor de passo nos pinos 8, 9, 10 e 11.
 Bonezegei_ULN2003_Stepper Stepper(8, 9, 10, 11);
-#define STEPS_PER_REVOLUTION 2038
+#define STEPS_PER_REVOLUTION 2038  // Define o número de passos necessários para uma revolução completa do motor.
 
-// Set direction constants according to your preference
+// Define constantes de direção: 1 para frente e 0 para trás.
 #define FORWARD 1
 #define REVERSE 0
 
-// Ultrasonic sensor initialization
-HCSR04 hc(2, 3); // Initialisation class HCSR04 (trig pin, echo pin)
+// Inicializa o sensor ultrassônico nos pinos 2 (trig) e 3 (echo).
+HCSR04 hc(2, 3);
 
 void setup() {
-  // Initialize stepper motor
+  // Inicializa o motor de passo.
   Stepper.begin();
-  Stepper.setSpeed(5); // Set speed
+  Stepper.setSpeed(5); // Define a velocidade do motor para 5 RPM.
 
-  // Initialize serial communication for ultrasonic sensor
+  // Inicializa a comunicação serial a 9600 bauds para o sensor ultrassônico.
   Serial.begin(9600);
 }
 
 void loop() {
-  // Stepper motor operations
-  Stepper.step(FORWARD, STEPS_PER_REVOLUTION);
-  delay(2000);
-  Stepper.step(REVERSE, STEPS_PER_REVOLUTION);
-  delay(2000);
+  int angleStep = 5; // Define o incremento de ângulo para cada movimento.
 
-  // Ultrasonic sensor distance measurement
-  Serial.println(hc.dist()); // Return current distance in serial
-  delay(60);                 // We suggest to use over 60ms measurement cycle, to prevent trigger signal to the echo signal.
+  // Loop para mover o motor de 0 a 180° em incrementos de 5°.
+  for (int angle = 0; angle <= 180; angle += angleStep) {
+    // Move o motor de passo para o ângulo atual.
+    Stepper.step(FORWARD, STEPS_PER_REVOLUTION / 360 * angleStep); // Move o motor 5° para frente.
+    delay(500); // Aguarda 500ms para o motor se posicionar.
+
+    // Medição de distância pelo sensor ultrassônico.
+    Serial.print(angle); // Envia o ângulo atual para o monitor serial.
+    Serial.print(","); // Envia uma vírgula para separar os valores.
+    int dist = hc.dist(); // Mede a distância com o sensor ultrassônico.  
+    Serial.print(dist); // Envia a distância medida para o monitor serial.
+    Serial.println("."); // Envia um ponto e pula para a próxima linha.
+  }
+
+  // Loop para mover o motor de 180 a 0° em decrementos de 5°.
+  for (int angle = 180; angle >= 0; angle -= angleStep) {
+    // Move o motor de passo para o ângulo atual.
+    Stepper.step(REVERSE, STEPS_PER_REVOLUTION / 360 * angleStep); // Move o motor 5° para trás.
+    delay(500); // Aguarda 500ms para o motor se posicionar.
+
+    // Medição de distância pelo sensor ultrassônico.
+    Serial.print(angle); // Envia o ângulo atual para o monitor serial.
+    Serial.print(","); // Envia uma vírgula para separar os valores.
+    int dist = hc.dist(); // Mede a distância com o sensor ultrassônico.  
+    Serial.print(dist); // Envia a distância medida para o monitor serial.
+    Serial.println("."); // Envia um ponto e pula para a próxima linha.
+  }
+
+  delay(2000); // Aguarda 2 segundos antes de iniciar o próximo ciclo de medição.
 }
 ```
 
@@ -266,7 +296,7 @@ void loop() {
 
 1. O que acontece se alterar a velocidade do motor de passo? Experimente aumentar ou diminuir a velocidade e observe o comportamento.
 
-2. Como podemos controlar o ângulo mínimo e máximo dos movimentos do motor? 
+2. Como podemos controlar o ângulo mínimo e máximo dos movimentos do motor? E o tamanho do seu movimento a cada iteração? E a velocidade em que ele repete seus movimentos? 
 
 3. O que você pode concluir sobre a visualização dos dados de distância no monitor serial? É uma forma eficaz de analisar esses dados espaciais? O que poderia ser feito para melhorar essa visualização?
 
@@ -274,7 +304,7 @@ void loop() {
 
 ---
 
-<!-- ### Bloco 5: Dashboard de Sonar com Processing
+### Bloco 5: Dashboard de Sonar com Processing
 
 Neste bloco, vamos utilizar o Processing para criar um dashboard gráfico para exibir os dados do "sonar" de forma mais visual e interativa. O Processing é uma linguagem de programação e ambiente de desenvolvimento integrado (IDE) de código aberto baseado em Java, amplamente utilizado para criar visualizações interativas, arte generativa e aplicações multimídia.
 
@@ -286,74 +316,225 @@ Neste bloco, vamos utilizar o Processing para criar um dashboard gráfico para e
 
 #### Passo 2: Programação
 
-1. Abra o Processing e escreva o seguinte código para criar um dashboard gráfico do sonar:
+1. Instale o Processing, de acordo com as instruções disponíveis no site oficial: [Processing](https://processing.org/download/).
+
+2. Abra o Processing e crie um novo sketch.
+
+3. Escreva o seguinte código no sketch do Processing:
 
 ```java
-import processing.serial.*;
+/**
+ * #######################################################################
+ * Software Arduino Sonar Monitor
+ *
+ * alterado por Rodrigues <https://rodriguesfas.github.io>
+ * by Dejan Nedelkovski <www.HowToMechatronics.com>  
+ *########################################################################
+ */
 
-Serial myPort;  // The serial port
-float angle = 0;
-float distance = 0;
+import processing.serial.*; /* biblioteca para comunicação serial */
+import java.awt.event.KeyEvent; /*biblioteca para leitura de dados na porta serial. */
+import java.io.IOException;
 
+Serial myPort; /* Define objeto serial */
+
+/* define algumas variaveis.. */
+String angle="";
+String distance="";
+String data="";
+String noObject;
+float pixsDistance;
+int iAngle, iDistance;
+int index1=0;
+int index2=0;
+//PFont orcFont;
+PFont myFont;
+
+/**
+ * setup - 
+ */
 void setup() {
-  size(600, 600);
-  // Ajuste a porta serial conforme necessário
-  String portName = Serial.list()[0];
-  myPort = new Serial(this, portName, 9600);
-  myPort.bufferUntil('\n'); // Aguarda até receber uma nova linha
+
+  size (800, 600); /* ***Alterar para resolução que desejar*** */
+  smooth();
+  myPort = new Serial(this, "COM5", 9600); /* inicia comunicação serial. */
+  myPort.bufferUntil('.'); /* Lê oas dados atravéz da porta serial (angulo e distância) */
+
+  //orcFont = loadFont("OCRAExtended-30.vlw");
+  myFont = createFont("verdana", 10); /* define tipo de fonte e tamanho. */
 }
 
+/**
+ * draw - 
+ */
 void draw() {
-  background(0);
-  translate(width / 2, height / 2);
-  fill(255);
+  fill(98, 245, 31);
+  //textFont(orcFont);
+  textFont(myFont); 
+
+  /* simulando o borrão de movimento e lento desaparecer da linha móvel. */
   noStroke();
-  
-  // Desenha o arco de acordo com o ângulo e a distância
-  float arcRadius = map(distance, 0, 400, 0, width / 2);
-  float arcAngle = radians(angle);
-  fill(255, 0, 0);
-  ellipse(arcRadius * cos(arcAngle), arcRadius * sin(arcAngle), 10, 10);
-  
-  // Desenha a escala do radar
-  noFill();
-  stroke(100);
-  for (int i = 50; i <= width / 2; i += 50) {
-    ellipse(0, 0, i * 2, i * 2);
-  }
-  
-  // Desenha as linhas de ângulo
-  for (int i = 0; i <= 180; i += 30) {
-    float rad = radians(i);
-    line(0, 0, (width / 2) * cos(rad), (width / 2) * sin(rad));
-    fill(255);
-    textAlign(CENTER, CENTER);
-    text(i + "°", (width / 2 - 20) * cos(rad), (width / 2 - 20) * sin(rad));
-  }
-  
-  // Desenha os valores atuais de ângulo e distância
-  fill(255);
-  textAlign(CENTER);
-  text("Angle: " + angle + "°", 0, -height / 2 + 20);
-  text("Distance: " + distance + " cm", 0, -height / 2 + 40);
+  fill(0, 4); 
+  rect(0, 0, width, height-height*0.065); 
+
+  fill(98, 245, 31); /* cor verde */
+
+  /* chama as funções para desenhar o radar. */
+  drawRadar(); 
+  drawLine();
+  drawObject();
+  drawText();
 }
 
-void serialEvent(Serial myPort) {
-  String inString = myPort.readStringUntil('\n');
-  if (inString != null) {
-    inString = trim(inString);
-    String[] values = split(inString, ',');
-    if (values.length == 2) {
-      angle = float(values[0]);
-      distance = float(values[1]);
-    }
+/**
+ * serialEvent --
+ */
+void serialEvent (Serial myPort) { /* começa a ler os dados aparti da porta serial. */
+  /* lê os dados na porta serial (caractere) e armazena em uma string de dados. */
+  data = myPort.readStringUntil('.');
+  println("Dados recebidos" + data);
+  data = data.substring(0, data.length()-1);
+
+  index1 = data.indexOf(","); /* encontra o caractere e armazena na variavel "index1" */
+  angle= data.substring(0, index1); /* ler os dados da posição "0" a posição do index1 váriavel ou isso é o valor do ânculo da placa Ardíno enviado */
+  distance= data.substring(index1+1, data.length()); /* ler os dados de posição "index1" para o final do pr de dados que é o valor da distância. */
+
+  // converte string para inteiro.
+  iAngle = int(angle);
+  iDistance = int(distance);
+}
+
+/**
+ * drawRadar - 
+ */
+void drawRadar() {
+  pushMatrix();
+  translate(width/2, height-height*0.074); /* move as coordenadas para o novo local.  */
+  noFill();
+  strokeWeight(2);
+  stroke(98, 245, 31);
+
+  // draws the arc lines
+  arc(0, 0, (width-width*0.0625), (width-width*0.0625), PI, TWO_PI);
+  arc(0, 0, (width-width*0.27), (width-width*0.27), PI, TWO_PI);
+  arc(0, 0, (width-width*0.479), (width-width*0.479), PI, TWO_PI);
+  arc(0, 0, (width-width*0.687), (width-width*0.687), PI, TWO_PI);
+
+  // draws the angle lines
+  line(-width/2, 0, width/2, 0);
+  line(0, 0, (-width/2)*cos(radians(30)), (-width/2)*sin(radians(30)));
+  line(0, 0, (-width/2)*cos(radians(60)), (-width/2)*sin(radians(60)));
+  line(0, 0, (-width/2)*cos(radians(90)), (-width/2)*sin(radians(90)));
+  line(0, 0, (-width/2)*cos(radians(120)), (-width/2)*sin(radians(120)));
+  line(0, 0, (-width/2)*cos(radians(150)), (-width/2)*sin(radians(150)));
+  line((-width/2)*cos(radians(30)), 0, width/2, 0);
+
+  popMatrix();
+}
+
+/**
+ * drawObject - 
+ */
+void drawObject() {
+  pushMatrix();
+  translate(width/2, height-height*0.074);  /* move as coordenadas para o novo local.  */
+  strokeWeight(9);
+  stroke(255, 10, 10); /* cor vermelho */
+
+  pixsDistance = iDistance*((height-height*0.1666)*0.025); /* converte a distância entre o sensor de cm para px */
+
+  /* limite de faixa de 40 cms */
+  if (iDistance<40 & iDistance > 3) {
+    /* desenha o objeto de acordo com o ângulo e a distância. */
+    line(pixsDistance*cos(radians(iAngle)), -pixsDistance*sin(radians(iAngle)), (width-width*0.505)*cos(radians(iAngle)), -(width-width*0.505)*sin(radians(iAngle)));
   }
+  popMatrix();
+}
+
+/**
+ * drawLine - 
+ */
+void drawLine() {
+  pushMatrix();
+  strokeWeight(9);
+  stroke(30, 250, 60);
+  translate(width/2, height-height*0.074); /* move as coordenada iniciais para o novo local. */
+  line(0, 0, (height-height*0.12)*cos(radians(iAngle)), -(height-height*0.12)*sin(radians(iAngle))); /* chama a linha de acordo com o angulo */
+  popMatrix();
+}
+
+/**
+ * drawText - 
+ */
+void drawText() { /* desenha os textos na tela. */
+
+  pushMatrix();
+
+  if (iDistance > 40) {
+    noObject = "Fora de alcance!";
+  } else {
+    noObject = "Na faixa!";
+  }
+
+  fill(0, 0, 0);
+  noStroke();
+  rect(0, height-height*0.0648, width, height);
+  fill(98, 245, 31);
+  textSize(12);
+
+  text("10cm", width-width*0.3854, height-height*0.0833);
+  text("20cm", width-width*0.281, height-height*0.0833);
+  text("30cm", width-width*0.177, height-height*0.0833);
+  text("40cm", width-width*0.0729, height-height*0.0833);
+  textSize(12);
+
+  text("Objeto: " + noObject, width-width*0.875, height-height*0.0277);
+  text("Ângulo: " + iAngle +" °", width-width*0.48, height-height*0.0277);
+  text("Distância: ", width-width*0.26, height-height*0.0277);
+
+  if (iDistance < 40) {
+    text("        " + iDistance +" cm", width-width*0.225, height-height*0.0277);
+  }
+
+  /*plano cartesiano*/
+
+  textSize(20);
+  fill(98, 245, 60);
+  translate((width-width*0.4994)+width/2*cos(radians(30)), (height-height*0.0907)-width/2*sin(radians(30)));
+  rotate(-radians(-60));
+  text("30°", 0, 0);
+  resetMatrix();
+  translate((width-width*0.503)+width/2*cos(radians(60)), (height-height*0.0888)-width/2*sin(radians(60)));
+  rotate(-radians(-30));
+  text("60°", 0, 0);
+  resetMatrix();
+  translate((width-width*0.507)+width/2*cos(radians(90)), (height-height*0.0833)-width/2*sin(radians(90)));
+  rotate(radians(0));
+  text("90°", 0, 0);
+  resetMatrix();
+  translate(width-width*0.513+width/2*cos(radians(120)), (height-height*0.07129)-width/2*sin(radians(120)));
+  rotate(radians(-30));
+  text("120°", 0, 0);
+  resetMatrix();
+  translate((width-width*0.5104)+width/2*cos(radians(150)), (height-height*0.0574)-width/2*sin(radians(150)));
+  rotate(radians(-60));
+  text("150°", 0, 0);
+  popMatrix();
+}
+
+/**
+ * stop - 
+ */
+void stop() {
+  super.stop();
 }
 ```
 
-2. Substitua a porta ```COM3``` pela porta onde o Arduino está conectado.
+4. Substitua a porta ```COM5``` pela porta onde o Arduino está conectado.
 
-3. Execute o código no Processing para abrir o dashboard gráfico. 
+5. Execute o código no Processing para abrir o dashboard gráfico. 
+
+> **Atenção:** O código do Processing deve ser executado após o código do Arduino, para que a comunicação serial funcione corretamente. Além disso, apenas 1 programa do computador pode usar a porta de comunicação serial por vez. Portanto, certifique-se de que a Arduino IDE não possui o Serial Monitor ou o Serial Plotter abertos enquanto executa o código do Processing. De preferência, feche a janea da Arduino IDE.
 
 #### Passo 3: Observação
 
@@ -365,7 +546,9 @@ void serialEvent(Serial myPort) {
 
 2. Como essa visualização poderia ser útil em aplicações reais na marinha, como sistemas de navegação, mapeamento de ambientes ou detecção de obstáculos?
 
---- -->
+3. Para além da marinha, quais sistemas utilizam esse tipo de sistema de localização e mapeamento? Carros? Drones? Robôs? Aspiradores de pó automáticos?
+
+---
 
 ### Conclusão
 
