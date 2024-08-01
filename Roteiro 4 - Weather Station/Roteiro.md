@@ -4,7 +4,7 @@
 
 ### Descrição
 
-Neste roteiro, vamos utilizar o sensor MQ-2 para medir a concentração de gases inflamáveis, fumaça e álcool no ambiente. Além disso, vamos adicionar o DHT11, capaz de medir a temperatura e umidade relativa do ar. Combinando esses sensores, vamos construir uma "estação meteorológica" com Arduino para monitorar a qualidade do ar e as condições ambientais em tempo real. Além disso, iremos explorar novos métodos de exibição dos dados, com uma primeira experiência sobre IoT (Internet das Coisas).
+Neste roteiro, vamos utilizar o sensor MQ-2 para medir a concentração de gases inflamáveis, fumaça e álcool no ambiente. Além disso, vamos adicionar o DHT11, capaz de medir a temperatura e umidade relativa do ar. Combinando esses sensores, vamos construir uma "estação meteorológica" com Arduino para monitorar a qualidade do ar e as condições ambientais em tempo real. Além disso, iremos explorar novos métodos de exibição dos dados, com uma primeira experiência construindo um alarme residencial.
 
 ### Objetivos
 
@@ -28,7 +28,7 @@ Neste roteiro, vamos utilizar o sensor MQ-2 para medir a concentração de gases
 
 ### Palavras-chave
 
-Arduino, Sensor de Temperatura e Umidade, DHT11, Sensor de Gás Inflamável, MQ-2, Display LCD, Buzzer, Internet das Coisas.
+Arduino, Sensor de Temperatura e Umidade, DHT11, Sensor de Gás Inflamável, MQ-2, Display LCD, Buzzer, Alarme.
 
 ---
 
@@ -36,7 +36,7 @@ Arduino, Sensor de Temperatura e Umidade, DHT11, Sensor de Gás Inflamável, MQ-
 
 ### Bloco 1: DHT11: Sensor de Temperatura
 
-O sensor DHT11 é um sensor de temperatura e umidade relativa do ar, capaz de medir a temperatura entre 0 e 50°C. Ele é amplamente utilizado em projetos de automação residencial, controle de climatização e monitoramento ambiental. Neste bloco, vamos explorar o funcionamento do sensor DHT11 e como ele pode ser utilizado para medir a temperatura do ar.
+O sensor DHT11 é um sensor de temperatura e umidade relativa do ar, capaz de medir a temperatura do ambiente. Ele é amplamente utilizado em projetos de automação residencial, controle de climatização e monitoramento ambiental. Neste bloco, vamos explorar o funcionamento do sensor DHT11 e como ele pode ser utilizado para medir a temperatura do ar.
 
 #### Passo 1: Introdução ao Circuito
 
@@ -50,6 +50,10 @@ O sensor DHT11 é um sensor de temperatura e umidade relativa do ar, capaz de me
 </p>
 
 2. Adicione um resistor de 10k ohms entre o pino DATA e o pino VCC do sensor (para manter o pino DATA em nível lógico alto quando não houver transmissão de dados).
+
+<p align="center">
+  <img src="..\src\images\Roteiro 4\dht11_circuit.png" height="300">
+</p>
 
 #### Passo 2: Programação
 
@@ -124,6 +128,10 @@ O sensor MQ-2 é um sensor de gás inflamável, fumaça e álcool, capaz de dete
 
 2. Adicione um resistor de 10k ohms entre o pino DOUT e o pino VCC do sensor (para manter o pino DOUT em nível lógico alto quando não houver transmissão de dados).
 
+<p align="center">
+    <img src="..\src\images\Roteiro 4\mq_2_circuit.png" height="300">
+</p>
+
 #### Passo 2: Programação
 
 1. Abra a Arduino IDE e escreva o seguinte código para medir a concentração de gases inflamáveis com o sensor MQ-2:
@@ -188,7 +196,9 @@ Neste bloco, vamos combinar os sensores DHT11 e MQ-2 com um display LCD para cri
 
 2. Conecte o display LCD ao Arduino conforme o esquemático abaixo:
 
-TODO: Add schematic
+<p align="center">
+    <img src="..\src\images\Roteiro 4\lcd_circuit.png" height="300">
+</p>
 
 #### Passo 2: Programação
 
@@ -298,6 +308,10 @@ Neste bloco, vamos adicionar um alarme sonoro ao nosso projeto de estação mete
 1. Mantenha o circuito original, apenas adicione um buzzer passivo ao Arduino conforme o esquemático abaixo:
    - Pino positivo do buzzer ao pino digital 4 do Arduino
    - Pino negativo do buzzer ao GND do Arduino
+
+<p align="center">
+    <img src="..\src\images\Roteiro 4\buzzer_circuit.png" height="300">
+</p>
 
 #### Passo 2: Programação
 
