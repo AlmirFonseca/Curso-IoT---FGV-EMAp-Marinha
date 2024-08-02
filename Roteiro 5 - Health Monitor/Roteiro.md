@@ -1684,7 +1684,7 @@ Neste bloco, vamos combinar os sensores MAX30102 com um display LCD para criar u
 
 #### Passo 2: Programação
 
-1. Abra a Arduino IDE e abra o exemplo Abra o exemplo "Example6_SpO2" em ```File > Examples > SparkFun MAX3010x Pulse and Proximity Sensor Library > Example1_Basic_Readings```
+1. Abra a Arduino IDE e abra o exemplo Abra o exemplo "Example8_SpO2" em ```File > Examples > SparkFun MAX3010x Pulse and Proximity Sensor Library > Example8_SpO2```
 
 2. Observe a estrutura do código e adicione as linhas necessárias para exibir os dados de batimentos cardíacos e oxigenação no display LCD. Para isso, segue um exemplo de código:
 
