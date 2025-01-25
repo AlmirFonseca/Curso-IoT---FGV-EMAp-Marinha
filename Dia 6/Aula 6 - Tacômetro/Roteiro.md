@@ -43,7 +43,7 @@ Um transistor de potência, como o TIP122, é um componente eletrônico capaz de
 </p>
 
 <p align="center">
-  <img src="..\src\images\Roteiro 6\motor_circuit.png" hieght="300">
+  <img src="..\..\src\images\Aula 6\motor_circuit.png" hieght="300">
 </p>
 
 #### Passo 2: Programação
@@ -164,7 +164,7 @@ Os joysticks são dispositivos de entrada que permitem controlar a posição de 
     - Pino SW do joystick ao pino analógico A2 do Arduino
 
 <p align="center">
-    <img src="../src/images/Roteiro 6/motor_joystick_circuit.png" height="300">
+    <img src="../../src/images/Aula 6/motor_joystick_circuit.png" height="300">
 </p>
 
 #### Passo 2: Programação
@@ -264,7 +264,7 @@ O transistor 3144 é um sensor de efeito Hall que detecta a presença de um camp
 > Você sabia? Todo pino analógico do Arduino pode ser utilizado como pino digital, permitindo aumentar o número de pinos disponíveis para conexão de sensores e atuadores. Contudo, os pinos digitais não são capazes de realizar leituras analógicas.
 
 <p align="center">
-    <img src="../src/images/Roteiro 6/motor_joystick_halleffect_circuit.png" height="300">
+    <img src="../../src/images/Aula 6/motor_joystick_halleffect_circuit.png" height="300">
 </p>
 
 #### Passo 2: Programação

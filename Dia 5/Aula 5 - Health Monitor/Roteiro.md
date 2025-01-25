@@ -1598,14 +1598,14 @@ Neste bloco, vamos explorar o funcionamento do sensor MAX30102 e como ele pode s
    - Pino SCL do sensor ao pino A5 do Arduino
 
 <p align="center">
-  <img src="..\src\images\Roteiro 5\max30102_circuit.png" height="300">
+  <img src="..\..\src\images\Aula 5\max30102_circuit.png" height="300">
 
 #### Passo 2: Programação
 
 1. Instale a biblioteca ```SparkFun MAX3010x Pulse and Proximity Sensor Library``` na Arduino IDE. Para isso, abra o Library Manager e busque por ```MAX3010x```.
 
 <p align="center">
-  <img src="..\src\images\Roteiro 5\MAX30102 library.png" height="200">
+  <img src="..\..\src\images\Aula 5\MAX30102 library.png" height="200">
 </p>
 
 2. Abra o exemplo "Example5_HeartRate" em ```File > Examples > SparkFun MAX3010x Pulse and Proximity Sensor Library > Example5_HeartRate```
@@ -1679,7 +1679,7 @@ Neste bloco, vamos combinar os sensores MAX30102 com um display LCD para criar u
 2. Conecte o display LCD ao Arduino conforme o esquemático abaixo:
 
 <p align="center">
-    <img src="..\src\images\Roteiro 4\lcd_circuit.png" height="300">
+    <img src="..\..\src\images\Aula 4\lcd_circuit.png" height="300">
 </p>
 
 #### Passo 2: Programação

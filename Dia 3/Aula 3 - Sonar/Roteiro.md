@@ -51,7 +51,7 @@ Sensores de distância ultrassônicos, como o HC-SR04, utilizam ondas sonoras pa
    - Pino Echo do sensor ao pino digital 3 do Arduino
 
 <p align="center">
-  <img src="..\src\images\Roteiro 3\sonar_circuit.png" alt="Circuito do Potenciômetro" height="300">
+  <img src="..\..\src\images\Aula 3\sonar_circuit.png" alt="Circuito do Potenciômetro" height="300">
 </p>
 
 #### Passo 2: Programação
@@ -136,7 +136,7 @@ Motores de Passo são dispositivos utilizados para converter pulsos elétricos e
     - Pino VCC do driver ao 5V do Arduino
 
 <p align="center">
-  <img src="..\src\images\Roteiro 3\stepper_motor_circuit.png" alt="Circuito do Potenciômetro" height="300">
+  <img src="..\..\src\images\Aula 3\stepper_motor_circuit.png" alt="Circuito do Potenciômetro" height="300">
 </p>
 
 2. Conecte o motor de passo ao driver usando o conector de 5 pinos.
@@ -211,7 +211,7 @@ void loop() {
 Neste bloco, vamos construir um "sonar" com Arduino, juntando as peças já impressas em 3D e utilizando o sensor HC-SR04 para medir a distância entre o sensor e um objeto. Vamos exibir os dados de distância no monitor serial e no plotter serial, mas levantaremos a discussão sobre a importância de ferramentas de visualização adequadas para análise de dados espaciais.
 
 <p align="center">
-  <img src="..\src\images\Roteiro 3\sonar_dashboard.png" alt="Dashboard de Sonar" height="300">
+  <img src="..\..\src\images\Aula 3\sonar_dashboard.png" alt="Dashboard de Sonar" height="300">
 </p>
 
 #### Passo 1: Introdução ao Circuito

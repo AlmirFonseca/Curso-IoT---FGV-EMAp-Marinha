@@ -50,7 +50,7 @@ Potenciômetros são componentes eletrônicos presentes em diversos dispositivos
 3. Conecte o outro pino do potenciômetro ao terminal GND do Arduino.
 
 <p align="center">
-  <img src="..\src\images\Roteiro 2\pot_circuit.png" alt="Circuito do Potenciômetro" height="300">
+  <img src="..\..\src\images\Aula 2\pot_circuit.png" alt="Circuito do Potenciômetro" height="300">
 </p>
 
 4. Insira o tranferidor impresso em 3D no eixo do potenciômetro para facilitar a leitura da posição.
@@ -116,7 +116,7 @@ Seu funcionamento é baseado em um motor DC com uma caixa de redução e um pote
 3. Conecte o fio de controle do servo ao pino digital 9 do Arduino.
 
 <p align="center">
-  <img src="..\src\images\Roteiro 2\servo_circuit.png" alt="Circuito do Potenciômetro" height="300">
+  <img src="..\..\src\images\Aula 2\servo_circuit.png" alt="Circuito do Potenciômetro" height="300">
 </p>
 
 4. Insira o transferidor impresso em 3D no eixo do servo motor para facilitar a leitura da posição
@@ -130,7 +130,7 @@ Seu funcionamento é baseado em um motor DC com uma caixa de redução e um pote
 1. Instale a biblioteca "Servo" no Arduino IDE. Para isso, abra o Library Manager e busque por "servo".
 
 <p align="center">
-  <img src="..\src\images\Servo library.png" alt="Circuito do Potenciômetro" height="150">
+  <img src="..\..\src\images\Servo library.png" alt="Circuito do Potenciômetro" height="150">
 </p>
 
 2. Abra o Arduino IDE e escreva o seguinte código:
@@ -188,7 +188,7 @@ Neste bloco, vamos utilizar um potenciômetro linear para controlar o ângulo do
 Nesse bloco, combinaremos os circuitos dos blocos 1 e 2, conectando o potenciômetro e o servo motor ao Arduino.
 
 <p align="center">
-  <img src="..\src\images\Roteiro 2\pot_and_servo_circuit.png" alt="Circuito do Potenciômetro" height="300">
+  <img src="..\..\src\images\Aula 2\pot_and_servo_circuit.png" alt="Circuito do Potenciômetro" height="300">
 </p>
 
 #### Passo 2: Programação
@@ -287,7 +287,7 @@ Nesse bloco, usaremos o mesmo circuito do bloco anterior, com o potenciômetro l
 3. Conecte um pino do mesmo lado do botão ao pino 2 do Arduino. Quando pressionado, o botão fechará o circuito entre os pinos, enviando um sinal ```LOW``` ao Arduino.
 
 <p align="center">
-  <img src="..\src\images\Roteiro 2\pot_servo_button_circuit.png" alt="Circuito do Potenciômetro" height="300">
+  <img src="..\..\src\images\Aula 2\pot_servo_button_circuit.png" alt="Circuito do Potenciômetro" height="300">
 </p>
 
 Para mais referências sobre o circuito, consulte o [exemplo do Arduino sobre botões](https://www.arduino.cc/en/Tutorial/BuiltInExamples/Button).

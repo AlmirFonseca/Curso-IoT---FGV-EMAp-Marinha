@@ -66,13 +66,13 @@ Assim como outras linguagens, existe um "ritual de iniciação" para quem está 
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
 
 <p align="center">
-  <img src="..\src\images\SelectBoardAndPort.png" height="300px" />
+  <img src="..\..\src\images\SelectBoardAndPort.png" height="300px" />
 </p>
 
 3. Faça o upload do código para a placa Arduino.
 
 <p align="center">
-  <img src="..\src\images\UploadCode.png" height="50px" />
+  <img src="..\..\src\images\UploadCode.png" height="50px" />
 </p>
 
 #### Passo 3: Observação
@@ -105,7 +105,7 @@ Agora que já passaram pelo "ritual de iniciação", é hora de controlar LEDs e
 </p>
 
 <p align="center">
-  <img src="..\src\images\Roteiro 1\blink_circuit_green.png" height="300px" />
+  <img src="..\..\src\images\Aula 1\blink_circuit_green.png" height="300px" />
 </p>
 
 #### Passo 2: Programação
@@ -171,7 +171,7 @@ Por padrão, o controlador do Arduino Uno permite o ajuste em 256 níveis de int
 1. Monte o circuito similar ao anterior, mas conectando o LED vermelho ao pino 9.
 
 <p align="center">
-  <img src="..\src\images\Roteiro 1\blink_circuit_red.png" height="300px" />
+  <img src="..\..\src\images\Aula 1\blink_circuit_red.png" height="300px" />
 </p>
 
 #### Passo 2: Programação
@@ -233,7 +233,7 @@ Agora que já sabemos controlar LEDs e a intensidade deles, é hora de aplicar e
 1. Monte o circuito com os LEDs vermelho, amarelo e verde, conectando-os aos pinos 9, 10 e 11, respectivamente. Utilize 1 resistor de 300 ohms para cada LED.
 
 <p align="center">
-  <img src="..\src\images\Roteiro 1\traffic_light.png" height="300px" />
+  <img src="..\..\src\images\Aula 1\traffic_light.png" height="300px" />
 </p>
 
 #### Passo 2: Programação
@@ -300,7 +300,7 @@ A fim de continuar os nossos experimentos, vamos substituir os 3 LEDs individuai
 1. Monte o circuito com o LED RGB, conectando cada pino a um pino digital do Arduino (9, 10 e 11). Utilize 1 resistor de 300 ohms para cada pino de controle de cor, e o seu pino comum ("GROUND") ao GND do Arduino.
 
 <p align="center">
-  <img src="..\src\images\Roteiro 1\traffic_light_rgb.png" height="300px" />
+  <img src="..\..\src\images\Aula 1\traffic_light_rgb.png" height="300px" />
 </p>
 
 #### Passo 2: Programação
@@ -374,7 +374,7 @@ Neste bloco, os alunos aprenderão a utilizar um sensor de luminosidade (LDR) pa
 2. Conecte um resistor de 10k ohms entre o pino A0 e o terminal VCC (5V). 
 
 <p align="center">
-  <img src="..\src\images\Roteiro 1\ldr_circuit.png" height="300px" />
+  <img src="..\..\src\images\Aula 1\ldr_circuit.png" height="300px" />
 </p>
 
 #### Passo 2: Programação
@@ -439,7 +439,7 @@ O LDR é um resistor cuja resistência varia de acordo com a intensidade da luz 
 Mantenha o circuito do bloco anterior. Usaremos o LED RGB como fonte de luz para o LDR. Portanto, basta seguir os passos dos blocos 5 e 6 para montar o circuito. 
 
 <p align="center">
-  <img src="..\src\images\Roteiro 1\ldr_with_rgb_led_circuit.png" height="300px" />
+  <img src="..\..\src\images\Aula 1\ldr_with_rgb_led_circuit.png" height="300px" />
 </p>
 
 Depois disso:

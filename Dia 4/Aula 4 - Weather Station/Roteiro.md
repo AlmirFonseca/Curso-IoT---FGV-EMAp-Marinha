@@ -52,7 +52,7 @@ O sensor DHT11 é um sensor de temperatura e umidade relativa do ar, capaz de me
 2. Adicione um resistor de 10k ohms entre o pino DATA e o pino VCC do sensor (para manter o pino DATA em nível lógico alto quando não houver transmissão de dados).
 
 <p align="center">
-  <img src="..\src\images\Roteiro 4\dht11_circuit.png" height="300">
+  <img src="..\..\src\images\Aula 4\dht11_circuit.png" height="300">
 </p>
 
 #### Passo 2: Programação
@@ -129,7 +129,7 @@ O sensor MQ-2 é um sensor de gás inflamável, fumaça e álcool, capaz de dete
 2. Adicione um resistor de 10k ohms entre o pino DOUT e o pino VCC do sensor (para manter o pino DOUT em nível lógico alto quando não houver transmissão de dados).
 
 <p align="center">
-    <img src="..\src\images\Roteiro 4\mq_2_circuit.png" height="300">
+    <img src="..\..\src\images\Aula 4\mq_2_circuit.png" height="300">
 </p>
 
 #### Passo 2: Programação
@@ -197,7 +197,7 @@ Neste bloco, vamos combinar os sensores DHT11 e MQ-2 com um display LCD para cri
 2. Conecte o display LCD ao Arduino conforme o esquemático abaixo:
 
 <p align="center">
-    <img src="..\src\images\Roteiro 4\lcd_circuit.png" height="300">
+    <img src="..\..\src\images\Aula 4\lcd_circuit.png" height="300">
 </p>
 
 #### Passo 2: Programação
@@ -310,7 +310,7 @@ Neste bloco, vamos adicionar um alarme sonoro ao nosso projeto de estação mete
    - Pino negativo do buzzer ao GND do Arduino
 
 <p align="center">
-    <img src="..\src\images\Roteiro 4\buzzer_circuit.png" height="300">
+    <img src="..\..\src\images\Aula 4\buzzer_circuit.png" height="300">
 </p>
 
 #### Passo 2: Programação
