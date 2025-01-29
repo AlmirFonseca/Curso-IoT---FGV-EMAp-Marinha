@@ -33,26 +33,26 @@ Arduino, Circuito Integrado, Display de 7 Segmentos, CI 4511, Dado Eletrônico, 
 Um display de sete segmentos, como seu nome indica, é composto por sete LEDs individuais, chamados de segmentos, organizados em forma de "8". Esses segmentos são rotulados de a a g, e acendendo combinações específicas deles, é possível formar números de 0 a 9 e algumas letras ou símbolos. 
 
 <p align="center">
-  <img src="..\..\src\images\7SegmentDisplay.png" width="300">
+  <img src="..\..\src\images\7SegmentDisplay.png" height="300">
 </p>
 
 Os displays de 7 segmentos continuam sendo populares devido à sua simplicidade e eficiência. Embora limitados em capacidade gráfica, são ideais para exibir números e informações básicas de forma clara e direta. Eles são amplamente usados ​​em relógios digitais, medidores eletrônicos, calculadoras básicas e outros dispositivos eletrônicos que exibem informações numéricas. 
 
 <p align="center">
-  <img src="..\..\src\images\7SegmentDisplayExample.png" width="300">
+  <img src="..\..\src\images\7SegmentDisplayExample.png" height="300">
 </p>
 
 Nesse bloco, vamos explorar o funcionamento de um display de 7 segmentos e controlar cada segmento individualmente para fazer um contador com o Arduino.
 
-### Passo 1: Introdução ao Circuito
+#### Passo 1: Introdução ao Circuito
 
 1. Conecte o display de 7 segmentos ao arduino conforme o esquemático abaixo, se atente ao resistor de 300 ohms no pino catodo do display:
 
 <p align="center">
-  <img src="..\..\src\images\Monitoria 1\Diagram1.png" width="300">
+  <img src="..\..\src\images\Monitoria 1\Diagram1.png" height="300">
 </p>
 
-### Passo 2: Programação
+#### Passo 2: Programação
 1. Abra o Arduino IDE e escreva o seguinte código: 
     ```cpp
     // pinos onde cada um dos segmentos estão conectados:
@@ -181,11 +181,11 @@ Nesse bloco, vamos explorar o funcionamento de um display de 7 segmentos e contr
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
 3. Faça o upload do código para a placa Arduino.
 
-### Passo 3: Observação
+#### Passo 3: Observação
 1. Observe o display de 7 segmentos conforme o código é executado. Ele deve exibir os números de 0 a 9 com um delay de 1 segundo a cada iteração do void loop().
 2. Além de números, quais letras são possíveis de exibir no display?
 
-### Passo 4: Exploração
+#### Passo 4: Exploração
 1. Adicione 2 possíveis letras no código após a sequência que exibe o número 9. Você pode fazer isso manipulando o nível lógico de cada segmento conforme o esquemático do display.
 2. As letras foram exibidas corretamente? O que acontece se apenas colocarmos o nível lógico alto nos segmentos que queremos ligados?
 
@@ -205,7 +205,7 @@ O 4511 é um circuito integrado (CI) decodificador de display BCD (Binary Coded 
 
 Neste bloco, será feita uma introdução aos números binários para facilitar a compreensão do funcionamento do CI 4511. Em seguida, o circuito anterior será aprimorado com a implementação desse componente, destacando sua aplicação prática.
 
-### Passo 1: Introdução ao circuito
+#### Passo 1: Introdução ao circuito
 1. Antes de integrar o CI 4511 ao circuito, recomendamos acessar o link https://encr.pw/JXbg4 para uma compreensão mais aprofundada sobre como este circuito integrado realiza a decodificação de números binários para o display de 7 segmentos. A tabela abaixo ilustra como o chip interpreta cada número inserido em suas entradas.
 
 | Número em Binário | Número em Decimal |
@@ -229,7 +229,7 @@ Neste bloco, será feita uma introdução aos números binários para facilitar 
 
 > ⚠ ATENÇÃO: Fique muito atento à ligação do circuito integrado. Se ligar um fio errado, isso pode danificar o componente de tal forma que pode queimá-lo e deixá-lo inutilizável!
 
-### Passo 2: Programação
+#### Passo 2: Programação
 1. Abra o Arduino IDE e escreva o seguinte código:
 
     ```cpp
@@ -323,11 +323,11 @@ Neste bloco, será feita uma introdução aos números binários para facilitar 
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
 3. Faça o upload do código para a placa Arduino.
 
-### Passo 3: Observação
+#### Passo 3: Observação
 1. O display deve se comportar da mesma forma, fazendo uma contagem de 0 a 9 a cada iteração do void loop
 Observe que diminuímos a quantidade de entradas/saídas usadas no Arduino e ganhamos mais espaço na memória do microcontrolador.
  
-### Passo 4: Exploração
+#### Passo 4: Exploração
 1. É possível exibir letras no display de 7 segmentos usando o CI 4511?
 2. 4 bits são o suficiente para contar até 15, o que acontece se passarmos números maiores que 9 para o CI 4511 decodificar para o display?
 
@@ -335,7 +335,7 @@ Observe que diminuímos a quantidade de entradas/saídas usadas no Arduino e gan
 ### Bloco 3: Contador com um botão
 Neste bloco, vamos adicionar um botão ao circuito desenvolvido anteriormente e ajustar o código para que o display de 7 segmentos incremente o valor exibido apenas quando o botão for pressionado. O contador exibirá valores de 0 a 9 e será reiniciado automaticamente para 0 ao atingir o número 9, criando o mesmo ciclo contínuo dos blocos anteriores.
 
-### Passo 1: Introdução ao circuito
+#### Passo 1: Introdução ao circuito
 1. Mantenha as conexões do CI 4511 e do display de 7 segmentos ao Arduino conforme os blocos anteriores.
 2. Conecte o botão ao Arduino conforme o esquemático abaixo: 
 
@@ -343,17 +343,17 @@ Neste bloco, vamos adicionar um botão ao circuito desenvolvido anteriormente e 
   <img src="..\..\src\images\Monitoria 1\Diagram3.png" height="300px" />
 </p>
 
-### Passo 2: Programação
+#### Passo 2: Programação
 1. Crie uma variável para ser o contador
 2. Defina o pino do botão como entrada no void setup() 
 3. Faça uma verificação se o botão foi apertado e incremente a variável do contador
 4. Exiba os números no display de acordo com a variável do contador. Caso a variável do contador passe de 9, ela deve ser igualada a 0.
 
-### Passo 3: Observação
+#### Passo 3: Observação
 1. Incremente a variável pressionando o botão, o número exibido no display está correto?
 2. Quando a variável chega a 9 e você pressiona o botão, o display exibe o número 0?
 
-### Passo 4: Exploração
+#### Passo 4: Exploração
 1. Se você mantiver o botão pressionado, ele incrementa a variável apenas uma vez?
 2. O que acontece se tirarmos o botão e ligarmos seus fios?
 3. Experimente mudar o incremento ou deixar a contagem decrescente
@@ -363,20 +363,20 @@ Neste bloco, vamos adicionar um botão ao circuito desenvolvido anteriormente e 
 ### Bloco 4: Dado Eletrônico
 Neste bloco, utilizaremos o circuito dos blocos anteriores para montar um dado eletrônico. Em vez de simplesmente incrementar uma variável, o botão será usado para "lançar" um dado de 8 faces, exibindo um número aleatório entre 1 e 8 no display de 7 segmentos.
 
-### Passo 1: Introdução ao Circuito
+#### Passo 1: Introdução ao Circuito
 1. Usaremos o mesmo circuito do bloco 3
 
-### Passo 2: Programação
+#### Passo 2: Programação
 1. Mude a variável do contador para resultado
 2. Ao invés de incrementar a variável, atribua ela um valor aleatório de 1 a 8 usando random(1,9)
 3. Ao invés de usar ```if``` para as verificações, experimente usar o [switch...case](https://www.arduino.cc/reference/cs/language/structure/control-structure/switchcase/) 
 
-### Passo 3: Observação
+#### Passo 3: Observação
 1. O display deve exibir um número aleatório a cada vez que o botão for pressionado
 2. O dado aparenta estar viciado? Como você modificaria o código para ele favorecer a um número específico?
 3. Como você adaptaria o circuito para exibir dados com mais de 8 faces?
 
-### Passo 4: Exploração
+#### Passo 4: Exploração
 1. Experimente fazer dados com outras quantidades de faces
 2. O que acontece se você mantiver o botão pressionado? 
 3. É possível fazer o display exibir números aleatórios e só parar enquanto o botão estiver sendo pressionado?
