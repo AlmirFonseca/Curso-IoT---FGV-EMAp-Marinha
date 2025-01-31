@@ -78,7 +78,7 @@ Neste bloco, iniciaremos a comunicação com o módulo ESP8266. Primeiro, precis
 
 #### Passo 4: Exploração
 1. Digite, no campo superior do monitor serial, AT e envie. O que o módulo retorna? Se ao enviar AT você não ver nada no monitor, desconecte a placa e refaça todas as ligações
-2. Usando o set de comandos [AT](https://s3-sa-east-1.amazonaws.com/robocore-lojavirtual/652/Simple-AT-commands-ESP8266.pdf), faça perguntas ao módulo. O que ele responde?
+2. Usando o [Set de Comandos AT](https://s3-sa-east-1.amazonaws.com/robocore-lojavirtual/652/Simple-AT-commands-ESP8266.pdf), faça perguntas ao módulo. O que ele responde?
 3. Faça o módulo listar as redes Wi-Fi disponíveis por perto. Caso você receba uma mensagem de erro, mude o modo de operação do módulo para 1 usando o comando AT+CWMODE=1 e tente novamente
 4. Usando o set de comandos AT, conecte-se à rede “MONITORIA” cuja senha é 12345678.
 
@@ -258,7 +258,7 @@ Neste bloco, utilizaremos o módulo ESP8266 como servidor web. O módulo será c
                        "</html>";
     ```
 
-por:
+    por:
 
     ```cpp
     webpage = String("HTTP/1.1 200 OK\r\n") +
@@ -271,7 +271,7 @@ por:
                 "</html>";
     ```
 
-para exibir o valor lido pelo potenciômetro na página web
+    para exibir o valor lido pelo potenciômetro na página web
 
 ---
 
