@@ -252,7 +252,7 @@ Neste bloco, faremos uma integração entre o Arduino e o Processing para criar 
         
     }
     ```
-2. Instale o Processing, de acordo com as instruções disponíveis no site oficial: Processing.
+2. Instale o Processing, de acordo com as instruções disponíveis no site oficial: [Processing](https://processing.org/download/).
 3. Abra o Processing e crie um novo sketch.
 4. Escreva o seguinte código no sketch do Processing:
 
