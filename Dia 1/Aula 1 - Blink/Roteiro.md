@@ -13,17 +13,21 @@ Este roteiro de experimento é projetado para os primeiros passos uma turma de i
 - Comparar a sensibilidade do LDR às diferentes cores de LEDs.
 
 ### Materiais Necessários
-- 1x Placa Arduino (Uno, Mega, ou similar)
-- 1x Cabo USB para conexão com o computador
-- 1x LED vermelho
-- 1x LED amarelo
-- 1x LED verde
-- 1x LED RGB
-- 3x Resistor de 300 ohms
-- 1x Sensor LDR (Light Dependent Resistor)
-- 1x Resistor de 10k ohms
-- 1x Copo plástico ou similar (para cobrir o LDR durante a coleta de dados)
-- Breadboard e jumpers
+
+| Componente                           | Imagem                                                                                                      |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
+| 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x LED vermelho | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/1941435412328b077d.jpg" height="100"> |
+| 1x LED amarelo | <img src="https://techsuleletronicos.com.br/wp-content/uploads/2018/11/26d8d978af.png" height="100"> |
+| 1x LED verde | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/19414355828b769476.jpg" height="100"> |
+| 1x LED RGB | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/62040081/6481297207.jpg" height="100"> |
+| 3x Resistor de 300 ohms | <img src="https://http2.mlstatic.com/D_NQ_NP_988873-MLB43270980270_082020-O.webp" height="100"> |
+| 1x Resistor de 10k ohms | <img src="https://www.usinainfo.com.br/1017894-thickbox_default/resistor-10k-14w-kit-com-10-unidades.jpg" height="100"> |
+| 1x Sensor LDR (Light Dependent Resistor) | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/19414320323d30eb14.jpg" height="100"> |
+| 1x Copo plástico ou similar (para cobrir o LDR durante a coleta de dados) | <img src="https://www.hygibras.com/wp-content/uploads/2019/01/COPO-180ML-BRANCO-C2500-ECOCOPO-PP-.jpg" height="100"> |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
 
 ### Palavras-chave
 Arduino, Arduino IDE, LED, Light Emitting Diode, Resistor, digitalWrite, analogWrite, LDR, Light Dependent Resistor, Serial Monitor, Serial Begin, Serial Print, Serial Plotter.
@@ -96,7 +100,7 @@ Agora que já passaram pelo "ritual de iniciação", é hora de controlar LEDs e
 
 #### Passo 1: Introdução ao Circuito
 
-1. Conecte o pino positivo LED verde ao pino 8 do Arduino através de um resistor de 300 ohms. O pino negativo do LED deve ser conectado ao GND do Arduino.
+1. Conecte o pino negativo do LED verde ao pino GND do Arduino através de um resistor de 300 ohms. O pino positivo do LED deve ser conectado ao pino 8 do Arduino.
 
 > ⚠: Preste atenção à polaridade do LED. Ela pode ser observada segundo o comprimento das "pernas" do LED.
 
@@ -138,8 +142,7 @@ Agora que já passaram pelo "ritual de iniciação", é hora de controlar LEDs e
 
 2. A fim de visualizar o estado do LED na tela do computador, experimente imprimir mensagens de texto usando ```Serial.println()``` toda vez que o LED tiver o estado alterado.
 
-> ⚠: Lembre-se sempre de inicializar a comunicação serial utilizando ```Serial.begin()```
- antes de transmitir mesagens.
+> ⚠: Lembre-se sempre de inicializar a comunicação serial utilizando ```Serial.begin()``` antes de transmitir mesagens. No monitor serial, configure para o mesmo valor indicado no código (nesse caso, 9600)
 
 ```cpp	
 void setup() {
@@ -251,10 +254,10 @@ Agora que já sabemos controlar LEDs e a intensidade deles, é hora de aplicar e
     }
 
     void loop() {
-      // Vermelho
-      digitalWrite(redLedPin, HIGH);
+      // Verde
+      digitalWrite(redLedPin, LOW);
       digitalWrite(yellowLedPin, LOW);
-      digitalWrite(greenLedPin, LOW);
+      digitalWrite(greenLedPin, HIGH);
       delay(5000); // Aguarda 5 segundos
 
       // Amarelo
@@ -263,10 +266,10 @@ Agora que já sabemos controlar LEDs e a intensidade deles, é hora de aplicar e
       digitalWrite(greenLedPin, LOW);
       delay(2000); // Aguarda 2 segundos
 
-      // Verde
-      digitalWrite(redLedPin, LOW);
+      // Vermelho
+      digitalWrite(redLedPin, HIGH);
       digitalWrite(yellowLedPin, LOW);
-      digitalWrite(greenLedPin, HIGH);
+      digitalWrite(greenLedPin, LOW);
       delay(5000); // Aguarda 5 segundos
     }
     ```
@@ -284,6 +287,8 @@ Agora que já sabemos controlar LEDs e a intensidade deles, é hora de aplicar e
 1. O que acontece se alterarmos o tempo de espera entre as mudanças de cor do semáforo? Experimente alterar os valores de ```delay()``` e observe o comportamento do semáforo.
 
 2. Experimente imprimir mensagens na porta serial, indicando a cor do semáforo a cada mudança e o que um motorista deve fazer em cada situação: "Pare", "Aguarde" e "Siga".
+
+3. Em alguns países, o semáforo possui um tempo de espera adicional amarelo entre o vermelho e o verde. Como podemos implementar essa funcionalidade no semáforo? Experimente adicionar um novo estado ao semáforo, onde o amarelo acende antes de mudar para o verde.
 
 ---
 
@@ -320,9 +325,9 @@ Esse bloco é similar ao anterior, sendo a única diferença a troca dos LEDs in
     }
 
     void loop() {
-      // Vermelho
-      analogWrite(redPin, 255);
-      analogWrite(greenPin, 0);
+      // Verde
+      analogWrite(redPin, 0);
+      analogWrite(greenPin, 255);
       analogWrite(bluePin, 0);
       delay(5000); // Aguarda 5 segundos
 
@@ -332,9 +337,9 @@ Esse bloco é similar ao anterior, sendo a única diferença a troca dos LEDs in
       analogWrite(bluePin, 0);
       delay(2000); // Aguarda 2 segundos
 
-      // Verde
-      analogWrite(redPin, 0);
-      analogWrite(greenPin, 255);
+      // Vermelho
+      analogWrite(redPin, 255);
+      analogWrite(greenPin, 0);
       analogWrite(bluePin, 0);
       delay(5000); // Aguarda 5 segundos
     }

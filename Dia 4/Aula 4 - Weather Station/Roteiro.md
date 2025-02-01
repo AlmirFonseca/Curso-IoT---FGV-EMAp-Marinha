@@ -15,16 +15,19 @@ Neste roteiro, vamos utilizar o sensor MQ-2 para medir a concentração de gases
 
 ### Materiais Necessários
 
-- 1x Placa Arduino (Uno, Mega, ou similar)
-- 1x Cabo USB para conexão com o computador
-- 1x Sensor de temperatura e umidade DHT11
-- 1x Sensor de gás inflamável MQ-2
-- 1x Display LCD 16x2
-- 1x Buzzer passivo
-- 1x Potenciômetro de 10k ohms (B10K)
-- 2x Resistor de 10k ohms
-- Breadboard e jumpers
-- Isqueiro/Álcool em gel para testes
+| Componente                           | Imagem                                                                                                      |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
+| 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x Sensor de temperatura e umidade DHT11 | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/19414381/d2d7e253c7.jpg" height="100"> |
+| 1x Sensor de gás inflamável MQ-2 | <img src="https://www.mamuteeletronica.com.br/media/catalog/product/cache/ff61517d26ace703648229d56c081b52/m/-/m-dulo-sensor-de-g-s-mq-2-17343-12793_1.jpg" height="100"> |
+| 1x Display LCD 16x2 | <img src="https://www.usinainfo.com.br/1020284-thickbox_default/display-lcd-16x2-com-fundo-verde.jpg" height="100"> |
+| 1x Buzzer passivo | <img src="https://cdn.awsli.com.br/380x380/468/468162/produto/194141773bc1fc2fc2.jpg" height="100"> |
+| 1x Potenciômetro de 10k ohms (B10K) | <img src="https://images.tcdn.com.br/img/img_prod/648216/potenciometro_linear_10k_l15mm_b10k_wh148_1_2771_1_bd120d01879ac75564d997dbccb1ff4f.jpg" height="100"> |
+| 2x Resistor de 10k ohms | <img src="https://www.usinainfo.com.br/1017894-thickbox_default/resistor-10k-14w-kit-com-10-unidades.jpg" height="100"> |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
+| Álcool em gel | <img src="https://images.tcdn.com.br/img/img_prod/606124/alcool_gel_antisseptico_my_health_50g_11393_1_20200330094028.jpg" height="100"> |
 
 ### Palavras-chave
 

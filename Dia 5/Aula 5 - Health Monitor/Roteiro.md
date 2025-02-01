@@ -1562,12 +1562,13 @@ Neste roteiro, vamos utilizar o sensor MAX30102 para medir a frequência cardía
 
 | Componente                           | Imagem                                                                                                      |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://images.tcdn.com.br/img/img_prod/900872/arduino_uno_r3_cabo_usb_2871_1_07f18cc89ab02c14be2c9fb5d9ae528c.jpg" height="100">                                                      |
-| 1x Cabo USB para conexão com o computador  | <img src="https://cdn.awsli.com.br/78/78150/produto/14336474/0711a64daf.jpg" height="100">                                                     |
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100">                                                      |
+| 1x Cabo USB para conexão com o computador  | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100">                                                     |
 | 1x Sensor de Frequência Cardíaca e Oxigenação MAX30102 | <img src="https://ae01.alicdn.com/kf/S5450c2e454ec46ed902c16184232d10f7.jpg_640x640Q90.jpg_.webp"  height="100"> |
 | 1x Display LCD 16x2                  | <img src="https://www.usinainfo.com.br/1020284-thickbox_default/display-lcd-16x2-com-fundo-verde.jpg" height="100">           |
 | 1x Potenciômetro de 10k ohms         | <img src="https://www.soundtronics.co.uk/images/detailed/24/Ext-7300-400_n4xy-q3.jpg" height="100"> |
-| Breadboard e jumpers                   | <img src="https://www.usinainfo.com.br/1027100-thickbox_default/kit-prototipagem-basico-com-protoboard-400-pontos-jumpers-41-pecas.jpg" height="100">                                           |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
 
 ### Palavras-chave
 

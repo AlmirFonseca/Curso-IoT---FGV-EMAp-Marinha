@@ -19,16 +19,15 @@ Neste roteiro, vamos explorar o funcionamento do sensor de distância e como ele
 - Discutir a importância de ferramentas de visualização adequadas para análise de dados.
 
 ### Materiais Necessários
-
-- 1x Placa Arduino (Uno, Mega, ou similar)
-- 1x Cabo USB para conexão com o computador
-- 1x Sensor de distância ultrassônico HC-SR04
-- 1x Motor de passo (28BYJ-48) e driver (ULN200x)
-- 1x Régua graduada
-- 1x Protoboard
-- Breadboard e jumpers
-- Peças de apoio impressas em 3D
-- Computador com Arduino IDE e Processing instalados
+| Componente                           | Imagem                                                                                                      |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
+| 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x Sensor de distância ultrassônico HC-SR04 | <img src="https://images.tcdn.com.br/img/img_prod/650361/sensor_ultrassonico_hc_sr04_sensor_de_distancia_241_1_f8752df5ed253ef25ef00c3549a12768.png" height="100"> |
+| 1x Motor de passo (28BYJ-48) e driver (ULN200x) | <img src="https://images.tcdn.com.br/img/img_prod/707426/arduino_motor_de_passo_drive_uln2003_16548_1_20190911151942.jpg" height="100"> |
+| Peças impressas em 3D | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEhinASCRRjS-NVLtaqJ_xFPIRriMdFFM_yg&s" height="100"> |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
 
 ### Palavras-chave
 

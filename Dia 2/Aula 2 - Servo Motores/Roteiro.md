@@ -16,14 +16,16 @@ Esse roteiro de atividades tem como objetivo introduzir o uso de potenciômetros
 - Coletar dados de um transferidor graduado fixo ao servo a fim de observar a linearidade do potenciômetro do tipo A.
 
 ### Materiais Necessários
-
-- 1x Placa Arduino (Uno, Mega, ou similar)
-- 1x Cabo USB para conexão com o computador
-- 1x Servo motor
-- 1x Potenciômetro tipo A (10k ohms)
-- 1x Potenciômetro tipo B (10k ohms)
-- Peças graduadas impressas em 3D
-- Breadboard e jumpers
+| Componente                           | Imagem                                                                                                      |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
+| 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x Servo motor | <img src="https://cdn.awsli.com.br/600x450/463/463999/produto/19213618/4c079f22f7.jpg" height="100"> |
+| 1x Potenciômetro tipo A (10k ohms) | <img src="https://m.media-amazon.com/images/I/51WpSM+BR0L._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x Potenciômetro tipo B (10k ohms) | <img src="https://www.usinainfo.com.br/1017894-thickbox_default/resistor-10k-14w-kit-com-10-unidades.jpg" height="100"> |
+| Peças graduadas impressas em 3D | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEhinASCRRjS-NVLtaqJ_xFPIRriMdFFM_yg&s" height="100"> |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
 
 ### Palavras-chave
 
