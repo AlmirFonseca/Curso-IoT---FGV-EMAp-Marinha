@@ -21,7 +21,7 @@ Neste roteiro, vamos explorar o controle de um motor DC (corrente contínua) com
 | 1x Cabo USB para conexão com o computador  | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100">                                                     |
 | 1x Motor DC (corrente contínua)        | <img src="https://www.arcaelectronica.com/cdn/shop/products/Motor_DC_cudrado_2048x.jpg?v=1558320811" height="100">                                                     |
 | 1x Transistor de Potência TIP122       | <img src="https://cdn.awsli.com.br/78/78150/arquivos/TIP122-ci-transistor-npn.jpg" height="100">                                                       |
-| 1x Joystick (potenciômetro)            | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/19414328/b653f88a4b.jpg" height="100">                                                     |
+| 1x Joystick            | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/19414328/b653f88a4b.jpg" height="100">                                                     |
 | 1x Sensor de Efeito Hall               | <img src="https://http2.mlstatic.com/D_NQ_NP_845409-MLB49370398505_032022-O.webp" height="100">                                                  |
 | 2x Ímã de Neodímio                     | <img src="https://img.elo7.com.br/product/zoom/233199A/10pcs-ima-de-neodimio-12x2-redondo-pastilha-12mm-x-2mm-n35-ima-super-forte.jpg" height="100">                                             |
 | 1x Resistor de 10 K ohms                | <img src="https://www.usinainfo.com.br/1017894-thickbox_default/resistor-10k-14w-kit-com-10-unidades.jpg" height="100">                                                     |

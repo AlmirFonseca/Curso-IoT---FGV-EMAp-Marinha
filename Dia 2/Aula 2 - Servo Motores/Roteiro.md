@@ -11,7 +11,7 @@ Esse roteiro de atividades tem como objetivo introduzir o uso de potenciômetros
 
 - Apresentar o funcionamento de um potenciômetro e observar seu output no Serial Plotter.
 - Apresentar o controle de um servo motor com uma rotina de movimento pré-programada.
-- Controlar o servo motor a partir de um potenciômetro, ajustando a amplitude dos valores usando a função map().
+- Controlar o servo motor a partir de um potenciômetro, ajustando a amplitude dos valores usando a função ```map()```.
 - Comparar o comportamento de um potenciômetro do tipo A com um do tipo B e discutir as diferenças na resposta do sistema.
 - Coletar dados de um transferidor graduado fixo ao servo a fim de observar a linearidade do potenciômetro do tipo A.
 
@@ -22,7 +22,7 @@ Esse roteiro de atividades tem como objetivo introduzir o uso de potenciômetros
 | 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
 | 1x Servo motor | <img src="https://cdn.awsli.com.br/600x450/463/463999/produto/19213618/4c079f22f7.jpg" height="100"> |
 | 1x Potenciômetro tipo A (10k ohms) | <img src="https://m.media-amazon.com/images/I/51WpSM+BR0L._AC_UF894,1000_QL80_.jpg" height="100"> |
-| 1x Potenciômetro tipo B (10k ohms) | <img src="https://www.usinainfo.com.br/1017894-thickbox_default/resistor-10k-14w-kit-com-10-unidades.jpg" height="100"> |
+| 1x Potenciômetro tipo B (10k ohms) | <img src="https://m.media-amazon.com/images/I/51WpSM+BR0L._AC_UF894,1000_QL80_.jpg" height="100"> |
 | Peças graduadas impressas em 3D | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEhinASCRRjS-NVLtaqJ_xFPIRriMdFFM_yg&s" height="100"> |
 | Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
 | Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
@@ -44,6 +44,8 @@ Potenciômetros são componentes eletrônicos presentes em diversos dispositivos
 </p>
 
 #### Passo 1: Introdução ao Circuito
+
+Utilizando o potenciômetro do tipo B, siga os passos abaixo para montar o circuito:
 
 1. Conecte o pino central do potenciômetro ao pino analógico A0 do Arduino.
 
@@ -91,7 +93,7 @@ void loop() {
 
 1. Qual o valor mínimo lido pelo potenciômetro? E o máximo?
 
-2. Qual a amplitude, em graus, do potenciômetro?
+2. Qual a amplitude, em graus, do potenciômetro? (Pesquise, se necessário)
 
 3. Qual a relação entre a posição do potenciômetro e o valor lido? parece ser linear? Experimente girar o potenciômetro lentamente e observe a saída na tela. Calcule a razão entre a variação do potenciômetro e a variação do valor lido para pelo menos 3 valores para verificar a linearidade.
 
@@ -103,7 +105,7 @@ void loop() {
 
 Servo motores são dispositivos capazes de girar em um ângulo específico, controlados por um sinal PWM (Pulse Width Modulation). Eles são amplamente utilizados em projetos de robótica, automação e modelismo. Neste bloco, vamos explorar o controle de um servo motor e observar seu movimento entre posições específicas, pré-definidas no código.
 
-Seu funcionamento é baseado em um motor DC com uma caixa de redução e um potenciômetro acoplado ao eixo, formando um sistema de feedback que permite controlar a posição do eixo. O sinal PWM enviado ao servo motor determina a posição do eixo, variando o ângulo de rotação.
+Seu funcionamento é baseado em um motor DC (típico de brinquedos infantis) com uma caixa de redução e um potenciômetro acoplado ao eixo, formando um sistema de feedback que permite monitorar a posição do eixo. O sinal PWM enviado ao servo motor determina a posição do eixo, variando o ângulo de rotação.
 
 <p align="center">
   <img src="https://www.vidadesilicio.com.br/wp-content/uploads/2021/09/1848-jpg.webp" alt="Servo Motor" height="300">
@@ -162,7 +164,7 @@ void loop() {
 
 #### Passo 3: Observação
 
-1. Observe o movimento do servo motor entre as posições mínima (0°), média (90°) e máxima (180°).
+1. Observe o movimento do servo motor entre as posições mínima (0°), média (90°) e máxima (180°). Em qual direção ele gira?
 
 2. O ponteiro aponta para a posição correta no transferidor? Se necessário, desligue o Arduino para que o servo motor não se mova e ajuste a posição do ponteiro para a posição correta.
 
@@ -214,7 +216,7 @@ void loop() {
 
   int angle = map(potValue, 0, 1023, 0, 180); // Mapeia o valor do potenciômetro (0 a 1023) para a amplitude do servo (0 a 180 graus)
 
-  myServo.write(180 - angle); // Define a posição do servo motor
+  myServo.write(180 - angle); // Define a posição do servo motor (invertendo o ângulo de rotação)
 
   Serial.print("Potentiometer Value: ");
   Serial.print(potValue);
@@ -349,7 +351,7 @@ void loop() {
 |------------------------|-------------------------|-----------------|
 | 0                      | 0                       | 0               |
 | 30                    | 27                      | 4              |
-| 60                    | 63                      | 1              |
+| 60                    | 63                      | 10              |
 | ...                    | ...                     | ...            |
 | 300                    | 1023                    | 180            |
 

@@ -8,14 +8,14 @@ Esse roteiro apresenta o uso de sensores de distância ultrassônicos, como o HC
 
 Existem diversos tipos de sensores de distância, como os sensores ultrassônicos, infravermelhos e a laser. Em projetos simples de eletrônica, os sensores ultrassônicos são uma opção acessível e eficaz para medir distâncias de alguns centímetros a vários metros, dependendo do modelo. Para projetos mais avançados, sensores a laser podem ser utilizados para medir distâncias com maior precisão e em maiores distâncias, podendo ser encontrados em sistemas de navegação de veículos autônomos e drones.
 
-Neste roteiro, vamos explorar o funcionamento do sensor de distância e como ele pode ser utilizado para medir a distância entre o sensor e um objeto, construindo o nosso primeiro "sonar" com Arduino.
+Neste roteiro, vamos explorar o funcionamento do sensor de distância e como ele pode ser utilizado para medir a distância entre o sensor e um objeto, construindo o nosso sonar com Arduino.
 
 ### Objetivos
 
 - Apresentar o funcionamento do sensor de distância ultrassônico HC-SR04.
 - Utilizar exemplos de bibliotecas para sensores na Arduino IDE.
 - Realizar experimentos para medir a distância entre o sensor e um objeto.
-- Construir um "sonar" com Arduino e exibir os dados em um dashboard gráfico.
+- Construir um sonar com Arduino e exibir os dados em um dashboard gráfico.
 - Discutir a importância de ferramentas de visualização adequadas para análise de dados.
 
 ### Materiais Necessários
@@ -127,10 +127,10 @@ Motores de Passo são dispositivos utilizados para converter pulsos elétricos e
 #### Passo 1: Introdução ao Circuito
 
 1. Conecte o motor de passo ao driver conforme o esquemático abaixo:
-    - Pino IN1 do driver ao pino digital 8 do Arduino
-    - Pino IN2 do driver ao pino digital 9 do Arduino
-    - Pino IN3 do driver ao pino digital 10 do Arduino
-    - Pino IN4 do driver ao pino digital 11 do Arduino
+    - Pino IN1 do driver ao pino digital 9 do Arduino
+    - Pino IN2 do driver ao pino digital 10 do Arduino
+    - Pino IN3 do driver ao pino digital 11 do Arduino
+    - Pino IN4 do driver ao pino digital 12 do Arduino
     - Pino GND do driver ao GND do Arduino
     - Pino VCC do driver ao 5V do Arduino
 
@@ -150,8 +150,8 @@ Motores de Passo são dispositivos utilizados para converter pulsos elétricos e
 // Inclui a biblioteca do motor de passo Bonezegei ULN2003.
 #include "Bonezegei_ULN2003_Stepper.h"
 
-// Cria um objeto Stepper para controlar o motor de passo nos pinos 8, 9, 10 e 11.
-Bonezegei_ULN2003_Stepper Stepper(8, 9, 10, 11);
+// Cria um objeto Stepper para controlar o motor de passo nos pinos 9, 10, 11, 12.
+Bonezegei_ULN2003_Stepper Stepper(9, 10, 11, 12);
 
 // Define o número de passos por revolução do motor.
 #define STEPS_PER_REVOLUTION 2038
@@ -230,8 +230,8 @@ Neste bloco, vamos construir um "sonar" com Arduino, juntando as peças já impr
 #include "Bonezegei_ULN2003_Stepper.h"
 #include <HCSR04.h>
 
-// Inicializa o motor de passo nos pinos 8, 9, 10 e 11.
-Bonezegei_ULN2003_Stepper Stepper(8, 9, 10, 11);
+// Inicializa o motor de passo nos pinos 9, 10, 11, 12.
+Bonezegei_ULN2003_Stepper Stepper(9, 10, 11, 12);
 #define STEPS_PER_REVOLUTION 2038  // Define o número de passos necessários para uma revolução completa do motor.
 
 // Define constantes de direção: 1 para frente e 0 para trás.
@@ -399,8 +399,8 @@ void serialEvent (Serial myPort) { /* começa a ler os dados aparti da porta ser
   data = data.substring(0, data.length()-1);
 
   index1 = data.indexOf(","); /* encontra o caractere e armazena na variavel "index1" */
-  angle= data.substring(0, index1); /* ler os dados da posição "0" a posição do index1 váriavel ou isso é o valor do ânculo da placa Ardíno enviado */
-  distance= data.substring(index1+1, data.length()); /* ler os dados de posição "index1" para o final do pr de dados que é o valor da distância. */
+  angle= data.substring(0, index1).trim(); /* ler os dados da posição "0" a posição do index1 váriavel ou isso é o valor do ânculo da placa Ardíno enviado */
+  distance= data.substring(index1+1, data.length()).trim(); /* ler os dados de posição "index1" para o final do pr de dados que é o valor da distância. */
 
   // converte string para inteiro.
   iAngle = int(angle);

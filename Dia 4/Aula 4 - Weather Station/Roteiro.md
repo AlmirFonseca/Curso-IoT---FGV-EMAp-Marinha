@@ -67,7 +67,7 @@ O sensor DHT11 é um sensor de temperatura e umidade relativa do ar, capaz de me
 3. Selecione a placa e a porta de conexão onde o Arduino está conectado.
 
 4. Faça o upload do código para a placa Arduino.
-
+v
 #### Passo 3: Observação
 
 1. Abra o Serial Monitor na Arduino IDE.
