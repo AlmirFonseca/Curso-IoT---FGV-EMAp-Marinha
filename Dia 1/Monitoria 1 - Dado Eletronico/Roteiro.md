@@ -12,14 +12,17 @@ Este roteiro de monitoria tem como objetivo apresentar os conceitos fundamentais
 - Construir um dado eletrônico.
 
 ### Materiais Necessários
-- Placa Arduino 
-- Cabo USB
-- Display de 7 Segmentos
-- Circuito Integrado 4511
-- 1x Resistor 300Ω
-- 1x Chave Momentânea
-- Protoboard
-- Jumpers
+
+| Componente                           | Imagem                                                                                                      |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
+| 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x Resistor de 300 ohms | <img src="https://http2.mlstatic.com/D_NQ_NP_988873-MLB43270980270_082020-O.webp" height="100"> |
+| 1x Display de 7 segmentos | <img src="https://www.tostatronic.com/wp-content/uploads/2023/07/BTDCA7S_2.webp" height="100"> |
+| 1x Circuito Integrado 4511 | <img src="https://images.tcdn.com.br/img/img_prod/1165255/circuito_integrado_4511_12481_1_940b4ac063223a82d19b2b849e02d980.jpg" height="100"> |
+| 1x Botão | <img src="https://cdn.awsli.com.br/600x450/853/853129/produto/58809095366661a8ce.jpg" height="100"> |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
 
 ### Palavras–chave
 Arduino, Circuito Integrado, Display de 7 Segmentos, CI 4511, Dado Eletrônico, Eletrônica Digital.
@@ -30,7 +33,7 @@ Arduino, Circuito Integrado, Display de 7 Segmentos, CI 4511, Dado Eletrônico, 
 
 ### Bloco 1: Display de 7 Segmentos
 
-Um display de sete segmentos, como seu nome indica, é composto por sete LEDs individuais, chamados de segmentos, organizados em forma de "8". Esses segmentos são rotulados de a a g, e acendendo combinações específicas deles, é possível formar números de 0 a 9 e algumas letras ou símbolos. 
+Um display de sete segmentos, como seu nome indica, é composto por sete LEDs individuais, chamados de segmentos, organizados em forma de "8". Esses segmentos são rotulados de a a g, e acendendo combinações específicas deles, é possível formar números de 0 a 9, além de algumas letras ou símbolos. 
 
 <p align="center">
   <img src="..\..\src\images\7SegmentDisplay.png" height="300">
@@ -189,6 +192,7 @@ Nesse bloco, vamos explorar o funcionamento de um display de 7 segmentos e contr
 1. Adicione 2 possíveis letras no código após a sequência que exibe o número 9. Você pode fazer isso manipulando o nível lógico de cada segmento conforme o esquemático do display.
 2. As letras foram exibidas corretamente? O que acontece se apenas colocarmos o nível lógico alto nos segmentos que queremos ligados?
 
+---
 
 ### Bloco 2: Circuito Integrado 4511
 Em eletrônica, um circuito integrado, microchip, chip e nano chip (do inglês, microchip, chip, nanochip), abreviadamente CI, é um circuito eletrônico miniaturizado (composto principalmente por dispositivos semicondutores) sobre um substrato fino de material semicondutor. Os circuitos integrados são usados em quase todos os equipamentos eletrônicos usados hoje e revolucionaram o mundo da eletrônica.
@@ -197,7 +201,7 @@ Em eletrônica, um circuito integrado, microchip, chip e nano chip (do inglês, 
   <img src="https://d229kd5ey79jzj.cloudfront.net/565/images/565_1_H.png?20241122172420" height="300px" />
 </p>
 
-O 4511 é um circuito integrado (CI) decodificador de display BCD (Binary Coded Decimal, ou Decimal Codificado em Binário) para um display de 7 segmentos de catodo comum. Ele é comumente usado em projetos eletrônicos para exibir números de 0 a 9 em um display de 7 segmentos. 
+O 4511 é um circuito integrado (CI) decodificador de display BCD (Binary Coded Decimal, ou Decimal Codificado em Binário) para um display de 7 segmentos de cátodo (polo negativo) comum. Ele é comumente usado em projetos eletrônicos para exibir números de 0 a 9 em um display de 7 segmentos. 
 
 <p align="center">
   <img src="https://www.build-electronic-circuits.com/wp-content/uploads/2020/08/4511_Pinout-white.png" height="300px" />
@@ -206,7 +210,7 @@ O 4511 é um circuito integrado (CI) decodificador de display BCD (Binary Coded 
 Neste bloco, será feita uma introdução aos números binários para facilitar a compreensão do funcionamento do CI 4511. Em seguida, o circuito anterior será aprimorado com a implementação desse componente, destacando sua aplicação prática.
 
 #### Passo 1: Introdução ao circuito
-1. Antes de integrar o CI 4511 ao circuito, recomendamos acessar o link https://encr.pw/JXbg4 para uma compreensão mais aprofundada sobre como este circuito integrado realiza a decodificação de números binários para o display de 7 segmentos. A tabela abaixo ilustra como o chip interpreta cada número inserido em suas entradas.
+1. Antes de integrar o CI 4511 ao circuito, recomendamos acessar o link [clicando aqui](https://everycircuit.com/circuit/6090498039087104/display-7-segmentos) para uma compreensão mais aprofundada sobre como este circuito integrado realiza a decodificação de números binários para o display de 7 segmentos. A tabela abaixo ilustra como o chip interpreta cada número inserido em suas entradas.
 
 | Número em Binário | Número em Decimal |
 | ------------- | ------------- |
@@ -331,6 +335,7 @@ Observe que diminuímos a quantidade de entradas/saídas usadas no Arduino e gan
 1. É possível exibir letras no display de 7 segmentos usando o CI 4511?
 2. 4 bits são o suficiente para contar até 15, o que acontece se passarmos números maiores que 9 para o CI 4511 decodificar para o display?
 
+---
 
 ### Bloco 3: Contador com um botão
 Neste bloco, vamos adicionar um botão ao circuito desenvolvido anteriormente e ajustar o código para que o display de 7 segmentos incremente o valor exibido apenas quando o botão for pressionado. O contador exibirá valores de 0 a 9 e será reiniciado automaticamente para 0 ao atingir o número 9, criando o mesmo ciclo contínuo dos blocos anteriores.
@@ -347,18 +352,20 @@ Neste bloco, vamos adicionar um botão ao circuito desenvolvido anteriormente e 
 1. Crie uma variável para ser o contador
 2. Defina o pino do botão como entrada no void setup() 
 3. Faça uma verificação se o botão foi apertado e incremente a variável do contador
-4. Exiba os números no display de acordo com a variável do contador. Caso a variável do contador passe de 9, ela deve ser igualada a 0.
+4. Exiba os números no display de acordo com a variável do contador. 
+5. Caso a variável do contador passe de 9, ela deve ser igualada a 0, reiniciando o ciclo
 
 #### Passo 3: Observação
 1. Incremente a variável pressionando o botão, o número exibido no display está correto?
-2. Quando a variável chega a 9 e você pressiona o botão, o display exibe o número 0?
+2. Quando a variável chega a 9 e você pressiona o botão, o display exibe o número 0 novamente?
 
 #### Passo 4: Exploração
 1. Se você mantiver o botão pressionado, ele incrementa a variável apenas uma vez?
-2. O que acontece se tirarmos o botão e ligarmos seus fios?
+2. O que acontece se tirarmos o botão e ligarmos seus fios diretamente?
 3. Experimente mudar o incremento ou deixar a contagem decrescente
 4. Experimente mudar a conexão dos pinos do botão, o circuito continua funcionando como o esperado?
 
+---
 
 ### Bloco 4: Dado Eletrônico
 Neste bloco, utilizaremos o circuito dos blocos anteriores para montar um dado eletrônico. Em vez de simplesmente incrementar uma variável, o botão será usado para "lançar" um dado de 8 faces, exibindo um número aleatório entre 1 e 8 no display de 7 segmentos.
@@ -368,7 +375,7 @@ Neste bloco, utilizaremos o circuito dos blocos anteriores para montar um dado e
 
 #### Passo 2: Programação
 1. Mude a variável do contador para resultado
-2. Ao invés de incrementar a variável, atribua ela um valor aleatório de 1 a 8 usando random(1,9)
+2. Ao invés de incrementar a variável, atribua ela um valor aleatório de 1 a 8 usando ```random(1,9)```
 3. Ao invés de usar ```if``` para as verificações, experimente usar o [switch...case](https://www.arduino.cc/reference/cs/language/structure/control-structure/switchcase/) 
 
 #### Passo 3: Observação
@@ -400,3 +407,5 @@ Esta monitoria apresentou o funcionamento de displays de 7 segmentos e circuitos
 - [Seven-segment display](https://en.wikipedia.org/wiki/Seven-segment_display)
 - [Serial 7-Segment Display](https://learn.sparkfun.com/tutorials/using-the-serial-7-segment-display/all) 
 - [Probabilidade](https://en.wikipedia.org/wiki/Probability) 
+
+---

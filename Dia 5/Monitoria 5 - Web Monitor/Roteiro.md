@@ -3,7 +3,7 @@
 ## Web Monitor
 
 ### Descrição
-Este roteiro de monitoria tem como objetivo apresentar a transferência de informações do monitor serial da Arduino IDE para uma página web, utilizando o módulo ESP8266 em sua função de servidor web (web server). Além disso, será feita uma introdução ao Blynk, um aplicativo que emprega um protocolo próprio baseado no Protocolo de Controle de Transmissão (TCP), que permite a troca de mensagens entre dispositivos de computação, permitindo leitura e atuação com resposta praticamente instantânea. 
+Este roteiro de monitoria tem como objetivo apresentar a transferência de informações do monitor serial da Arduino IDE para uma página web, utilizando o módulo ESP8266 em sua função de servidor web (web server). Além disso, será feita uma introdução ao Blynk, um aplicativo que emprega um protocolo próprio baseado no Protocolo de Controle de Transmissão (TCP), que permite a troca de mensagens entre dispositivos de computação, permitindo leitura e atuação com resposta praticamente instantânea.  
 
 ### Objetivos
 - Entender o funcionamento do módulo ESP8266 e suas principais aplicações.
@@ -12,13 +12,18 @@ Este roteiro de monitoria tem como objetivo apresentar a transferência de infor
 - Desenvolver um dashboard no Blynk capaz de controlar o LED interno da placa, permitindo acendê-lo e apagá-lo remotamente.
 
 ### Materiais Necessários
-- 1x Placa Arduino + Cabo USB
-- 1x Protoboard
-- 1x Módulo WiFi ESP8266
-- 1x Adaptador para ESP8266
-- 1x Módulo Relé
-- 1x Potenciômetro 10k
-- Jumpers
+
+| Componente                           | Imagem                                                                                                      |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
+| 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x Potenciômetro tipo A (10k ohms) | <img src="https://m.media-amazon.com/images/I/51WpSM+BR0L._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x Módulo Relé | <img src="https://d229kd5ey79jzj.cloudfront.net/258/images/258_2_H.png?20250120214712" height="100"> |
+| 1x Módulo WiFi ESP8266 | <img src="https://www.makerhero.com/wp-content/uploads/2017/07/6WL01-Módulo-WiFi-ESP8266-ESP-01-1-min.jpg" height="100"> |
+| 1x Adaptador para ESP8266 | <img src="https://d229kd5ey79jzj.cloudfront.net/951/images/951_2_H.png?20241206181806" height="100"> |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
+
 
 ### Palavras-chave
 Arduino, ESP8266, Servidor web, Protocolo TCP, Blynk, Monitoramento online
@@ -28,7 +33,7 @@ Arduino, ESP8266, Servidor web, Protocolo TCP, Blynk, Monitoramento online
 ## Metodologia
 
 ### Bloco 1: ESP8266
-O ESP8266 é um microcontrolador Wi-Fi de baixo custo, com software de rede TCP/IP integrado e capacidade de microcontrolador. Este pequeno módulo permite que microcontroladores se conectem a uma rede Wi-Fi e façam conexões TCP/IP simples usando comandos no estilo Hayes.
+O ESP8266 é um microcontrolador Wi-Fi de baixo custo, com software de rede TCP/IP integrado e capacidade de microcontrolador. Este pequeno módulo permite que microcontroladores se conectem a uma rede Wi-Fi e façam conexões TCP/IP simples usando comandos no estilo Hayes, também conhecido como conjunto de comandos AT (do inglês, “attention”).Ele consiste em uma série de cadeias de texto curtas que podem ser combinadas para produzir comandos para operações como discagem, desligamento e alteração dos parâmetros da conexão.
 
 <p align="center">
   <img src="https://d229kd5ey79jzj.cloudfront.net/652/images/652_1_H.png" height="300">
@@ -74,7 +79,9 @@ Neste bloco, iniciaremos a comunicação com o módulo ESP8266. Primeiro, precis
 3. Faça o upload do código para a placa Arduino
 
 #### Passo 3: Observação
-1. Abra o Serial Monitor no Arduino IDE
+1. Observe que na primeira linha do código incluímos a biblioteca SoftwareSerial.h, que será muito importante pois neste experimento teremos duas comunicações seriais acontecendo ao mesmo tempo. Uma delas acontecerá através do cabo USB, entre o computador e a placa BlackBoard (hardware serial). A outra acontecerá entre a BlackBoard e o módulo ESP8266 (software serial).
+2. Observe também que no ```void loop()``` nós apenas verificamos se existe alguma informação vindo pelo ESP8266 e enviamos para o ESP8266 qualquer informação que enviarmos pelo monitor serial. Estamos usando o Arduino apenas para transmitir e receber informações para o ESP.
+3. Abra o Serial Monitor no Arduino IDE
 
 #### Passo 4: Exploração
 1. Digite, no campo superior do monitor serial, AT e envie. O que o módulo retorna? Se ao enviar AT você não ver nada no monitor, desconecte a placa e refaça todas as ligações
@@ -406,19 +413,21 @@ Este roteiro proporcionou uma introdução prática à utilização do módulo E
 ---
 
 ### Referências para Consulta
-[Comandos AT](https://s3-sa-east-1.amazonaws.com/robocore-lojavirtual/652/Simple-AT-commands-ESP8266.pdf) 
+- [Comandos AT](https://s3-sa-east-1.amazonaws.com/robocore-lojavirtual/652/Simple-AT-commands-ESP8266.pdf) 
 
-[Datasheet ESP8266](https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf) 
+- [Datasheet ESP8266](https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf) 
 
-[Blynk](https://docs.blynk.io/en)
+- [Blynk](https://docs.blynk.io/en)
 
-[Documentação Oficial do Arduino](https://www.arduino.cc/en/Guide/HomePage) 
+- [Documentação Oficial do Arduino](https://www.arduino.cc/en/Guide/HomePage) 
 
 ### Sugestões de Leitura
-[Esp8266](https://en.wikipedia.org/wiki/ESP8266) 
+- [Esp8266](https://en.wikipedia.org/wiki/ESP8266) 
 
-[Internet of things (IoT)](https://en.wikipedia.org/wiki/Internet_of_things) 
+- [Internet of things (IoT)](https://en.wikipedia.org/wiki/Internet_of_things) 
 
-[Guia de conexão do ESP8266](https://learn-sparkfun-com.translate.goog/tutorials/esp8266-thing-hookup-guide/using-the-arduino-addon?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt&_x_tr_pto=tc) 
+- [Guia de conexão do ESP8266](https://learn-sparkfun-com.translate.goog/tutorials/esp8266-thing-hookup-guide/using-the-arduino-addon?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt&_x_tr_pto=tc) 
+
+- [Comandos Hayes](https://pt.wikipedia.org/wiki/Comandos_Hayes) 
 
 ---

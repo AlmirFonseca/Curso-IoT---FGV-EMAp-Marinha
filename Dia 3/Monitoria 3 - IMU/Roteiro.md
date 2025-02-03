@@ -3,7 +3,7 @@
 ## IMU
 
 ### Descrição
-Este roteiro de monitoria tem como objetivo compreender e explorar as aplicações do acelerômetro e do giroscópio integrados em um IMU (Unidade de Medida Inercial), utilizando o sensor MPU6050. A atividade inclui uma breve introdução às funções de cada componente, a implementação do protocolo I2C para comunicação com o Arduino e a análise da importância de um software na interpretação dos dados obtidos pelo sensor.
+Este roteiro de monitoria tem como objetivo compreender e explorar as aplicações do acelerômetro e do giroscópio integrados em um IMU (Inertial Measurement Unit), utilizando o sensor MPU6050. A atividade inclui uma breve introdução às funções de cada componente, a implementação do protocolo I2C para comunicação com o Arduino e a análise da importância de um software na visualização e interpretação dos dados obtidos pelo sensor.
 
 ### Objetivos
 - Aprender a configurar e conectar o IMU ao Arduino usando a comunicação I2C
@@ -12,26 +12,29 @@ Este roteiro de monitoria tem como objetivo compreender e explorar as aplicaçõ
 - Desenvolver habilidades práticas para integrar sensores inerciais em projetos eletrônicos.
 
 ### Materiais Necessários
-- 1x Placa Arduino + Cabo USB
-- 1x Acelerômetro & Giroscópio - MPU-6050 (6DOF)
-- 1x Protoboard
-- Jumpers
+
+| Componente                           | Imagem                                                                                                      |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
+| 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x Acelerômetro & Giroscópio - MPU-6050 | <img src="https://d229kd5ey79jzj.cloudfront.net/974/images/974_3_H.png?20241126114423" height="100"> |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
 
 ### Palavras-chave
-Arduino, acelerômetro, giroscópio, IMU, MPU6050, sensores inerciais, protocolo I2C.
+Arduino, acelerômetro, giroscópio, IMU, MPU6050, sensores inerciais, protocolo I2C, Processing.
 
 ---
 
 ## Metodologia
 
 ### Bloco 1: Acelerômetro
-Um acelerômetro mede a aceleração adequada de um objeto, que é sua taxa de mudança de velocidade em relação a um referencial inercial em queda livre. Isso o diferencia da aceleração coordenada, que é medida em relação a um sistema de coordenadas, podendo estar acelerado ou não.
+Um acelerômetro mede a aceleração adequada de um objeto, que é sua taxa de mudança de velocidade em relação a um referencial inercial. Eles têm diversas aplicações na indústria, ciência e produtos de consumo. São usados em sistemas de navegação inercial para aeronaves e mísseis, estabilização de veículos aéreos não tripulados e dispositivos portáteis, como smartphones, câmeras e controles de videogame, para detectar movimento e orientação.
 
 <p align="center">
   <img src="https://cdn.phidgets.com/docs/images/9/96/Accelerometer_Intro.jpg" height="300">
 </p>
 
-Eles têm diversas aplicações na indústria, ciência e produtos de consumo. São usados em sistemas de navegação inercial para aeronaves e mísseis, estabilização de veículos aéreos não tripulados e dispositivos portáteis, como smartphones, câmeras e controles de videogame, para detectar movimento e orientação.
 Neste bloco, conectaremos o MPU6050 ao Arduino e utilizaremos o protocolo I2C para observar os dados coletados pelo acelerômetro. O protocolo I2C utiliza duas linhas principais: o pino de relógio serial (SCL), que envia pulsos regulares gerados pelo Arduino, e o pino de dados serial (SDA), responsável pela troca de informações entre os dispositivos.
 
 <p align="center">
@@ -99,7 +102,7 @@ Neste bloco, conectaremos o MPU6050 ao Arduino e utilizaremos o protocolo I2C pa
 #### Passo 3: Observação
 1. Abra o monitor serial e observe os dados coletados pelo MPU6050, devem estar aparecendo os dados dos três eixos
 2. Mexa o sensor e verifique quais movimentos são mais aparentes
-3. Coloque o sensor sobre a mesa e observe os dados coletados. O sensor apresenta leituras consistentes e precisas?
+3. Coloque o sensor sobre a mesa e observe os dados coletados. O sensor apresenta leituras consistentes e precisas? Ou os valores oscilam rapidamente com alta sensibilidade?
 
 #### Passo 4: Exploração
 1. Realize uma calibração inicial para garantir que os valores de rotação no estado "sem movimento" sejam zero. Como os valores se ajustam após isso?
@@ -145,7 +148,7 @@ Esses sensores são amplamente utilizados para determinar orientação e estão 
 
 #### Passo 4: Exploração
 1. Realize uma calibração inicial para garantir que os valores de rotação no estado "sem movimento" sejam zero. Como os valores se ajustam após isso?
-2. Deixe o giroscópio rotacionando por um longo período e verifique se a precisão das medições se mantém ou se há drift (erro acumulado)
+2. Deixe o giroscópio rotacionando por um longo período e verifique se a precisão das medições se mantém ou se há "drift" (erro acumulado ao longo do tempo)
 3. Faça um movimento rotacional com o sensor. Como as leituras do giroscópio variam com diferentes velocidades de rotação? Existe algum atraso nas medições de rotação quando o movimento é rápido?
 4. Aumente a taxa de leitura do giroscópio e veja como ele responde a leituras mais rápidas. Há alguma perda de precisão?
 5. Em quais aplicações você acredita que o giroscópio poderia ser especialmente útil?
@@ -199,7 +202,7 @@ Neste bloco, iremos visualizar os dados coletados pelo acelerômetro e giroscóp
 ---
 
 ### Bloco 4: Visualização das Dimensões de Rotação
-Neste bloco, faremos uma integração entre o Arduino e o Processing para criar uma visualização em tempo real das três dimensões de rotação que descrevem o movimento de um objeto no espaço. Elas são usadas para descrever o movimento de aviões, navios e naves espaciais: roll, pitch e yaw. O Arduino terá a função de coletar os dados do sensor MPU6050, processar as informações de aceleração e rotação, calcular os ângulos de pitch, roll e yaw, e enviar esses valores via comunicação serial. No Processing, desenvolveremos uma interface gráfica que representará visualmente esses ângulos. 
+Neste bloco, faremos uma integração entre o Arduino e o software para criar uma visualização em tempo real das três dimensões de rotação que descrevem o movimento de um objeto no espaço. Elas são usadas para descrever o movimento de aviões, navios e naves espaciais: roll, pitch e yaw. O Arduino terá a função de coletar os dados do sensor MPU6050, processar as informações de aceleração e rotação, calcular os ângulos de pitch, roll e yaw, e enviar esses valores via comunicação serial. No Processing, desenvolveremos uma interface gráfica que representará visualmente esses ângulos. 
 
 
 <p align="center">
@@ -301,13 +304,20 @@ Neste bloco, faremos uma integração entre o Arduino e o Processing para criar 
 5. Execute o código no Processing para abrir o dashboard gráfico.
 
 #### Passo 3: Observação
-1. Observe o cubo gerado pelo Processing. Enquanto o IMU está parado o cubo permanece estático?
-2. Experimente movimentar o IMU, como o cubo se comporta?
+1. Observe o cubo gerado pelo Processing. Deve aparecer algo semelhante à imagem abaixo:
+
+<p align="center">
+  <img src="..\..\src\images\Cube IMU.jpeg" height="300">
+</p>
+
+2. Enquanto o IMU está parado o cubo permanece estático?
+3. Experimente movimentar o IMU, como o cubo se comporta?
 
 #### Passo 4: Exploração
-1. Quais outras aplicações você imagina para exibir no Processing?
-2. Como este sensor poderia ser útil em aplicações reais na marinha, como sistemas de navegação, estabilização e detecção de movimento?
-3. Como você uniria o sensor IMU ao sonar feito em aula para criar um sistema de navegação?
+1. É possível identificar a posição do IMU com apenas os dados exibidos no Serial Plotter?
+2. Quais outras aplicações você imagina para exibir no Processing?
+3. Como este sensor poderia ser útil em aplicações reais na marinha, como sistemas de navegação, estabilização e detecção de movimento?
+4. Como você uniria o sensor IMU ao sonar feito em aula para criar um sistema de navegação? Quais inconsistências poderiam ser observadas se os sensores utilizados não fossem calibrados e os dados coletados fossem exibidos sem o uso de algoritmos? 
 
 ---
 

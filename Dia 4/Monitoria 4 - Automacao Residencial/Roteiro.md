@@ -12,15 +12,20 @@ Este roteiro de monitoria tem como objetivo apresentar dispositivos fundamentais
 - Unir os três componentes para construir um sistema integrado de controle automatizado
 
 ### Materiais Necessários
-- 1x Placa Arduino + Cabo USB
-- 1x Módulo Relé
-- 1x LED vermelho
-- 1x LED verde
-- 2x Resistor 300 ohms
-- 1x Sensor PIR
-- 1x Protoboard
-- 1x Microfone
-- Jumpers
+
+| Componente                           | Imagem                                                                                                      |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
+| 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x LED vermelho | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/1941435412328b077d.jpg" height="100"> |
+| 1x LED amarelo | <img src="https://techsuleletronicos.com.br/wp-content/uploads/2018/11/26d8d978af.png" height="100"> |
+| 1x LED verde | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/19414355828b769476.jpg" height="100"> |
+| 3x Resistor de 300 ohms | <img src="https://http2.mlstatic.com/D_NQ_NP_988873-MLB43270980270_082020-O.webp" height="100"> |
+| 1x Módulo Relé | <img src="https://d229kd5ey79jzj.cloudfront.net/258/images/258_2_H.png?20250120214712" height="100"> |
+| 1x Sensor PIR | <img src="https://www.eletruscomp.com.br/arquivos/1610020213_download.jpg" height="100"> |
+| 1x Microfone | <img src="https://images.tcdn.com.br/img/img_prod/1165255/90_sensor_de_som_para_montagem_com_arduino_kit_com_2_unidades_6403_3_970a51cf59fa5acd7139e1ac4250caef.jpg" height="100"> |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
 
 ### Palavras-chave
 Arduino, sensor PIR, módulo relé, microfone, automação residencial,

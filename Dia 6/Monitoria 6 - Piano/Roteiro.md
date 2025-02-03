@@ -13,15 +13,19 @@ Este roteiro de monitoria tem como objetivo integrar LEDs, botões e um buzzer p
 - Tocar uma música
 
 ### Materiais Necessários
-- 1x Placa Arduino + Cabo USB
-- 1x Buzzer Passivo 5V
-- 1x LED verde 5mm
-- 1x LED amarelo 5mm
-- 1x LED vermelho 5mm
-- 3x Resistor 300Ω
-- 3x Chave Momentânea (PushButton)
-- 1x Protoboard
-- Jumpers
+
+| Componente                           | Imagem                                                                                                      |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
+| 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x LED vermelho | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/1941435412328b077d.jpg" height="100"> |
+| 1x LED amarelo | <img src="https://techsuleletronicos.com.br/wp-content/uploads/2018/11/26d8d978af.png" height="100"> |
+| 1x LED verde | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/19414355828b769476.jpg" height="100"> |
+| 3x Resistor de 300 ohms | <img src="https://http2.mlstatic.com/D_NQ_NP_988873-MLB43270980270_082020-O.webp" height="100"> |
+| 1x Buzzer Passivo 5V | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/194141773bc1fc2fc2.jpg" height="100"> |
+| 3x Botão | <img src="https://cdn.awsli.com.br/600x450/853/853129/produto/58809095366661a8ce.jpg" height="100"> |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
 
 ### Palavras-chave
 Arduino, LED, buzzer, botão, piano, monitor serial, notas musicais
@@ -54,7 +58,7 @@ Quando a corda de um violão vibra, ela movimenta as moléculas de ar ao seu red
 | Lá | 440,00 Hz |
 | Si | 493,88 Hz |
 
-2. Faça o buzzer tocar cada uma por 1 segundo no void loop()
+2. Faça o buzzer tocar cada uma por 1 segundo no ```void loop()```
 3. Selecione a placa e a porta de conexão onde o Arduino está conectado.
 4. Faça o upload do código para a placa Arduino.
 

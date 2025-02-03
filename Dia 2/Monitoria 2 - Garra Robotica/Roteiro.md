@@ -3,7 +3,7 @@
 ## Garra Robótica
 
 ### Descrição
-Este roteiro de monitoria tem como objetivo explorar os conceitos de comunicação infravermelha (IR), utilizados para a troca de dados entre dispositivos eletrônicos, em conjunto com a introdução ao controle de motores, aplicados à robótica. O projeto propõe compreender o funcionamento de um controle remoto e utilizá-lo para controlar uma garra robótica, promovendo uma integração prática entre teoria e aplicação na robótica.
+Este roteiro de monitoria tem como objetivo explorar os conceitos de comunicação via luz infravermelha (IR, do inglês "Infra Red"), utilizados para a troca de dados entre dispositivos eletrônicos sem o uso de fios, em conjunto com a introdução ao controle de motores, aplicados à robótica. O projeto propõe compreender o funcionamento de um controle remoto e utilizá-lo para controlar uma garra robótica, promovendo uma integração prática entre teoria e aplicação na robótica.
 
 ### Objetivos
 - Compreender os conceitos de comunicação infravermelha
@@ -12,18 +12,22 @@ Este roteiro de monitoria tem como objetivo explorar os conceitos de comunicaç�
 - Operar a garra com o controle remoto
 
 ### Materiais Necessários
-- 1x Placa Arduino + Cabo USB
-- 1x Protoboard
-- Jumpers
-- 1x Resistor 10k ohms
-- 3x Resistor 300 ohms
-- 1x Controle Remoto IRRC
-- 1x LED Receptor IR 5mm
-- 1x LED vermelho
-- 1x LED amarelo
-- 1x LED verde
-- 1x Garra Robótica Ant
-- 1x Micro Servo 9g
+
+| Componente                           | Imagem                                                                                                      |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
+| 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
+| 1x LED vermelho | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/1941435412328b077d.jpg" height="100"> |
+| 1x LED amarelo | <img src="https://techsuleletronicos.com.br/wp-content/uploads/2018/11/26d8d978af.png" height="100"> |
+| 1x LED verde | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/19414355828b769476.jpg" height="100"> |
+| 1x LED Receptor IR 5mm | <img src="https://cdn.awsli.com.br/600x700/95/95881/produto/249396787/ev1-2o6pppg0fy.png" height="100"> |
+| 3x Resistor de 300 ohms | <img src="https://http2.mlstatic.com/D_NQ_NP_988873-MLB43270980270_082020-O.webp" height="100"> |
+| 1x Resistor de 10k ohms | <img src="https://www.usinainfo.com.br/1017894-thickbox_default/resistor-10k-14w-kit-com-10-unidades.jpg" height="100"> |
+| 1x Servo motor | <img src="https://cdn.awsli.com.br/600x450/463/463999/produto/19213618/4c079f22f7.jpg" height="100"> |
+| 1x Controle Remoto IRRC | <img src="https://d229kd5ey79jzj.cloudfront.net/722/images/722_2_H.png?20240909162424" height="100"> |
+| 1x Garra Robótica Ant | <img src="https://http2.mlstatic.com/D_802112-MLA81073960089_112024-C.jpg" height="100"> |
+| Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
+| Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
 
 ### Palavras-chave
 Arduino, comunicação IR (infravermelha), controle remoto, controle de motores, automação, garra robótica.
@@ -45,7 +49,7 @@ Um controle remoto é um dispositivo eletrônico usado para enviar comandos sem 
   <img src="https://d229kd5ey79jzj.cloudfront.net/722/images/722_1_H.png?20240909162424" height="300px" />
 </p>
 
-Neste bloco, utilizaremos o LED receptor IR de 5 mm (também chamado de fotorreceptor), conforme mostrado na imagem abaixo, para captar os sinais transmitidos pelo controle remoto. Esse componente funciona ao detectar raios infravermelhos, permitindo a passagem de corrente entre o coletor e o emissor. Dessa forma, torna-se possível interpretar os comandos enviados e controlar dispositivos no circuito.
+Neste bloco, utilizaremos o LED receptor IR de 5 mm (também chamado de fotorreceptor), conforme mostrado na imagem abaixo, para captar os sinais transmitidos pelo controle remoto, que contém o LED emissor. Esse componente funciona ao detectar raios infravermelhos, permitindo a passagem de corrente entre os seus pinos, chamados de "coletor" e "emissor". Podemos distinguir esses pinos pelo tamanho, como mostra a imagem abaixo: O emissor tem a perna mais longa, e o coletor, a mais curta. Dessa forma, torna-se possível receber os sinais transmitidos, e assim interpretar os comandos enviados e controlar dispositivos no circuito.
 
 <p align="center">
   <img src="..\..\src\images\Fotorreceptor.jpeg" height="300px" />
@@ -99,7 +103,7 @@ O código acima é uma adaptação do exemplo IRrecvDemo presente na própria bi
 
 #### Passo 4: Exploração 
 1. Até que distância o fotoreceptor consegue captar o sinal?
-2. Experimente colocar objetos na frente do controle, quais interferem no sinal?
+2. Experimente colocar objetos com diferentes níveis de transparência na frente do controle, como o plástico do próprio controle remoto ou a embalagem da bateria. Quais deles interferem no sinal?
 
 ---
 
@@ -173,7 +177,7 @@ Neste bloco, daremos continuidade ao que foi desenvolvido no bloco anterior, imp
 3. Use alguns botões para ligar ou desligar mais de um LED
  
 #### Passo 4: Exploração
-1. Como o uso de PWM (Modulação por Largura de Pulso) pode criar uma transição suave no brilho dos LEDs?
+1. Como o uso de PWM (Modulação por Largura de Pulso) pode criar uma transição suave no brilho dos LEDs? Experimente ajustar a intensidade de um LED, ao invés de simplesmente ligar/desligar.
 2. Teste se é possível acender dois LEDs simultaneamente com a combinação de dois botões do controle remoto.
 
 ---
@@ -233,9 +237,10 @@ Neste bloco, exploraremos o funcionamento de uma garra robótica do tipo pivotan
 4. Faça o upload do código para a placa Arduino.
 
 #### Passo 3: Observação
-1. Observe o movimento do servo e modifique os limites de fechamento e abertura para conseguirmos colocar a garra
-2. Qual a importância de colocarmos esses limites?
-3. Após modificar o código, coloque a garra no servo e a observe fechando e abrindo.
+1. Observe as diferenças entre o código atual e o código base, usado no primeiro contato com o servo motor
+2. Observe o movimento do servo e modifique os limites de fechamento e abertura para conseguirmos colocar a garra
+3. Qual a importância de colocarmos esses limites?
+4. Após modificar o código, coloque a garra no servo e a observe fechando e abrindo.
 
 #### Passo 4: Exploração
 1. O que acontece se os limites forem muito pequenos ou grandes? Como isso pode impactar o funcionamento da garra?
