@@ -123,53 +123,7 @@ Neste bloco, daremos continuidade ao que foi desenvolvido no bloco anterior, imp
 #### Passo 2: Programação
 1. Crie 3 variáveis para armazenar a porta de cada LED
 2. Defina cada pino como saída no void setup()
-3. Implemente condicionais no void loop() para alternar o nível lógico de cada LED (ligar ou desligar) com base no botão pressionado conforme o exemplo abaixo.
-
-  ```cpp
-  ...
-  const int led_verde = 10;
-  const int led_amarelo = 9;
-  const int led_vermelho = 8;
-
-  void setup(){
-    ...
-    pinMode(led_verde, OUTPUT);
-    pinMode(led_amarelo, OUTPUT);
-    pinMode(led_vermelho, OUTPUT);
-  }
-
-  void loop(){
-    if (irrecv.decode(&results)) { // Se o fotorreceptor detectar algum sinal
-      Serial.println(results.value, HEX); // Imprime o sinal recebido na forma hexadecimal no monitor serial
-    
-      if (results.value == 0xFF30CF){ //Acende o led verde quando o botao A e pressionado
-          digitalWrite(led_verde, HIGH);
-        }
-
-      if (results.value == 0xFF10EF){ //Apaga o led verde quando o botao D e pressionado
-          digitalWrite(led_verde, LOW);
-        }
-
-      if (results.value == 0xFF18E7){ //Acende o led amarelo quando o botao B e pressionado
-          digitalWrite(led_amarelo, HIGH);
-        }
-
-      if (results.value == 0xFF38C7){ //Apaga o led amarelo quando o botao E e pressionado
-          digitalWrite(led_amarelo, LOW);
-        }
-
-      if (results.value == 0xFF7A85){ //Acende o led vermelho quando o botao C e pressionado
-          digitalWrite(led_vermelho, HIGH);
-        }
-
-      if (results.value == 0xFF5AA5){ //Apaga o led vermelho quando o botao F e pressionado
-          digitalWrite(led_vermelho, LOW);
-        }
-      
-      irrecv.resume(); // Recebe o próximo valor
-    }
-  }
-  ```
+3. Implemente condicionais no void loop() para alternar o nível lógico de cada LED (ligar ou desligar) com base no botão pressionado.
 
 #### Passo 3: Observação
 1. Manipule o nível lógico de cada LED usando o controle remoto
@@ -179,6 +133,7 @@ Neste bloco, daremos continuidade ao que foi desenvolvido no bloco anterior, imp
 #### Passo 4: Exploração
 1. Como o uso de PWM (Modulação por Largura de Pulso) pode criar uma transição suave no brilho dos LEDs? Experimente ajustar a intensidade de um LED, ao invés de simplesmente ligar/desligar.
 2. Teste se é possível acender dois LEDs simultaneamente com a combinação de dois botões do controle remoto.
+3. Tente fazer um botão ligar e desligar um mesmo LED
 
 ---
 
@@ -264,19 +219,7 @@ Neste bloco, combinaremos os conhecimentos dos blocos 1 e 3 para controlar a abe
   - Adicione a biblioteca do servo ```#include <Servo.h>``` e crie um objeto myServo ```Servo myServo;``` 
   - Crie as variáveis com o limite de fechamento ```const int CLOSE = 170;``` e abertura da garra ```const int OPEN = 90;```
   - Associe o servo ao seu pino digital ```myServo.attach(9);``` dentro do ```void setup()```
-  - Crie condicionais para mover a garra no ```void loop()```, por exemplo, se apertar A ela abre e se apertar B ela fecha:
-  ```cpp
-  if (irrecv.decode(&results)) {
-    Serial.println(results.value, HEX);
-  if (results.value == 0xFF30CF){ //Abre a garra quando o botao A e pressionado
-      myServo.write(OPEN);
-    }
-  if (results.value == 0xFF18E7){ //Fecha a garra quando o botao B e pressionado
-      myServo.write(CLOSE);
-    }
-    irrecv.resume(); // Recebe o próximo valor
-  }
-  ```
+  - Crie condicionais para mover a garra no ```void loop()```, por exemplo, se apertar A ela abre e se apertar B ela fecha
 
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
 3. Faça o upload do código para a placa Arduino.
