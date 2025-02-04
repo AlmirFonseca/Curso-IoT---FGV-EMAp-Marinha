@@ -425,7 +425,7 @@ Antes de começar as análises, confira se o código referente ao bloco anterior
 
 Neste bloco, vamos coletar dados de um transferidor graduado fixo ao servo motor para gerar observar o comportamento do potenciômetro logarítmico (Tipo A). A Embora estejamos realizando esse procedimento manualmente, em sistemas mais complexos, essa coleta pode ser feita por meio de algoritmos de controle, sendo úteis para calibrar até mesmo sensores lineares que possuem algum desvio ou não-linearidade.
 
-### Passo 1: Introdução ao Circuito
+#### Passo 1: Introdução ao Circuito
 
 Nesse bloco, usaremos o mesmo circuito do bloco anterior, com o potenciômetro logarítmico e o servo motor conectados ao Arduino. Contudo, para facilitar a coleta de dados e produzir um volume constante de dados, vamos utilizar um botão para controlar o instante em que os dados serão coletados.
 
@@ -441,7 +441,7 @@ Nesse bloco, usaremos o mesmo circuito do bloco anterior, com o potenciômetro l
 
 Para mais referências sobre o circuito, consulte o [exemplo do Arduino sobre botões](https://www.arduino.cc/en/Tutorial/BuiltInExamples/Button).
 
-### Passo 2: Programação
+#### Passo 2: Programação
 
 1. Abra o Arduino IDE e escreva o seguinte código:
 
@@ -481,7 +481,7 @@ void loop() {
 
 3. Faça o upload do código para a placa Arduino.
 
-### Passo 3: Observação
+#### Passo 3: Observação
 
 1. Abra o Serial Monitor. Os valores do potenciômetro e do ângulo do servo motor serão exibidos apenas quando o botão for pressionado.
 
@@ -500,7 +500,7 @@ void loop() {
 | ...                    | ...                     | ...            |
 | 300                    | 1023                    | 180            |
 
-### Passo 4: Análise dos Dados no Excel
+#### Passo 4: Análise dos Dados no Excel
 
 1. Gere um gráfico de dispersão com os dados coletados, conectando os pontos com linhas retas ou suaves. O eixo x será o ângulo do potenciômetro e o eixo y será o ângulo do servo motor. Como é o formato da curva gerada? Isso condiz com o comportamento logarítimico do potenciômetro?
 
