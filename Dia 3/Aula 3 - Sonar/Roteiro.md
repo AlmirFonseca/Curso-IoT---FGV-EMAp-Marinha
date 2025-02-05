@@ -25,6 +25,11 @@ Neste roteiro, vamos explorar o funcionamento do sensor de distância e como ele
 | 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
 | 1x Sensor de distância ultrassônico HC-SR04 | <img src="https://images.tcdn.com.br/img/img_prod/650361/sensor_ultrassonico_hc_sr04_sensor_de_distancia_241_1_f8752df5ed253ef25ef00c3549a12768.png" height="100"> |
 | 1x Motor de passo (28BYJ-48) e driver (ULN200x) | <img src="https://images.tcdn.com.br/img/img_prod/707426/arduino_motor_de_passo_drive_uln2003_16548_1_20190911151942.jpg" height="100"> |
+| 1x LED vermelho | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/1941435412328b077d.jpg" height="100"> |
+| 2x LED amarelo | <img src="https://techsuleletronicos.com.br/wp-content/uploads/2018/11/26d8d978af.png" height="100"> |
+| 31x LED verde | <img src="https://cdn.awsli.com.br/600x700/468/468162/produto/19414355828b769476.jpg" height="100"> |
+| 6x Resistor de 300 ohms | <img src="https://http2.mlstatic.com/D_NQ_NP_988873-MLB43270980270_082020-O.webp" height="100"> |
+| 1x Buzzer passivo | <img src="https://cdn.awsli.com.br/380x380/468/468162/produto/194141773bc1fc2fc2.jpg" height="100"> |
 | Peças impressas em 3D | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEhinASCRRjS-NVLtaqJ_xFPIRriMdFFM_yg&s" height="100"> |
 | Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
 | Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
@@ -361,7 +366,7 @@ int sensor_morcego(int pinotrig,int pinoecho){ // Função para leitura do senso
 
 3. Qual é a importância da função ```parseInt()``` para a leitura do sensor? O que aconteceria se você não utilizasse essa função? Consulte a documentação do Arduino para mais detalhes.
 
-3. A frequência do som emitido pelo buzzer é adequada para motoristas, militares, etc? Avalie a capacidade do ouvido humanos e, se precisa de ajuda, pesquisar a bosqueira.
+3. A frequência do som emitido pelo buzzer é adequada para motoristas, militares, etc? Avalie a capacidade do ouvido humanos e, se precisa de ajuda, pesquisar a capacidade do ouvido humano.
 
 ### Bloco 5: Motor de Passo e Driver
 
