@@ -78,6 +78,10 @@ Sensores de distância ultrassônicos, como o HC-SR04, utilizam ondas sonoras pa
 
 3. O sensor é estável e preciso? Existem flutuações nos valores de distância? O que pode causar essas flutuações?
 
+4. O sensor responde de forma diferente a um objeto de metal, plástico ou tecido?
+
+5. Como a inclinação do objeto afeta a leitura do sensor?
+
 ---
 
 ### Bloco 2: Experimento com Régua Graduada
@@ -120,7 +124,244 @@ Neste bloco, vamos realizar um experimento para medir a distância entre o senso
 
 ---
 
-### Bloco 3: Motor de Passo e Driver
+### Bloco 3: Sensor de Ré 1.0
+
+Os sensores de ré são amplamente utilizados em veículos para auxiliar motoristas a evitar colisões ao estacionar. Eles funcionam com **sensores ultrassônicos**, que emitem ondas sonoras e calculam a distância até um obstáculo baseado no tempo de retorno do eco, geralmente empregando múltiplos sensores para cobrir diferentes áreas do veículo, sobretudo na parte de trás.
+
+Neste bloco, vamos construir um **sensor de ré com Arduino**, utilizando um **buzzer** para emitir alertas e um **LED** para indicar a proximidade de um objeto.
+
+#### Passo 1: Introdução ao Circuito
+
+1. Conecte o sensor HC-SR04 e os demais componentes ao Arduino, conforme o esquemático abaixo:
+
+<p align="center">
+  <img src="..\..\src\images\Aula 3\sensor_re_simples.png" alt="Circuito do Potenciômetro" height="300">
+</p>
+
+
+#### Passo 2: Programação
+
+1. Abra o Arduino IDE e escreva o seguinte código para emitir alertas sonoros e visuais com base na distância medida pelo sensor:
+
+```cpp
+#include <HCSR04.h> // Inclui a biblioteca do sensor ultrassônico
+
+// Definição dos pinos
+#define LED 5
+#define BUZZER 6
+
+// Inicializa o sensor HC-SR04 nos pinos 3 (Trig) e 2 (Echo)
+HCSR04 hc(3, 2);
+
+void setup() {
+    pinMode(LED, OUTPUT);
+    pinMode(BUZZER, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop() {
+    int distancia = hc.dist(); // Obtém a distância do sensor
+    Serial.println(distancia); // Exibe no Serial Monitor
+
+    // Define o intervalo do piscar baseado na distância
+    int intervalo = map(distancia, 10, 100, 100, 1000); // Quanto menor a distância, menor o intervalo
+
+    // Limita valores extremos
+    intervalo = constrain(intervalo, 100, 1000);
+
+    // Acende o LED e ativa o buzzer
+    digitalWrite(LED, HIGH);
+    tone(BUZZER, 1000); // Frequência fixa de 1000 Hz
+    delay(intervalo);
+
+    // Apaga o LED e desativa o buzzer
+    digitalWrite(LED, LOW);
+    noTone(BUZZER);
+    delay(intervalo);
+}
+```
+
+2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+
+3. Faça o upload do código para a placa Arduino.
+
+#### Passo 3: Observação
+
+1. O LED pisca mais rápido conforme o objeto se aproxima? O som do buzzer se torna mais frequente à medida que a distância diminui?
+
+2. O comportamento é intuitivo? Um motorista poderia compreender esse padrão rapidamente?
+
+3. Se houver variações da distância avaliada, como elas podem afetar o funcionamento do sistema? Quais as possíveis consequências de uma medição incorreta numa aplicação real?
+
+5. Existe um limite onde o sistema para de alterar a frequência dos periféricos, seja porque está muito perto ou muito longe? Qual é esse limite?
+
+#### Passo 4: Exploração
+
+1. Como a função ```constraint()``` evita problemas? O que aconteceria se não houvesse essa função? Discuta a importância de limitar valores extremos em sistemas eletrônicos.
+
+2. Como poderia austar a sensibilidade do sistema? Experimente reparametrizar a função ```map()``` para alterar a sensibilidade do sensor.
+
+3. Como as funções ```tone()``` e ```noTone()``` funcionam? O que aconteceria se você alterasse a frequência do som emitido pelo buzzer?
+
+4. Como o LED e o buzzer poderiam ser substituídos por outros dispositivos? Quais seriam as vantagens e desvantagens dessas substituições? Quais grupos seriam beneficiados ou prejudicados por essas mudanças?
+
+---
+
+### Bloco 4: Sensor de Ré 2.0
+
+Agora que já construímos um **sensor de ré simples**, vamos aprimorá-lo adicionando **mais componentes e lógica mais complexa**. 
+
+Dessa vez, o sistema contará com:  
+✅ **Múltiplos LEDs (verde, amarelo e vermelho)** para indicar diferentes faixas de distância.
+✅ **Um buzzer que altera a frequência sonora** para melhorar a percepção de proximidade.  
+
+
+#### Passo 1: Introdução ao Circuito
+
+1. Conecte os componentes ao Arduino conforme o esquemático abaixo:
+
+<p align="center">
+  <img src="..\..\src\images\Aula 3\sensor_re_completo.png" alt="Circuito do Potenciômetro" height="300">
+</p>
+
+#### Passo 2: Programação
+
+1. Abra o Arduino IDE e escreva o seguinte código para controlar os LEDs e o buzzer de acordo com a distância medida pelo sensor:
+
+```cpp
+const int TRIG = 3, ECHO = 2, buzzer = 7;
+unsigned int intervalo, distancia;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(TRIG,OUTPUT);
+  pinMode(ECHO,INPUT);
+  pinMode(buzzer,OUTPUT);
+  pinMode(8,OUTPUT);
+  pinMode(9,OUTPUT);
+  pinMode(10,OUTPUT);
+  pinMode(11,OUTPUT);
+  pinMode(12,OUTPUT);
+  pinMode(13,OUTPUT);
+}
+
+void loop() {
+  distancia = sensor_morcego(TRIG,ECHO); // Chamada da função de leitura.
+  Serial.println(distancia);
+  if (distancia <= 10) { // Condicional para leituras inferiores a 10cm.
+    digitalWrite(13,HIGH);
+    digitalWrite(12,HIGH);
+    digitalWrite(11,HIGH);
+    digitalWrite(10,HIGH);
+    digitalWrite(9,HIGH);
+    digitalWrite(8,HIGH);
+    tone(buzzer, 1750);
+  }
+  else if (distancia > 60) { // Condicional para leituras superiores a 60cm.
+      digitalWrite(13,LOW);
+      digitalWrite(12,LOW);
+      digitalWrite(11,LOW);
+      digitalWrite(10,LOW);
+      digitalWrite(9,LOW);
+      digitalWrite(8,LOW);
+      noTone(buzzer);
+  } 
+  else { // Condicional para leitura intermediarias.
+    if (distancia <= 20) { 
+      digitalWrite(13,LOW);
+      digitalWrite(12,HIGH);
+      digitalWrite(11,HIGH);
+      digitalWrite(10,HIGH);
+      digitalWrite(9,HIGH);
+      digitalWrite(8,HIGH);
+      intervalo = 100;
+    }
+    else if (distancia <= 30) {
+      digitalWrite(13,LOW);
+      digitalWrite(12,LOW);
+      digitalWrite(11,HIGH);
+      digitalWrite(10,HIGH);
+      digitalWrite(9,HIGH);
+      digitalWrite(8,HIGH);
+      intervalo = 150;
+    }
+    else if (distancia <= 40) {
+      digitalWrite(13,LOW);
+      digitalWrite(12,LOW);
+      digitalWrite(11,LOW);
+      digitalWrite(10,HIGH);
+      digitalWrite(9,HIGH);
+      digitalWrite(8,HIGH);
+      intervalo = 200;
+    }
+    else if (distancia <= 50) {
+      digitalWrite(13,LOW);
+      digitalWrite(12,LOW);
+      digitalWrite(11,LOW);
+      digitalWrite(10,LOW);
+      digitalWrite(9,HIGH);
+      digitalWrite(8,HIGH);
+      intervalo = 250;
+    }
+    else if (distancia <= 60) {
+      digitalWrite(13,LOW);
+      digitalWrite(12,LOW);
+      digitalWrite(11,LOW);
+      digitalWrite(10,LOW);
+      digitalWrite(9,LOW);
+      digitalWrite(8,HIGH);
+      intervalo = 300;
+    }
+
+    // Ajusta o buzzer para diferentes frequências conforme a proximidade
+    int frequenciaBuzzer = map(distancia, 10, 100, 2000, 500);
+    int intervalo = map(distancia, 10, 100, 100, 1000);
+    
+    // Garante que os valores fiquem dentro de limites aceitáveis
+    frequenciaBuzzer = constrain(frequenciaBuzzer, 500, 2000);
+    intervalo = constrain(intervalo, 100, 1000);
+
+    tone(buzzer, frequenciaBuzzer);
+    delay(intervalo);
+    noTone(buzzer);
+    delay(intervalo);
+  }
+}
+
+int sensor_morcego(int pinotrig,int pinoecho){ // Função para leitura do sensor
+  digitalWrite(pinotrig,LOW);
+  delayMicroseconds(2);
+  digitalWrite(pinotrig,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(pinotrig,LOW);
+
+  return pulseIn(pinoecho,HIGH)/58;
+}
+```
+
+2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+
+3. Faça o upload do código para a placa Arduino.
+
+#### Passo 3: Observação
+
+1. Observe o comportamento dos LEDs e do buzzer conforme a distância medida pelo sensor. Os LEDs mudam de cor e o buzzer emite sons de acordo com a distância.
+
+2. O sistema é mais informativo e intuitivo do que o anterior? Os diferentes LEDs e sons facilitam a compreensão da distância?
+
+3. O buzzer emite sons progressivamente mais agudos e frequentes conforme o objeto se aproxima? Ou o contrário?
+
+---
+
+#### Passo 4: Exploração
+
+1. Como a função ```map()``` é utilizada para ajustar a frequência do buzzer e o intervalo de tempo? O que aconteceria se você alterasse os valores de mapeamento?
+
+2. Repare que a nossa biblioteca foi substituída por uma função própria: ```sensor_morcego()``` Por que isso foi feito? O que muda entre as duas funções? Existe algum efeito perceptível?
+
+3. A frequência do som emitido pelo buzzer é adequada para motoristas, militares, etc? Avalie a capacidade do ouvido humanos e, se precisa de ajuda, pesquisar a bosqueira.
+
+### Bloco 5: Motor de Passo e Driver
 
 Motores de Passo são dispositivos utilizados para converter pulsos elétricos em movimentos mecânicos precisos. Eles são amplamente utilizados em projetos de robótica, CNC, impressoras 3D e sistemas de posicionamento. Neste bloco, vamos explorar o uso de um motor de passo (28BYJ-48) e um driver (ULN200x) com Arduino.
 
@@ -205,7 +446,7 @@ void loop() {
 
 ---
 
-### Bloco 4: Construção do Sonar
+### Bloco 6: Construção do Sonar
 
 Neste bloco, vamos construir um "sonar" com Arduino, juntando as peças já impressas em 3D e utilizando o sensor HC-SR04 para medir a distância entre o sensor e um objeto. Vamos exibir os dados de distância no monitor serial e no plotter serial, mas levantaremos a discussão sobre a importância de ferramentas de visualização adequadas para análise de dados espaciais.
 
@@ -307,7 +548,7 @@ void loop() {
 
 ---
 
-### Bloco 5: Dashboard de Sonar com Processing
+### Bloco 7: Dashboard de Sonar com Processing
 
 Neste bloco, vamos utilizar o Processing para criar um dashboard gráfico para exibir os dados do "sonar" de forma mais visual e interativa. O Processing é uma linguagem de programação e ambiente de desenvolvimento integrado (IDE) de código aberto baseado em Java, amplamente utilizado para criar visualizações interativas, arte generativa e aplicações multimídia.
 

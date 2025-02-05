@@ -71,8 +71,8 @@ void serialEvent (Serial myPort) { /* começa a ler os dados aparti da porta ser
   data = data.substring(0, data.length()-1);
 
   index1 = data.indexOf(","); /* encontra o caractere e armazena na variavel "index1" */
-  angle= data.substring(0, index1); /* ler os dados da posição "0" a posição do index1 váriavel ou isso é o valor do ânculo da placa Ardíno enviado */
-  distance= data.substring(index1+1, data.length()); /* ler os dados de posição "index1" para o final do pr de dados que é o valor da distância. */
+  angle= data.substring(0, index1).trim(); /* ler os dados da posição "0" a posição do index1 váriavel ou isso é o valor do ânculo da placa Ardíno enviado */
+  distance= data.substring(index1+1, data.length()).trim(); /* ler os dados de posição "index1" para o final do pr de dados que é o valor da distância. */
 
   // converte string para inteiro.
   iAngle = int(angle);
