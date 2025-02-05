@@ -359,6 +359,8 @@ int sensor_morcego(int pinotrig,int pinoecho){ // Função para leitura do senso
 
 2. Repare que a nossa biblioteca foi substituída por uma função própria: ```sensor_morcego()``` Por que isso foi feito? O que muda entre as duas funções? Existe algum efeito perceptível?
 
+3. Qual é a importância da função ```parseInt()``` para a leitura do sensor? O que aconteceria se você não utilizasse essa função? Consulte a documentação do Arduino para mais detalhes.
+
 3. A frequência do som emitido pelo buzzer é adequada para motoristas, militares, etc? Avalie a capacidade do ouvido humanos e, se precisa de ajuda, pesquisar a bosqueira.
 
 ### Bloco 5: Motor de Passo e Driver
