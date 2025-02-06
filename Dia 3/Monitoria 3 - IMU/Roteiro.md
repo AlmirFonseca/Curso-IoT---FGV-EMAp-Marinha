@@ -18,6 +18,8 @@ Este roteiro de monitoria tem como objetivo compreender e explorar as aplicaçõ
 | 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
 | 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
 | 1x Acelerômetro & Giroscópio - MPU-6050 | <img src="https://d229kd5ey79jzj.cloudfront.net/974/images/974_3_H.png?20241126114423" height="100"> |
+| 1x LCD 16x2 5V | <img src="https://cdn.awsli.com.br/78/78150/produto/2796923/9fc4ac7275.jpg" height="100"> |
+| 1x Potenciômetro tipo B (10k ohms) | <img src="https://m.media-amazon.com/images/I/51WpSM+BR0L._AC_UF894,1000_QL80_.jpg" height="100"> |
 | Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
 | Jumpers | <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2048241-01" height="100"> |
 
@@ -127,7 +129,7 @@ Esses sensores são amplamente utilizados para determinar orientação e estão 
 #### Passo 2: Programação
 1. Modifique o código do bloco anterior da seguinte forma:
     - Troque as variáveis ```acel_x, acel_y e acel_y``` por ```giro_x, giro_y e giro_z```
-    - Troque ```0x3B``` por ```0x43``` na linha x para ler os valores do giroscópio
+    - Troque ```0x3B``` por ```0x43``` para ler os valores do giroscópio
     - Ao invés de converter os valores para g, converta os valores do giroscópio lidos em velocidade (º/s):
     ```cpp
     void loop(){
@@ -206,7 +208,7 @@ Neste bloco, faremos uma integração entre o Arduino e o software para criar um
 
 
 <p align="center">
-  <img src="https://automaticaddison.com/wp-content/uploads/2020/03/yaw_pitch_rollJPG.jpg" height="300">
+  <img src="https://riverbearracing.com/wp-content/uploads/2015/06/pitch-roll-yaw.jpg" height="300">
 </p>
 
 #### Passo 1: Introdução ao Circuito
@@ -318,6 +320,205 @@ Neste bloco, faremos uma integração entre o Arduino e o software para criar um
 2. Quais outras aplicações você imagina para exibir no Processing?
 3. Como este sensor poderia ser útil em aplicações reais na marinha, como sistemas de navegação, estabilização e detecção de movimento?
 4. Como você uniria o sensor IMU ao sonar feito em aula para criar um sistema de navegação? Quais inconsistências poderiam ser observadas se os sensores utilizados não fossem calibrados e os dados coletados fossem exibidos sem o uso de algoritmos? 
+---
+
+### Bloco 5: Liquid Crystal Display
+Comuns em monitores de computador, televisores, câmeras digitais, relógios, calculadoras e telefones celulares, entre outros dispositivos, as telas LCD (Liquid Crystal Display, ou Display de Cristal Líquido), utilizam das propriedades moduladoras de luz de cristais líquidos para exibir informações como texto, imagens e vídeos, eletronicamente. Os cristais líquidos não emitem luz diretamente, então utiliza-se de uma luz de fundo ou um refletor para produzir imagens em cores ou monocromáticas
+
+<p align="center">
+  <img src="https://saludvital.cl/wp-content/uploads/2024/08/que-es-un-lcd-guia-completa-sobre-la-tecnologia-de-pantallas.jpg" height="300">
+</p>
+
+Neste bloco, aprenderemos a controlar um display LCD usando o Arduino
+
+#### Passo 1: Introdução ao Circuito
+1. Conecte o display LCD e o potenciômetro conforme o diagrama abaixo
+
+<p align="center">
+  <img src="https://s3-sa-east-1.amazonaws.com/robocore-tutoriais/408/circuito1_H.png?" height="300">
+</p>
+
+#### Passo 2: Programação
+1. Abra o Arduino IDE e siga os seguintes passos:
+    - Inclua a biblioteca LiquidCrystal, que já vem instalada no Arduino IDE
+    - Crie constantes para armazenar apenas os pinos do LCD, visto que o potenciômetro será usado apenas para controlar o brilho do display
+    - Crie um objeto lcd com os pinos declarados: ```LiquidCrystal lcd(RS, EN, D4, D5, D6, D7);```
+    - No ```void setup()```: 
+        1. Configure o lcd com os números de colunas e linhas 
+        2. Limpe o lcd
+        3. Posicione o cursor para a primeira linha e primeira coluna (lembre-se que na programação, consideramos o 0 como o primeiro número) 
+        4. (Opcional) Imprima uma mensagem no display que será exibida assim que o Arduino for conectado
+    - No ```void loop()```: Calcule o tempo decorrido em segundos desde que o Arduino foi iniciado e imprima na primeira coluna e segunda linha
+2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+3. Faça o upload do código para a placa Arduino.
+
+#### Passo 3: Observação
+1. O display LCD exibe a mensagem inicial corretamente quando o Arduino é conectado?
+2. O brilho do display LCD muda conforme você ajusta o potenciômetro?
+3. O tempo decorrido em segundos é atualizado corretamente na segunda linha do display?
+4. Há algum atraso perceptível na atualização do tempo no display? O que poderia estar causando isso?
+5. Experimente ajustar o potenciômetro enquanto observa o display. O brilho responde de forma suave e contínua?
+
+#### Passo 4: Exploração
+1. Como você poderia modificar o código para exibir diferentes mensagens no display LCD em intervalos de tempo específicos?
+2. Explore a possibilidade de usar o display LCD para mostrar dados de outros sensores conectados ao Arduino, como o LDR.
+3. Pense em como você poderia integrar o display LCD com um módulo de comunicação (como Bluetooth ou Wi-Fi) para exibir informações recebidas de outro dispositivo.
+
+---
+
+### Bloco 6: Projeto Nível Digital
+Alguma vez você já olhou para um quadro numa parede e teve a sensação de que ele estava torto? Talvez tenha sido até você quem fixou e na hora precisou chamar alguém pra dizer se estava alinhado ou não. Para esse tipo de situação existe um instrumento bem interessante que já é popular faz muito tempo entre a galera da construção civil, o nível de bolha.
+
+<p align="center">
+  <img src="https://http2.mlstatic.com/D_NQ_NP_779964-MLB71255584755_082023-O.webp" height="300">
+</p>
+
+Inspirado nesse instrumento vamos utilizar os conceitos aprendidos sobre o acelerômetro do MPU-6050 e LCD para construir um Nível Digital Hi-Tech! O mais legal é que poderemos não só dizer se está ou não alinhado, mas mostrar o quanto está desalinhado através da indicação do ângulo de inclinação.
+
+#### Passo 1: Introdução ao Circuito
+1. Monte o circuito conforme a imagem abaixo
+
+<p align="center">
+  <img src="https://s3-sa-east-1.amazonaws.com/robocore-tutoriais/410/circuito_H.png" height="300">
+</p>
+
+#### Passo 2: Programação
+1. Abra o Arduino IDE e escreva o seguinte código
+
+    ```cpp
+    // Inclui a biblioteca Wire que possui as funções da comunicação I2C:
+    #include <Wire.h>
+
+    const int endereco_MPU = 0x68; // endereço I2C do MPU-6050 (Padrão = 0x68)
+    // Variável para armazenar o valor de aceleração
+    float acel_y; // eixo Y
+
+    #include <LiquidCrystal.h> // inclui a biblioteca para uso do Display LCD
+    // inicializa um objeto nos pinos para acesso as funções do LCD
+    LiquidCrystal lcd(12, 11, 10, 9, 8, 7);
+
+    // Define os caraceteres especiais para formar um ponteiro no LCD
+    byte ponteiro_esquerda[8] = { // metade esquerda do ponteiro
+        B00000,
+        B00000,
+        B00000,
+        B11111,
+        B01111,
+        B00111,
+        B00001
+    };
+
+    byte ponteiro_direita[8] = { // metade direita do ponteiro
+        B00000,
+        B00000,
+        B00000,
+        B11111,
+        B11110,
+        B11000,
+        B10000
+    };
+
+    // variável que armazena o fator de calibração do MPU6050
+    // esta variável deve ser alterada caso o seu sensor esteja desregulado
+    // para isso é necessário usar as leituras "cruas" do sensor
+    const int fator_calibracao = 0;
+
+    // variável para armazenar os valores atual e anterior do ângulo
+    int angulo; 
+    int angulo_anterior = -100; // inicia com -100 para forçar atualização do LCD
+    int coluna; // variável para armazenar a posição da coluna do LCD
+
+    void setup(){
+        // Configura o LCD com os número de colunas e linhas
+        lcd.begin(16, 2); // 16 colunas e 2 linhas
+
+        // Cria os caracteres especiais na memória do LCD
+        lcd.createChar(0, ponteiro_esquerda); // Posição 0
+        lcd.createChar(1, ponteiro_direita); // Posição 1
+
+        // Inicia o barramento I2C:
+        Wire.begin();
+
+        Serial.begin(9600);
+        
+        // Inicializa o MPU-6050:
+        Wire.beginTransmission(endereco_MPU); // T
+        Wire.write(0x6B); //  registrador PWR_MGMT_1
+        Wire.write(0); // seta para zero
+        Wire.endTransmission(true); // encerra transmissão
+        
+        lcd.setCursor(2, 0); // posiciona o cursor do LCD (coluna, linha)
+        lcd.print("Inclinometro"); // Imprime mensagem
+        lcd.setCursor(5, 1); 
+        lcd.print("Digital");
+        
+        delay(2000); // aguarda 2 segundo para iniciar
+        
+        // Limpa o LCD
+        lcd.clear();
+    }
+    
+    void loop(){
+        // Inicia transmissão de dados para o MPU-6050
+        Wire.beginTransmission(endereco_MPU);
+        
+        // Define o endereço inicial para leitura
+        Wire.write(0x3D); // registrador ACCEL_YOUT_H
+        Wire.endTransmission(false); // encerra transmissão
+
+        // Solicita os 2 registradores correspondentes ao eixo y do acelerômetro
+        Wire.requestFrom(endereco_MPU, 2, true);
+        acel_y = Wire.read() << 8 | Wire.read();  // 0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)
+        Serial.print("Valor cru = ");
+        Serial.print(acel_y);
+
+        acel_y = acel_y - fator_calibracao; // subtrai a leitura do sensor pelo fator de calibração
+        // Os valores do acelerômetro vão de -16384 até 16384
+        acel_y = constrain(acel_y, -16384.0, 16384.0); // limitamos sua leitura entre estes valores
+        
+        angulo = asin(acel_y / 16384.0) * 180.0 / PI; // converte os valores de aceleração em ângulo
+        
+        Serial.print("\t|\t");
+        Serial.print("Angulo calculado = ");
+        Serial.println(angulo);
+
+        int nivel = angulo / 12; // = 15 Níveis ( -7...0...+7)
+        
+        coluna = nivel + 7; // As colunas do LCD vão de 0 a 15.
+
+        // Só atualiza o LCD se o ângulo mudar (evita que fique o LCD "piscando")
+        if (angulo != angulo_anterior) {
+            lcd.clear(); // Limpa o LCD
+        
+            // imprime o caracteres especiais da memória do LCD
+            lcd.setCursor(coluna, 0);
+            lcd.write(byte(0)); // metade esquerda do ponteiro
+            lcd.write(byte(1)); // metade direita do ponteiro
+            
+            // Imprime a escala
+            lcd.setCursor(0,1);
+            lcd.print("90  45 00 45  90");
+        }
+
+        angulo_anterior = angulo; // atualiza o ângulo anterior
+        
+        delay(500); // aguarda 0.5 segundo para uma nova leitura
+    }
+    ```
+2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+3. Faça o upload do código para a placa Arduino.
+
+#### Passo 3: Observação
+1. A escala de ângulos é exibida corretamente na segunda linha do display?
+2. O ponteiro se move corretamente conforme o ângulo lido pelo sensor MPU6050?
+3. Há algum atraso perceptível na atualização do ponteiro no display? O que poderia estar causando isso?
+4. Experimente inclinar o sensor MPU6050 em diferentes direções e observe como o ponteiro no display responde. A resposta é precisa e consistente?
+
+#### Passo 4: Exploração
+1. Como você poderia modificar o código para exibir os valores de inclinação em graus no display LCD, além do ponteiro?
+2. Tente implementar um sistema de alerta que acione um LED ou um buzzer quando a inclinação ultrapassar um determinado limite.
+3. Explore a possibilidade de usar o sensor MPU6050 para detectar movimentos bruscos e exibir uma mensagem de alerta no display LCD.
+4. Pense em como você poderia integrar o sensor MPU6050 com outros sensores ou módulos para criar um sistema de monitoramento mais completo e interativo.
 
 ---
 
@@ -336,6 +537,8 @@ Este roteiro de monitoria permitiu explorar o funcionamento do sensor MPU6050, i
 ### Sugestões de Leitura
 - [Protocolo I2C](https://docs.arduino.cc/learn/communication/wire/) 
 
-- [Tutorial Giroscópio](https://learn.sparkfun.com/tutorials/gyroscope/all) 
+- [Tutorial Giroscópio](https://learn.sparkfun.com/tutorials/gyroscope/all)
+
+- [LCD](https://pt.wikipedia.org/wiki/LCD)
 
 ---

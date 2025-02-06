@@ -18,7 +18,7 @@ Este roteiro de monitoria tem como objetivo apresentar os conceitos fundamentais
 | 1x Placa Arduino (Uno, Mega, ou similar) | <img src="https://d229kd5ey79jzj.cloudfront.net/1338/images/1338_2_X.png?20241107090313" height="100"> |
 | 1x Cabo USB para conexão com o computador | <img src="https://m.media-amazon.com/images/I/5181PDv7RbL._AC_UF894,1000_QL80_.jpg" height="100"> |
 | 1x Resistor de 300 ohms | <img src="https://http2.mlstatic.com/D_NQ_NP_988873-MLB43270980270_082020-O.webp" height="100"> |
-| 1x Display de 7 segmentos | <img src="https://www.tostatronic.com/wp-content/uploads/2023/07/BTDCA7S_2.webp" height="100"> |
+| 1x Display de 7 segmentos | <img src="https://cdn.awsli.com.br/600x700/2599/2599375/produto/2164683913f810002e1.jpg" height="100"> |
 | 1x Circuito Integrado 4511 | <img src="https://images.tcdn.com.br/img/img_prod/1165255/circuito_integrado_4511_12481_1_940b4ac063223a82d19b2b849e02d980.jpg" height="100"> |
 | 1x Botão | <img src="https://cdn.awsli.com.br/600x450/853/853129/produto/58809095366661a8ce.jpg" height="100"> |
 | Breadboard | <img src="https://cdn.awsli.com.br/600x700/1665/1665980/produto/11154566064a7523ad8.jpg" height="100"> |
