@@ -96,7 +96,7 @@ Resumidamente, o sensor de movimento possui dois sensores IR dentro de um encaps
 #### Passo 2: Programação
 1. Aba o Arduino IDE e siga os seguintes passos:
     - Crie uma constante para armazenar o pino do sensor ```const int pir_signal_pin = 10;``` e uma variável para armazenar o estado do sensor ```boolean pir_status;```
-    - No ```void setup()```: Defina o pino do sensor como saída e inicie o monitor serial em 9600 bps
+    - No ```void setup()```: Defina o pino do sensor como entrada e inicie o monitor serial em 9600 bps
     - No ```void loop()```: Leia o estado do sensor e armazene na variável ```pir_status = digitalRead(pir_signal_pin);```. Exiba o estado do sensor no monitor serial.
 
 2. Selecione a placa e a porta de conexão onde o Arduino está conectado
