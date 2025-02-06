@@ -370,8 +370,7 @@ Neste bloco, aprenderemos a controlar um display LCD usando o Arduino
 Alguma vez você já olhou para um quadro numa parede e teve a sensação de que ele estava torto? Talvez tenha sido até você quem fixou e na hora precisou chamar alguém pra dizer se estava alinhado ou não. Para esse tipo de situação existe um instrumento bem interessante que já é popular faz muito tempo entre a galera da construção civil, o nível de bolha.
 
 <p align="center">
-  <img src="https://http2.mlstatic.com/D_NQ_NP_779964-MLB71255584755_082023-O.webp
-  " height="300">
+  <img src="https://http2.mlstatic.com/D_NQ_NP_779964-MLB71255584755_082023-O.webp" height="300">
 </p>
 
 Inspirado nesse instrumento vamos utilizar os conceitos aprendidos sobre o acelerômetro do MPU-6050 e LCD para construir um Nível Digital Hi-Tech! O mais legal é que poderemos não só dizer se está ou não alinhado, mas mostrar o quanto está desalinhado através da indicação do ângulo de inclinação.
@@ -380,8 +379,7 @@ Inspirado nesse instrumento vamos utilizar os conceitos aprendidos sobre o acele
 1. Monte o circuito conforme a imagem abaixo
 
 <p align="center">
-  <img src="https://s3-sa-east-1.amazonaws.com/robocore-tutoriais/410/circuito_H.png
-  " height="300">
+  <img src="https://s3-sa-east-1.amazonaws.com/robocore-tutoriais/410/circuito_H.png" height="300">
 </p>
 
 #### Passo 2: Programação
