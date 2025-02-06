@@ -37,7 +37,7 @@ Arduino, Sensor de Temperatura e Umidade, DHT11, Sensor de Gás Inflamável, MQ-
 
 ## Metodologia
 
-### Bloco 1: DHT11: Sensor de Temperatura
+### Bloco 1: DHT11: Sensor de Temperatura e Umidade
 
 O sensor DHT11 é um sensor de temperatura e umidade relativa do ar, capaz de medir a temperatura do ambiente. Ele é amplamente utilizado em projetos de automação residencial, controle de climatização e monitoramento ambiental. Neste bloco, vamos explorar o funcionamento do sensor DHT11 e como ele pode ser utilizado para medir a temperatura do ar.
 
@@ -50,6 +50,10 @@ O sensor DHT11 é um sensor de temperatura e umidade relativa do ar, capaz de me
 
 <p align="center">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS30K55UqeITRNTNB1I5sXJSxa9DanTKt-GXw&s" width="300">
+</p>
+
+<p align="center">
+  <img src="https://s3-sa-east-1.amazonaws.com/robocore-tutoriais/390/blocos_dht11_H.png" width="300">
 </p>
 
 2. Adicione um resistor de 10k ohms entre o pino DATA e o pino VCC do sensor (para manter o pino DATA em nível lógico alto quando não houver transmissão de dados).
@@ -129,6 +133,14 @@ O sensor MQ-2 é um sensor de gás inflamável, fumaça e álcool, capaz de dete
     <img src="https://www.researchgate.net/publication/335160061/figure/fig5/AS:791710334464000@1565769861025/Pinout-of-MQ2-gas-sensor-module.jpg" width="300">
 </p>
 
+<p align="center">
+    <img src="https://circuitdigest.com/sites/default/files/inlineimages/u4/MQ2-Sensor-Parts.jpg" width="300">
+</p>
+
+<p align="center">
+    <img src="https://circuitdigest.com/sites/default/files/inlineimages/u4/MQ2-Gas-Sensor-Module.jpg" width="300">
+</p>
+
 2. Adicione um resistor de 10k ohms entre o pino DOUT e o pino VCC do sensor (para manter o pino DOUT em nível lógico alto quando não houver transmissão de dados).
 
 <p align="center">
@@ -185,19 +197,35 @@ void loop() {
 
 ---
 
-### Bloco 4: Display LCD e Monitor de Qualidade do Ar
+### BLoco 4: Display LCD
 
-Neste bloco, vamos combinar os sensores DHT11 e MQ-2 com um display LCD para criar uma "estação meteorológica" com Arduino. Vamos exibir a temperatura, umidade relativa e a concentração de gases inflamáveis no ambiente em tempo real. Além disso, vamos explorar novos métodos de exibição dos dados, com um display LCD.
+Nesse bloco, vamos nos familiarizar com o display LCD (Liquid Crystal Display) e aprender a exibir informações no display usando o Arduino. Ele é amplamente utilizado em dispositivos eletrônicos, como smartphones, tablets, monitores e relógios, devido à sua eficiência energética e qualidade de imagem.
+
+#### Como os LCDs funcionam? 
+
+Os displays LCD (Liquid Crystal Display) são dispositivos de exibição que utilizam cristais líquidos para produzir imagens ou texto. Eles são compostos por uma matriz de pixels que podem ser ativados ou desativados para exibir informações. 
+Esses dispositivos usam uma série de filtros polarizadores e camadas de cristais líquidos para controlar a passagem da luz e gerar imagens. Quando uma corrente elétrica é aplicada aos cristais líquidos, eles mudam de orientação e permitem a passagem da luz, permitindo ou barrando a passagem de luz através dos pixels.
+Os displays LCD são amplamente utilizados em dispositivos eletrônicos, como smartphones, tablets, monitores e relógios, devido à sua eficiência energética e qualidade de imagem.
 
 <p align="center">
-    <img src="https://www.makerhero.com/wp-content/uploads/2020/04/aula7.1.png" width="300">
+    <img src="https://s3-sa-east-1.amazonaws.com/robocore-tutoriais/408/lcd_inside_H.png" height="300">
+</p>
+
+Utilizaremos uma tela com 16 colunas e 2 Linhas, por isso o nome "LCD 16x2". Abaixo você pode visualizar como são dispostas e enumeradas cada uma das colunas do LCD. Note que as colunas são enumeradas de 0 a 15 e as linhas de 0 a 1.
+
+<p align="center">
+    <img src="https://s3-sa-east-1.amazonaws.com/robocore-tutoriais/408/linhas_colunas_H.png" height="300">
+</p>
+
+Para cada caractere do display, temos uma submatriz de 5 colunas e 8 linhas, totalizando 40. Abaixo você pode visualizar como é a disposição dos pixels para formar um caractere.
+
+<p align="center">
+    <img src="https://s3-sa-east-1.amazonaws.com/robocore-tutoriais/408/bits_lcd_H.png" height="300">
 </p>
 
 #### Passo 1: Introdução ao Circuito
 
-1. Mantenha as conexões dos sensores DHT11 e MQ-2 ao Arduino conforme os blocos anteriores.
-
-2. Conecte o display LCD ao Arduino conforme o esquemático abaixo:
+1. Conecte o display LCD ao Arduino conforme o esquemático abaixo:
 
 <p align="center">
     <img src="..\..\src\images\Aula 4\lcd_circuit.png" height="300">
@@ -207,7 +235,84 @@ Neste bloco, vamos combinar os sensores DHT11 e MQ-2 com um display LCD para cri
 
 1. Instale a biblioteca ```LiquidCrystal``` na Arduino IDE. Para isso, abra o Library Manager e busque por ```LiquidCrystal```.
 
-2. Abra o Arduino IDE e escreva o seguinte código para exibir a temperatura, umidade e concentração de gases inflamáveis no display LCD:
+2. Abra o Arduino IDE e escreva o seguinte código para exibir um texto no display LCD:
+
+```cpp
+#include <LiquidCrystal.h> // Inclui a biblioteca do display LCD
+
+// Define os pinos do display LCD
+#define LCD_RS 13
+#define LCD_EN 12
+#define LCD_D4 11
+#define LCD_D5 10
+#define LCD_D6 9
+#define LCD_D7 8
+
+// Inicializa o display LCD
+LiquidCrystal lcd(LCD_RS, LCD_EN, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
+
+void setup(){
+  // Configura o LCD com os número de colunas e linhas
+  lcd.begin(16, 2); // 16 colunas e 2 linhas
+
+  // Limpa o LCD
+  lcd.clear();
+  
+  // posiciona o cursor do LCD
+  lcd.setCursor(0, 0); // (coluna 0, linha 0)
+  lcd.print("FGV e Marinha"); // Imprime mensagem
+}
+
+void loop(){
+  // Calcula o tempo decorrido em segundos desde que o Arduino foi iniciado
+  unsigned long tempo_decorrido = millis() / 1000; // ms -> s
+
+  // Imprime no LCD
+  lcd.setCursor(0, 1); // (coluna 0, linha 1)
+  lcd.print(tempo_decorrido);
+  lcd.print("s");
+}
+```
+
+3. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+
+4. Faça o upload do código para a placa Arduino.
+
+#### Passo 3: Observação
+
+1. O LCD exibe a mensagem "FGV e Marinha" na primeira linha e o tempo decorrido em segundos na segunda linha? Caso não esteja sendo possível visualizar a mensagem, experimente ajustar o contraste do display LCD girando o potenciômetro.
+
+2. O tempo decorrido é exibido corretamente no display LCD? Ele é atualizado de forma suave ou de maneira brusca?
+
+3. O LCD mantém a informação caso reiniciemos a placa Arduino? e se desconectarmos um fio do display?
+
+#### Passo 4: Exploração
+
+1. O LCD responde corretamente se alterarmos a posição do cursor? O que acontece se tentarmos imprimir um texto maior do que o número de colunas do display? 
+
+2. O que acontece se apontarmos o cursor para fora da área útil do display? Experimente alterar a posição do cursor para além do limite do display (ex: ```lcd.setCursor(5, 1)```)
+
+3. Como podemos limpar a tela do display LCD, gerando uma mensagem que pisque, ao invés de se manter fixa? Experimente limpar o display a cada loop usando o comando ```lcd.clear()```.
+
+4. Experimente dividir a mensagem "FGV e Marinha" em duas linhas, de forma que a primeira linha exiba "FGV" e a segunda linha exiba "e Marinha".
+
+5. Como podemos lidar com mensagens longas demais para serem executadas em uma única linha do display? Experimente agora alterar a mensagem para 'Fundacao Getulio Vargas e Marinha do Brasil', e utilize as funções ```lcd.scrollDisplayLeft()``` ou ```lcd.scrollDisplayRight()``` para fazer a mensagem rolar no display.
+
+6. Como poderíamos programar o display para alternar entre a exibição de mensagens a cada 10 segundos? Experimente utilizar a função ```millis()``` para calcular o tempo decorrido e alternar entre 2 mensagens diferentes. Quais outras funções poderiam ser usadas para contar o tempo decorrido?
+
+---
+
+### Bloco 5: Wheather Station
+
+Neste bloco, vamos combinar os sensores DHT11 e MQ-2 com um display LCD para criar uma "estação meteorológica" com Arduino. Vamos exibir a temperatura, umidade relativa e a concentração de gases inflamáveis no ambiente em tempo real. Além disso, vamos explorar novos métodos de exibição dos dados, com um display LCD.
+
+#### Passo 1: Introdução ao Circuito
+
+1. Mantenha as conexões dos sensores DHT11, MQ-2 e DIsplay LCD ao Arduino conforme os blocos anteriores.
+
+#### Passo 2: Programação
+
+1. Abra o Arduino IDE e escreva o seguinte código para exibir a temperatura, umidade e concentração de gases inflamáveis no display LCD:
 
 ```cpp
 #include <DHT11.h> // Inclui a biblioteca do sensor DHT11
@@ -280,9 +385,9 @@ void loop() {
 }
 ```
 
-3. Selecione a placa e a porta de conexão onde o Arduino está conectado.
+2. Selecione a placa e a porta de conexão onde o Arduino está conectado.
 
-4. Faça o upload do código para a placa Arduino.
+3. Faça o upload do código para a placa Arduino.
 
 #### Passo 3: Observação
 
@@ -296,9 +401,11 @@ void loop() {
 
 2. Como a estação meteorológica poderia ser expandida para monitorar outros parâmetros ambientais? Quais sensores adicionais poderiam ser utilizados e como eles poderiam ser integrados ao sistema? Experimente buscar sensores no mercado e avaliar suas especificações, compondo um projeto mais complexo sobre a qualidade do ar.
 
+3. Experimente tentar exibir o caractere "°" no display, e observe o resultado. Por que o caractere não é exibido corretamente? Como podemos corrigir esse problema? Experimente pesquisar sobre a tabela ASCII e como exibir caracteres especiais no display LCD, e tente implementar a exibição correta do caractere "°" para a exibição de temperaturas
+
 ---
 
-### Bloco 5: Alarme para emergências
+### Bloco 6: Alarme para emergências
 
 Neste bloco, vamos adicionar um alarme sonoro ao nosso projeto de estação meteorológica com Arduino. O alarme será acionado quando a concentração de gases inflamáveis no ambiente ultrapassar um limite pré-estabelecido (ou se o sinal digital estiver em HIGH), quando a temperatura estiver acima de um valor crítico ou quando a umidade relativa do ar estiver abaixo de um valor crítico. O alarme sonoro será acionado por um buzzer passivo.
 
@@ -431,11 +538,19 @@ void alarmOff() {
 
 #### Passo 4: Exploração
 
-1. O alarme sonoro é eficaz para alertar sobre situações críticas? Ele é alto o suficiente para ser ouvido em ambientes ruidosos? O que poderia ser feito para melhorar a eficácia do alarme sonoro? Experimente ajustar a frequência do buzzer para tornar o alarme mais perceptível.
+1. O exemplo descreve uma condição composta de múltiplos fatores para o acionamento do alarme sonoro. Experimente variar a temperatura, umidade, concentração de gases inflamáveis e sinal digital do sensor MQ-2 para observar o comportamento do alarme.
 
-2. Como o alarme sonoro poderia ser integrado a outros sistemas de segurança ou monitoramento? Quais outros sensores ou dispositivos poderiam ser acionados em conjunto com o alarme sonoro? Experimente pesquisar sobre sistemas de alarme e segurança para obter ideias de integração.
+2. Crie uma segunda condição para acionar o alarme sonoro usando ```else if```. Por exemplo, acione o alarme sonoro quando a temperatura ultrapassar 25°C e a umidade relativa do ar estiver abaixo de 50%.
 
-3. Como o projeto da estação meteorológica poderia ser expandido para incluir mais sensores, dispositivos de exibição ou sistemas de alerta? Quais outras funcionalidades poderiam ser adicionadas ao projeto para torná-lo mais completo e eficiente? Experimente idealizar um sistema de monitoramento ambiental completo, com sensores de qualidade do ar, temperatura, umidade, luminosidade, ruído, entre outros.
+3. Experimente adicionar parâmetros à função ´´´alarmOn()´´´, gerando um alarme sonoro com diferentes frequências para cada condição acionada. Por exemplo, acione o alarme com frequências diferentes para cada condição descrita.
+
+4. Nesse exemplo, o alarme sonoro é desligado automaticamente quando as condições críticas não são mais atendidas. Experimente implementar nesse sistema um botão para desligar o alarme manualmente, assim como em sistemas reais. Para isso, utilize um botão push-button conectado a um pino digital do Arduino e implemente a lógica para desligar o alarme apenas quando o botão for pressionado.
+
+5. O alarme sonoro é eficaz para alertar sobre situações críticas? Ele é alto o suficiente para ser ouvido em ambientes ruidosos? O que poderia ser feito para melhorar a eficácia do alarme sonoro? Experimente ajustar a frequência do buzzer para tornar o alarme mais perceptível.
+
+6. Como o alarme sonoro poderia ser integrado a outros sistemas de segurança ou monitoramento? Quais outros sensores ou dispositivos poderiam ser acionados em conjunto com o alarme sonoro? Experimente pesquisar sobre sistemas de alarme e segurança para obter ideias de integração.
+
+7. Como o projeto da estação meteorológica poderia ser expandido para incluir mais sensores, dispositivos de exibição ou sistemas de alerta? Quais outras funcionalidades poderiam ser adicionadas ao projeto para torná-lo mais completo e eficiente? Experimente idealizar um sistema de monitoramento ambiental completo, com sensores de qualidade do ar, temperatura, umidade, luminosidade, ruído, entre outros.
 
 ---
 
