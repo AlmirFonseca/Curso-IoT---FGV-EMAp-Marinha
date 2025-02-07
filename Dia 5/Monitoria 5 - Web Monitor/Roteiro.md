@@ -256,19 +256,22 @@ Neste bloco, utilizaremos o módulo ESP8266 como servidor web. O módulo será c
 5. Troque as linhas com:
 
     ```cpp
-    String webpage = String("HTTP/1.1 200 OK\r\n") +
-                       "Content-Type: text/html\r\n" +
-                       "Connection: close\r\n" +
-                       "\r\n" +
-                       "<html style=\"font-size:15em\">" +
-                       analogRead(A0) + 
-                       "</html>";
+     String webpage = String("HTTP/1.1 200 OK\r\n") +
+                                "Content-Type: text/html\r\n" +
+                                "Connection: close\r\n" +
+                                "\r\n" +
+                                "<!DOCTYPE HTML>" +
+                                "<html>" +
+                                "<h1>" +
+                                "Ola Mundo!" +
+                                "</h1></html>" +
+                                "\r\n";
     ```
 
     por:
 
     ```cpp
-    webpage = String("HTTP/1.1 200 OK\r\n") +
+    String webpage = String("HTTP/1.1 200 OK\r\n") +
                 "Content-Type: text/html\r\n" +
                 "Connection: close\r\n" +
                 "Refresh: 8\r\n" +
